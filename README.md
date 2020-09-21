@@ -10,11 +10,11 @@
 int a=0 //BAD
 int a = 0 //GOOD
 
-~~builder.checker(~~~~~~~~~~~).finish(~~~~~~) //BAD
+builder.create().checker("JUSTTEXTANYTHING").finish(BLAHBLAH_TYPE) //BAD
 
-~~builder
-  .checker(~~~~~~~~~~~)
-  .finish(~~~~~~) //GOOD
+builder.create()
+  .checker("JUSTTEXTANYTHING")
+  .finish(BLAHBLAH_TYPE) //GOOD
 ```
 
 #### 명명
