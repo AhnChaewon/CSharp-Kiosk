@@ -22,6 +22,7 @@ builder.create()
 - 변수와 함수는 카멜 케이스를 사용
 - 클래스나 파일은 파스칼 케이스를 사용한다.
 - 상수는 전부 대문자로 적고 스네이크 케이스를 사용
+- (참고 자료) https://m.blog.naver.com/PostView.nhn?blogId=playcodingacademy&logNo=221317135750&proxyReferer=https:%2F%2Fwww.google.com%2F
 
 ```C#
 int helloWorld
