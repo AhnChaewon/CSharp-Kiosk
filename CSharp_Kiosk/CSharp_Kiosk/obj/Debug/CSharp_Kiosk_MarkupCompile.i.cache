@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-C:\Users\namgy\Documents\GitHub\CSharp-Kiosk\CSharp_Kiosk\CSharp_Kiosk\obj\Release\
+C:\Users\namgy\Documents\GitHub\CSharp-Kiosk\CSharp_Kiosk\CSharp_Kiosk\obj\Debug\
 CSharp_Kiosk
 none
 false
-TRACE
+DEBUG;TRACE
 C:\Users\namgy\Documents\GitHub\CSharp-Kiosk\CSharp_Kiosk\CSharp_Kiosk\App.xaml
 101963883761
 
-14-1408575648
+152044032281
 13-1505183044
 ChooseDiningPlace.xaml;DiningPlace.xaml;FinishPayment.xaml;Main.xaml;MainWindow.xaml;Order.xaml;Payment.xaml;PaymentCard.xaml;PaymentMoney.xaml;Statistics.xaml;
 

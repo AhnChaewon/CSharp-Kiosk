@@ -7,6 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <local:Main x:Name="MainControl"></local:Main>
+        <local:Statistics x:Name="StatisticsControl" Visibility="Collapsed"></local:Statistics>
+        <local:Order x:Name="OrderControl" Visibility="Collapsed"></local:Order>
+        <local:ChooseDiningPlace x:Name="ChooseDiningPlaceControl" Visibility="Collapsed"></local:ChooseDiningPlace>
+        <local:DiningPlace x:Name="DiningPlaceControl" Visibility="Collapsed"></local:DiningPlace>
+        <local:Payment x:Name="PaymentControl" Visibility="Collapsed"></local:Payment>
+        <local:PaymentCard x:Name="PaymentCardControl" Visibility="Collapsed"></local:PaymentCard>
+        <local:PaymentMoney x:Name="PaymentMoneyControl" Visibility="Collapsed"></local:PaymentMoney>
+        <local:FinishPayment x:Name="FinishPaymentControl" Visibility="Collapsed"></local:FinishPayment>
+        
     </Grid>
 </Window>

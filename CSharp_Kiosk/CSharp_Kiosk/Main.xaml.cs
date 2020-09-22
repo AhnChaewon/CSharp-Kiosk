@@ -24,5 +24,13 @@ namespace CSharp_Kiosk
         {
             InitializeComponent();
         }
+
+        private void nextBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Order a = new Order();
+            a.Visibility = Visibility.Visible;
+            this.Visibility = Visibility.Collapsed;
+            
+        }
     }
 }

@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-            
+        <Button x:Name="nextBtn" Click="nextBtn_Click" Width="50" Height="50" Content="next"></Button>
     </Grid>
 </UserControl>

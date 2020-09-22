@@ -22,6 +22,7 @@ namespace CSharp_Kiosk
     {
         public Order()
         {
+            Console.WriteLine("Order 생성");
             InitializeComponent();
         }
     }
