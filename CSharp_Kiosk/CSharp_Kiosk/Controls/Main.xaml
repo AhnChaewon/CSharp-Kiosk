@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CSharp_Kiosk"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid Background="White" x:Name="mainGrid">
-        <Button x:Name="btnMove" Content="주문하기" Height="100" Width="100"/>
+        <TextBlock Text="Main" FontSize="100" HorizontalAlignment="Center"/>
+        <Button x:Name="mainNextBtn" Content="주문하기" Height="100" Width="100" Margin="690,340,10,9.6" RenderTransformOrigin="1.028,0.699"/>
     </Grid>
 </UserControl>

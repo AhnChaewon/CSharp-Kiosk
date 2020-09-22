@@ -4,10 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CSharp_Kiosk"
-             
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Black">
-            
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    
+    <Grid Background="White" x:Name="orderGrid">
+        <TextBlock Text="Order" FontSize="100" HorizontalAlignment="Center"/>
+        <Button x:Name="orderNextBtn" Width="150" Height="150" Content="next" Margin="740,390,10,9.6"/>
     </Grid>
 </UserControl>
