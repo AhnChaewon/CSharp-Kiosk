@@ -16,6 +16,5 @@
         <local:PaymentCard x:Name="PaymentCardControl" Visibility="Collapsed"></local:PaymentCard>
         <local:PaymentMoney x:Name="PaymentMoneyControl" Visibility="Collapsed"></local:PaymentMoney>
         <local:FinishPayment x:Name="FinishPaymentControl" Visibility="Collapsed"></local:FinishPayment>
-        
     </Grid>
 </Window>
