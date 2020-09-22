@@ -6,11 +6,7 @@
         xmlns:local="clr-namespace:CSharp_Kiosk"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Background="Black">
-        <local:Statistics x:Name="ucOrder" Visibility="Collapsed">
-            
-        </local:Statistics>
+    <Grid>
 
-        <Button x:Name="btn" Click="btn_Click" Width="100" Height="100" Content="버튼"></Button>
     </Grid>
 </Window>

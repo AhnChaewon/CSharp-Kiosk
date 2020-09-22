@@ -12,9 +12,5 @@ namespace CSharp_Kiosk
             InitializeComponent();
         }
 
-        private void btn_Click(object sender, RoutedEventArgs e)
-        {
-            ucOrder.Visibility = Visibility.Visible;
-        }
     }
 }
