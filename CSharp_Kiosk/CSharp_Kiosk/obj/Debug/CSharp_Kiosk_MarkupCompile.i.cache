@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\namgy\Documents\GitHub\CSharp-Kiosk\CSharp_Kiosk\CSharp_Kiosk\App.xaml
-11151548125
+9533998561
 
-61434861427
+14-1595553203
 13-1505183044
-MainWindow.xaml;
+ChooseDiningPlace.xaml;DiningPlace.xaml;FinishPayment.xaml;MainWindow.xaml;Order.xaml;Payment.xaml;PaymentCard.xaml;PaymentMoney.xaml;Statistics.xaml;
 
-False
+True
 

@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\Users\namgy\Documents\GitHub\CSharp-Kiosk\CSharp_Kiosk\CSharp_Kiosk\obj\Release\
+C:\Users\namgy\Documents\GitHub\CSharp-Kiosk\CSharp_Kiosk\CSharp_Kiosk\obj\Debug\
 CSharp_Kiosk
 none
 false
-TRACE
+DEBUG;TRACE
 C:\Users\namgy\Documents\GitHub\CSharp-Kiosk\CSharp_Kiosk\CSharp_Kiosk\App.xaml
 11151548125
 
