@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:CSharp_Kiosk"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="White">
+        <Image Name="test" Width="72"></Image>
     </Grid>
 </UserControl>
