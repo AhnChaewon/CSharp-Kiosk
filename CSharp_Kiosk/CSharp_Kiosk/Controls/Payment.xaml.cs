@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CSharp_Kiosk
 {
@@ -22,22 +23,21 @@ namespace CSharp_Kiosk
     /// </summary>
     public partial class Payment : UserControl
     {
-        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DeleteObject([In] IntPtr hObject);
         public Payment()
         {
             InitializeComponent();
-            test.Source = ImageSourceFromBitmap(Properties.Resources.burgerking_logo);
+            
+            DispatcherTimer timer = new DispatcherTimer();   
+            timer.Interval = TimeSpan.FromMilliseconds(0.01);    
+            timer.Tick += new EventHandler(timer_Tick);          
+            timer.Start();                                       
         }
-        public ImageSource ImageSourceFromBitmap(Bitmap bmp)
+
+        private void timer_Tick(object sender, EventArgs e)
         {
-            var handle = bmp.GetHbitmap();
-            try
-            {
-                return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            }
-            finally { DeleteObject(handle); }
+            date.Text = System.DateTime.Now.ToString("yyyy년 MM월 dd일");
+            time.Text = System.DateTime.Now.ToString("HH:mm:ss");
         }
+
     }
 }

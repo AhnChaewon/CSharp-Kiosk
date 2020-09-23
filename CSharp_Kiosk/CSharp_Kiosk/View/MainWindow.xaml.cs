@@ -18,6 +18,13 @@ namespace CSharp_Kiosk
             OrderControl.orderNextBtn.Click += OrderNextBtn_Click;
             ChooseDiningPlaceControl.chooseNextBtn.Click += ChooseNextBtn_Click;
             DiningPlaceControl.diningNextBtn.Click += DiningNextBtn_Click;
+            PaymentControl.homeBtn.Click += HomeBtn_Click;
+        }
+
+        private void HomeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = collpased;
+            MainControl.Visibility = visible;
         }
 
         private void DiningNextBtn_Click(object sender, RoutedEventArgs e)
