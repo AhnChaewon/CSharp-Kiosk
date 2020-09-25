@@ -39,17 +39,11 @@
                     HorizontalAlignment="Center"/>
             </StackPanel>
 
-            <Button 
-                HorizontalAlignment="Right" 
-                Name="homeBtn" 
-                VerticalAlignment="Top"
-                Background="White" 
-                BorderBrush="White" >
-                <Image 
-                    Source="/Resources/home_icon.png" 
-                    Width="72"/>
-
-            </Button>
+            <Image 
+                x:Name="paymentHome" 
+                Width="72"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top" Source="/Resources/home_icon.png"/>
 
         </Grid>
 

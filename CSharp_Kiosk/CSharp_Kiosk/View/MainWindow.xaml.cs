@@ -18,12 +18,12 @@ namespace CSharp_Kiosk
             OrderControl.orderNextBtn.Click += OrderNextBtn_Click;
             ChooseDiningPlaceControl.chooseNextBtn.Click += ChooseNextBtn_Click;
             DiningPlaceControl.diningNextBtn.Click += DiningNextBtn_Click;
-            PaymentControl.homeBtn.Click += HomeBtn_Click;
+            PaymentControl.paymentHome.MouseDown += PaymentHome_MouseDown;
         }
 
-        private void HomeBtn_Click(object sender, RoutedEventArgs e)
+        private void PaymentHome_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            this.Visibility = collpased;
+            PaymentControl.Visibility = collpased;
             MainControl.Visibility = visible;
         }
 

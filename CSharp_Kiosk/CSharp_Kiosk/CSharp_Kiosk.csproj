@@ -162,7 +162,7 @@
     <Resource Include="Resources\burgerking_logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\home_icon.png" />
+    <Resource Include="Resources\home_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
