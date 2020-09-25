@@ -14,11 +14,35 @@ namespace CSharp_Kiosk
         public MainWindow()
         {
             InitializeComponent();
+            //임시로 만들어놓은 다음 버튼
             MainControl.mainNextBtn.Click += MainNextBtn_Click;
             OrderControl.orderNextBtn.Click += OrderNextBtn_Click;
             ChooseDiningPlaceControl.chooseNextBtn.Click += ChooseNextBtn_Click;
             DiningPlaceControl.diningNextBtn.Click += DiningNextBtn_Click;
+
+            //홈버튼. 너무 비효율적이긴 한데 일단 이렇게 쓰자
+            OrderControl.orderHome.MouseDown += OrderHome_MouseDown;
+            ChooseDiningPlaceControl.chooseDiningHome.MouseDown += ChooseDiningHome_MouseDown;
+            DiningPlaceControl.diningHome.MouseDown += DiningHome_MouseDown;
             PaymentControl.paymentHome.MouseDown += PaymentHome_MouseDown;
+        }
+
+        private void DiningHome_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            DiningPlaceControl.Visibility = collpased;
+            MainControl.Visibility = visible;
+        }
+
+        private void ChooseDiningHome_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ChooseDiningPlaceControl.Visibility = collpased;
+            MainControl.Visibility = visible;
+        }
+
+        private void OrderHome_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            OrderControl.Visibility = collpased;
+            MainControl.Visibility = visible;
         }
 
         private void PaymentHome_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
