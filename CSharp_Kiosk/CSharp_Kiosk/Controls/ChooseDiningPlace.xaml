@@ -7,7 +7,47 @@
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid Background="White">
-        <TextBlock Text="ChooseDiningPlace" FontSize="100" HorizontalAlignment="Center"/>
+        
+        <Grid x:Name="topBar"
+            Width="1280"
+            Margin="0 40">
+
+            <Image 
+                x:Name="logo" 
+                Width="72"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+                <Image.Source>
+                    <BitmapImage 
+                        x:Name="burgerkingLogo" 
+                        UriSource="/Resources/burgerking_logo.png"/>
+                </Image.Source>
+            </Image>
+
+            <StackPanel 
+                Orientation="Vertical"
+                HorizontalAlignment="Right"
+                Margin="0 0 120 0">
+                <TextBlock 
+                    x:Name="date" 
+                    Text="Load..."
+                    FontSize="25"
+                    HorizontalAlignment="Center"/>
+                <TextBlock 
+                    x:Name="time" 
+                    Text="Load..."
+                    FontSize="25"
+                    HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <Image 
+                x:Name="chooseDiningHome" 
+                Width="72"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top" Source="/Resources/home_icon.png"/>
+
+        </Grid>
+        
         <Button x:Name="chooseNextBtn" Width="150" Height="150" Content="next" Margin="740,390,10,9.6"/>
     </Grid>
 </UserControl>

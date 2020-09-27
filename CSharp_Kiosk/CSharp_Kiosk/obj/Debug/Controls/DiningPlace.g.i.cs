@@ -41,7 +41,55 @@ namespace CSharp_Kiosk {
     public partial class DiningPlace : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         
-        #line 11 "..\..\..\Controls\DiningPlace.xaml"
+        #line 10 "..\..\..\Controls\DiningPlace.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Grid topBar;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 15 "..\..\..\Controls\DiningPlace.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image logo;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 21 "..\..\..\Controls\DiningPlace.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Media.Imaging.BitmapImage burgerkingLogo;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 31 "..\..\..\Controls\DiningPlace.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBlock date;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 36 "..\..\..\Controls\DiningPlace.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBlock time;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 43 "..\..\..\Controls\DiningPlace.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image diningHome;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 50 "..\..\..\Controls\DiningPlace.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button diningNextBtn;
         
@@ -79,6 +127,24 @@ namespace CSharp_Kiosk {
             switch (connectionId)
             {
             case 1:
+            this.topBar = ((System.Windows.Controls.Grid)(target));
+            return;
+            case 2:
+            this.logo = ((System.Windows.Controls.Image)(target));
+            return;
+            case 3:
+            this.burgerkingLogo = ((System.Windows.Media.Imaging.BitmapImage)(target));
+            return;
+            case 4:
+            this.date = ((System.Windows.Controls.TextBlock)(target));
+            return;
+            case 5:
+            this.time = ((System.Windows.Controls.TextBlock)(target));
+            return;
+            case 6:
+            this.diningHome = ((System.Windows.Controls.Image)(target));
+            return;
+            case 7:
             this.diningNextBtn = ((System.Windows.Controls.Button)(target));
             return;
             }
