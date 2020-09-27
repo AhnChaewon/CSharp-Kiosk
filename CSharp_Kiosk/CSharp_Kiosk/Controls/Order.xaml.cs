@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CSharp_Kiosk
 {
@@ -23,6 +24,16 @@ namespace CSharp_Kiosk
         public Order()
         {
             InitializeComponent();
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(0.01);
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            date.Text = System.DateTime.Now.ToString("yyyy년 MM월 dd일");
+            time.Text = System.DateTime.Now.ToString("HH:mm:ss");
         }
     }
 }

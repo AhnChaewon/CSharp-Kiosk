@@ -39,5 +39,6 @@ namespace CSharp_Kiosk
             time.Text = System.DateTime.Now.ToString("HH:mm:ss");
         }
 
+        
     }
 }

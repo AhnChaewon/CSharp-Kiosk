@@ -10,7 +10,8 @@
 
         <Grid x:Name="topBar"
             Width="1280"
-            Margin="0 20">
+            Margin="0 40">
+            
             <Image 
                 x:Name="logo" 
                 Width="72"
@@ -39,17 +40,11 @@
                     HorizontalAlignment="Center"/>
             </StackPanel>
 
-            <Button 
-                HorizontalAlignment="Right" 
-                Name="homeBtn" 
-                VerticalAlignment="Top"
-                Background="White" 
-                BorderBrush="White" >
-                <Image 
-                    Source="/Resources/home_icon.png" 
-                    Width="72"/>
-
-            </Button>
+            <Image 
+                x:Name="paymentHome" 
+                Width="72"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top" Source="/Resources/home_icon.png"/>
 
         </Grid>
 
