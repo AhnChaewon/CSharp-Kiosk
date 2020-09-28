@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\chaew\Desktop\나르샤\Recommend-Web\CSharp-Kiosk\CSharp_Kiosk\CSharp_Kiosk\obj\Debug\
+C:\Users\namgy\Documents\GitHub\CSharp-Kiosk\CSharp_Kiosk\CSharp_Kiosk\obj\Debug\
 CSharp_Kiosk
 none
 false
 DEBUG;TRACE
-C:\Users\chaew\Desktop\나르샤\Recommend-Web\CSharp-Kiosk\CSharp_Kiosk\CSharp_Kiosk\App.xaml
+C:\Users\namgy\Documents\GitHub\CSharp-Kiosk\CSharp_Kiosk\CSharp_Kiosk\App.xaml
 10-849102668
 
 15-87440018
 141183416626
 Controls\ChooseDiningPlace.xaml;Controls\DiningPlace.xaml;Controls\FinishPayment.xaml;Controls\Main.xaml;View\MainWindow.xaml;Controls\Order.xaml;Controls\Payment.xaml;Controls\PaymentCard.xaml;Controls\PaymentMoney.xaml;Controls\Statistics.xaml;
 
-True
+False
 
