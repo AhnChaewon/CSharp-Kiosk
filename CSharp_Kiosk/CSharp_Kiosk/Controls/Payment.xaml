@@ -7,12 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="9*"/>
-        </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid x:Name="topBar"
+            Width="1280"
+            Margin="0 40">
+            
             <Image 
                 x:Name="logo" 
                 Width="72"
@@ -45,63 +44,12 @@
                 x:Name="paymentHome" 
                 Width="72"
                 HorizontalAlignment="Right"
-                VerticalAlignment="Top" 
-                Source="/Resources/home_icon.png"/>
-        </Grid>
-
-        <Grid 
-            Grid.Row="1">
-            
-            <TextBlock
-                Text="주문 리스트를 확인해주세요."
-                FontSize="18"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Left"
-                Margin="150 80"/>
-
-            <ListView
-                x:Name="orderList"
-                Height="500"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left" 
-                Width="400">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="항목" Width="150"/>
-                        <GridViewColumn Header="수량" Width="100"/>
-                        <GridViewColumn Header="가격" Width="150"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
-            <Button
-                x:Name="cancelBtn"
-                Width="140"
-                Height="50"
-                Content="취소하기"
-                FontSize="18"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Left"
-                Margin="240,0,0,0"/>
-
-            <Image
-                x:Name="cardBtn"
-                Width="200"
-                Height="164"
-                Source="/Resources/card.png"
-                Margin="0 0 400 0"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Right"/>
-
-            <Image
-                x:Name="moneyBtn"
-                Width="200"
-                Height="164"
-                Source="/Resources/money.png"
-                Margin="0 0 100 0"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Right"/>
+                VerticalAlignment="Top" Source="/Resources/home_icon.png"/>
 
         </Grid>
+
+
+
+
     </Grid>
 </UserControl>

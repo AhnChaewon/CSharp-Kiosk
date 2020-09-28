@@ -21,25 +21,10 @@ namespace CSharp_Kiosk
             DiningPlaceControl.diningNextBtn.Click += DiningNextBtn_Click;
 
             //홈버튼. 너무 비효율적이긴 한데 일단 이렇게 쓰자
+            OrderControl.orderHome.MouseDown += OrderHome_MouseDown;
             ChooseDiningPlaceControl.chooseDiningHome.MouseDown += ChooseDiningHome_MouseDown;
             DiningPlaceControl.diningHome.MouseDown += DiningHome_MouseDown;
             PaymentControl.paymentHome.MouseDown += PaymentHome_MouseDown;
-
-            //payment 결제방법
-            PaymentControl.cardBtn.MouseDown += CardBtn_MouseDown;
-            PaymentControl.moneyBtn.MouseDown += MoneyBtn_MouseDown;
-        }
-
-        private void MoneyBtn_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            PaymentControl.Visibility = collpased;
-            PaymentMoneyControl.Visibility = visible;
-        }
-
-        private void CardBtn_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            PaymentControl.Visibility = collpased;
-            PaymentCardControl.Visibility = visible;
         }
 
         private void DiningHome_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -51,6 +36,12 @@ namespace CSharp_Kiosk
         private void ChooseDiningHome_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ChooseDiningPlaceControl.Visibility = collpased;
+            MainControl.Visibility = visible;
+        }
+
+        private void OrderHome_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            OrderControl.Visibility = collpased;
             MainControl.Visibility = visible;
         }
 

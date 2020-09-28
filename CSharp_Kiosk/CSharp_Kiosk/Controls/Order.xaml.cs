@@ -32,8 +32,8 @@ namespace CSharp_Kiosk
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            /*date.Text = System.DateTime.Now.ToString("yyyy년 MM월 dd일");
-            time.Text = System.DateTime.Now.ToString("HH:mm:ss");*/
+            date.Text = System.DateTime.Now.ToString("yyyy년 MM월 dd일");
+            time.Text = System.DateTime.Now.ToString("HH:mm:ss");
         }
     }
 }
