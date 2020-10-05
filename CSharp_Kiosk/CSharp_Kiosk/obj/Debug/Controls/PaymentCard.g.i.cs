@@ -40,6 +40,46 @@ namespace CSharp_Kiosk {
     /// </summary>
     public partial class PaymentCard : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
+        
+        #line 19 "..\..\..\Controls\PaymentCard.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image logo;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 25 "..\..\..\Controls\PaymentCard.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Media.Imaging.BitmapImage burgerkingLogo;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 35 "..\..\..\Controls\PaymentCard.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBlock date;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 40 "..\..\..\Controls\PaymentCard.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBlock time;
+        
+        #line default
+        #line hidden
+        
+        
+        #line 47 "..\..\..\Controls\PaymentCard.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.Image paymentCardHome;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -68,6 +108,24 @@ namespace CSharp_Kiosk {
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
         void System.Windows.Markup.IComponentConnector.Connect(int connectionId, object target) {
+            switch (connectionId)
+            {
+            case 1:
+            this.logo = ((System.Windows.Controls.Image)(target));
+            return;
+            case 2:
+            this.burgerkingLogo = ((System.Windows.Media.Imaging.BitmapImage)(target));
+            return;
+            case 3:
+            this.date = ((System.Windows.Controls.TextBlock)(target));
+            return;
+            case 4:
+            this.time = ((System.Windows.Controls.TextBlock)(target));
+            return;
+            case 5:
+            this.paymentCardHome = ((System.Windows.Controls.Image)(target));
+            return;
+            }
             this._contentLoaded = true;
         }
     }
