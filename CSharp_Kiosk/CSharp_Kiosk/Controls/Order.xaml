@@ -9,15 +9,32 @@
 
     <UserControl.Resources>
         <!--오더탭-->
-        <Style x:Key="OrderTabItem" TargetType="TabItem">
+        <!--<Style x:Key="OrderTabItem" TargetType="TabItem">
             <Setter Property="Width" Value="185"/>
             <Setter Property="Height" Value="50" />
             <Setter Property="Background" Value="white" />
-            <Setter Property="BorderBrush" Value="Transparent" />
-            <Setter Property="Margin" Value="0,0,0,0"/>
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="FontSize" Value="18" />
+            <Setter Property="BorderBrush" Value="White" />
+        </Style>-->
+        <Style x:Key="OrderTabItem"
+               TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Grid>
+                            <TabItem Width="185"
+                                     Height="50"
+                                     FontSize="18"
+                                     FontWeight="Bold"
+                                     Background="White">
+                            </TabItem>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
+        
 
         <!--이전-->
         <Style x:Key="BeforeButtonStyle" TargetType="Button">
@@ -43,6 +60,14 @@
             <Setter Property="Height" Value="50" />
             <Setter Property="Foreground" Value="white" />
             <Setter Property="FontSize" Value="15"/>
+        </Style>
+
+        <!--주문목록헤더-->
+        <Style x:Key="GridViewColumnHeader" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Height" Value="50" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="Bold" />
         </Style>
     </UserControl.Resources>
 
@@ -98,9 +123,19 @@
 
         <!--메뉴리스트-->
         <Grid Grid.Row="1"  Grid.RowSpan="1" Grid.Column="0">
-            <TabControl Width="560" Height="730"
+
+            <ListBox x:Name="MenuCategory" Height="50" VerticalAlignment="Top">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel IsItemsHost="True"
+                                                Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <!--<TabControl Width="560" Height="730"
                         BorderBrush="Transparent"  Margin="360, 0, 40, 0">
-                <TabItem Header="햄버거" Style="{StaticResource OrderTabItem}">
+
+                <TabItem Style="{StaticResource OrderTabItem}">
                     <Grid Background="White" Height="670" VerticalAlignment="Top">
                         <ListView x:Name="HamburgerListView">
 
@@ -121,15 +156,15 @@
                         </ListView>
                     </Grid>
                 </TabItem>
-            </TabControl>
+            </TabControl>-->
         </Grid>
 
         <!--이동영역-->
         <Grid Grid.Row="2" Grid.Column="0" Grid.RowSpan="3">
             <Grid Margin="360, 0 ,45 ,0">
                 <Grid Height="60" VerticalAlignment="top">
-                <Button Content="이전" Style="{StaticResource BeforeButtonStyle}" />
-                <Button Content="다음" Style="{StaticResource NextButtonStyle}"/>
+                    <Button Content="이전" Style="{StaticResource BeforeButtonStyle}" />
+                    <Button Content="다음" Style="{StaticResource NextButtonStyle}"/>
                 </Grid>
             </Grid>
         </Grid>
@@ -140,10 +175,10 @@
                       HorizontalAlignment="Right">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="메뉴명" Width="240"/>
-                        <GridViewColumn Header="수량" Width="100"/>
-                        <GridViewColumn Header="가격" Width="160"/>
-                    </GridView>  
+                        <GridViewColumn DisplayMemberBinding="{Binding MenuName}" Header="메뉴명" Width="240" HeaderContainerStyle="{StaticResource GridViewColumnHeader}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Amount}" Header="수량" Width="100" HeaderContainerStyle="{StaticResource GridViewColumnHeader}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Price}" Header="가격" Width="160" HeaderContainerStyle="{StaticResource GridViewColumnHeader}"/>
+                    </GridView>
                 </ListView.View>
             </ListView>
         </Grid>

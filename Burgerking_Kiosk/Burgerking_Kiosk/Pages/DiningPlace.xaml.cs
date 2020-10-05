@@ -16,19 +16,19 @@ using System.Windows.Shapes;
 namespace Burgerking_Kiosk.Pages
 {
     /// <summary>
-    /// OrderPage.xaml에 대한 상호 작용 논리
+    /// DiningPlace.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class OrderPage : Page
+    public partial class DiningPlace : Page
     {
-        public OrderPage()
+        public DiningPlace()
         {
             InitializeComponent();
         }
 
-        private void OrderBtn_Click(object sender, RoutedEventArgs e)
+        private void PaymentBtn_Click(object sender, RoutedEventArgs e)
         {
-            ChooseDiningPlace chooseDP = new ChooseDiningPlace();
-            NavigationService.Navigate(chooseDP);
+            Payment payment = new Payment();
+            NavigationService.Navigate(payment);
         }
     }
 }

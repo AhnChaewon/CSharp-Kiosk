@@ -5,10 +5,64 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Burgerking_Kiosk.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="OrderPage">
 
-    <Grid Background="white">
-        
+    <Grid Background="white" x:Name="orderGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--시간영역-->
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Button
+            x:Name="OrderBtn"
+            Width="100"    
+            Height="50" 
+            Content="주문하기"
+            Click="OrderBtn_Click" />
+
+            <!--<Grid Margin="360,0,360,0">
+                <Image 
+                x:Name="logo" 
+                Width="72"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+                    <Image.Source>
+                        <BitmapImage 
+                        x:Name="burgerkingLogo" 
+                        UriSource="/Resources/burgerking_logo.png"/>
+                    </Image.Source>
+                </Image>
+                <StackPanel
+                Orientation="Vertical"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Margin="0 0 120 0">
+                    <TextBlock
+                    x:Name="date" 
+                    Text="Load..."
+                    FontSize="15"
+                    HorizontalAlignment="Center"/>
+                    <TextBlock 
+                    x:Name="time" 
+                    Text="Load..."
+                    FontSize="15"
+                    HorizontalAlignment="Center"/>
+                </StackPanel>
+                <Image 
+                x:Name="orderHome" 
+                Width="50"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top" Source="/Resources/home_icon.png"/>
+            </Grid>-->
+        </Grid>
     </Grid>
 </Page>
