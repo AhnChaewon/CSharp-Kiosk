@@ -5,8 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CSharp_Kiosk"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <Grid
+            Grid.Row="0"
+            Width="1280">
+
+            <Image 
+                x:Name="logo" 
+                Width="72"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+                <Image.Source>
+                    <BitmapImage 
+                        x:Name="burgerkingLogo" 
+                        UriSource="/Resources/burgerking_logo.png"/>
+                </Image.Source>
+            </Image>
+
+            <StackPanel 
+                Orientation="Vertical"
+                HorizontalAlignment="Right"
+                Margin="0 0 120 0">
+                <TextBlock 
+                    x:Name="date" 
+                    Text="Load..."
+                    FontSize="25"
+                    HorizontalAlignment="Center"/>
+                <TextBlock 
+                    x:Name="time" 
+                    Text="Load..."
+                    FontSize="25"
+                    HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <Image 
+                x:Name="paymentCardHome" 
+                Width="72"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top" Source="/Resources/home_icon.png"/>
+
+        </Grid>
     </Grid>
 </UserControl>

@@ -65,7 +65,7 @@
 
             <ListView
                 x:Name="orderList"
-                Height="500"
+                Height="450"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left" 
                 Width="400"
@@ -78,6 +78,14 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+
+            <TextBlock
+                x:Name="money"
+                Text="총 금액 : "
+                VerticalAlignment="Bottom"
+                FontSize="18"
+                Margin="120 100"
+                />
 
             <Button
                 x:Name="cancelBtn"

@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace CSharp_Kiosk
 {
@@ -24,9 +26,28 @@ namespace CSharp_Kiosk
             ChooseDiningPlaceControl.chooseDiningHome.MouseDown += ChooseDiningHome_MouseDown;
             DiningPlaceControl.diningHome.MouseDown += DiningHome_MouseDown;
             PaymentControl.paymentHome.MouseDown += PaymentHome_MouseDown;
+            PaymentCardControl.paymentCardHome.MouseDown += PaymentCardHome_MouseDown;
+            PaymentMoneyControl.paymentMoneyHome.MouseDown += PaymentMoneyHome_MouseDown;
 
             PaymentControl.cardBtn.MouseDown += CardBtn_MouseDown;
             PaymentControl.moneyBtn.MouseDown += MoneyBtn_MouseDown;
+
+
+            
+        }
+
+       
+
+        private void PaymentMoneyHome_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            PaymentMoneyControl.Visibility = collpased;
+            MainControl.Visibility = visible;
+        }
+
+        private void PaymentCardHome_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            PaymentCardControl.Visibility = collpased;
+            MainControl.Visibility = visible;
         }
 
         private void MoneyBtn_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
