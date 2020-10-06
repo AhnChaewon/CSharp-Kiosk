@@ -10,6 +10,7 @@
 *.userosscache
 *.sln.docstates
 
+# igonre file
 *.vs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
