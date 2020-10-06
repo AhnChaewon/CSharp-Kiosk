@@ -27,8 +27,7 @@ namespace Burgerking_Kiosk.Pages
 
         private void nextBtn_Click(object sender, RoutedEventArgs e)
         {
-            OrderPage orderPage = new OrderPage();
-            NavigationService.Navigate(orderPage);
+            NavigationService.Navigate(new Uri("/Pages/OrderPage.xaml", UriKind.Relative));
         }
     }
 }

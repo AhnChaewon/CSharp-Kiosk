@@ -26,13 +26,15 @@ namespace Burgerking_Kiosk.Pages
         }
         private void PaymentCardBtn_Click(object sender, RoutedEventArgs e)
         {
-            PaymentCardPage paymentCardPage = new PaymentCardPage();
-            NavigationService.Navigate(paymentCardPage);
+            NavigationService.Navigate(new Uri("/Pages/PaymentCardPage.xaml", UriKind.Relative));
         }
         private void PaymentMoneyBtn_Click(object sender, RoutedEventArgs e)
         {
-            PaymentMoneyPage paymentMoneyPage= new PaymentMoneyPage();
-            NavigationService.Navigate(paymentMoneyPage);
+            NavigationService.Navigate(new Uri("/Pages/PaymentMoneyPage.xaml", UriKind.Relative));
+        }
+        private void BackDiningBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

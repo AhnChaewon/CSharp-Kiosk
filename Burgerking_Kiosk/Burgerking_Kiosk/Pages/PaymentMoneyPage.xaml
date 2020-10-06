@@ -9,11 +9,19 @@
       Title="PaymentMoneyPage">
 
     <Grid Background="White">
+        <TextBlock Text="PaymentMoneyPage"></TextBlock>
+        <StackPanel Orientation="Horizontal">
         <Button
             x:Name="FinishPaymentBtn"
             Width="100"    
             Height="50" 
             Content="결제"
             Click="FinishPaymentBtn_Click" />
+        <Button x:Name="BackMainBtn"
+                Width="100"    
+                Height="50"
+                Content="이전으로"
+                Click="BackPaymentBtn_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

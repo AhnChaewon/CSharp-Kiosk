@@ -9,6 +9,7 @@
       Title="ChooseDiningPage">
 
     <Grid Background="White">
+        <TextBlock Text="ChooseDiningPage"></TextBlock>
         <StackPanel Orientation="Horizontal">
             <Button
             x:Name="DiningPlaceBtn"
@@ -23,6 +24,11 @@
             Content="포장하기"
             Click="PaymentBtn_Click" />
         </StackPanel>
+        <Button x:Name="BackMainBtn"
+                Width="100"    
+                Height="50"
+                Content="이전으로"
+                Click="BackMainBtn_Click"/>
 
     </Grid>
 </Page>

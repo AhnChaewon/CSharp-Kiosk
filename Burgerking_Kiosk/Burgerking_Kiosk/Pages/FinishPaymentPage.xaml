@@ -9,6 +9,6 @@
       Title="FinishPaymentPage">
 
     <Grid Background="White">
-
+        <TextBlock Text="FinishPaymentPage"></TextBlock>
     </Grid>
 </Page>

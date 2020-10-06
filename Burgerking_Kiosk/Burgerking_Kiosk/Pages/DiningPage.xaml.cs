@@ -24,10 +24,15 @@ namespace Burgerking_Kiosk.Pages
         {
             InitializeComponent();
         }
+
         private void PaymentBtn_Click(object sender, RoutedEventArgs e)
         {
-            PaymentPage paymentPage = new PaymentPage();
-            NavigationService.Navigate(paymentPage);
+            NavigationService.Navigate(new Uri("/Pages/PaymentPage.xaml", UriKind.Relative));
+        }
+
+        private void BackChooseDiningBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

@@ -9,11 +9,20 @@
       Title="DiningPage">
 
     <Grid Background="White">
+        <TextBlock Text="DiningPage"></TextBlock>
+        <StackPanel Orientation="Horizontal">
         <Button
             x:Name="PaymentBtn"
             Width="100"    
             Height="50" 
             Content="다음(결제)"
             Click="PaymentBtn_Click" />
+        
+        <Button x:Name="BackChooseDiningBtn"
+                Width="100"    
+                Height="50"
+                Content="이전으로"
+                Click="BackChooseDiningBtn_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -26,8 +26,11 @@ namespace Burgerking_Kiosk.Pages
         }
         private void FinishPaymentBtn_Click(object sender, RoutedEventArgs e)
         {
-            FinishPaymentPage finishPaymentPage = new FinishPaymentPage();
-            NavigationService.Navigate(finishPaymentPage);
+            NavigationService.Navigate(new Uri("/Pages/FinishPaymentPage.xaml", UriKind.Relative));
+        }
+        private void BackPaymentBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }
