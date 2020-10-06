@@ -24,5 +24,10 @@ namespace Burgerking_Kiosk.Pages
         {
             InitializeComponent();
         }
+        private void FinishPaymentBtn_Click(object sender, RoutedEventArgs e)
+        {
+            FinishPaymentPage finishPaymentPage = new FinishPaymentPage();
+            NavigationService.Navigate(finishPaymentPage);
+        }
     }
 }

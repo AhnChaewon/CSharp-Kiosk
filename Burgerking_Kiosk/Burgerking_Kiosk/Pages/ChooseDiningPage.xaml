@@ -1,4 +1,4 @@
-﻿<Page x:Class="Burgerking_Kiosk.Pages.ChooseDining"
+﻿<Page x:Class="Burgerking_Kiosk.Pages.ChooseDiningPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,9 +6,23 @@
       xmlns:local="clr-namespace:Burgerking_Kiosk.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ChooseDining">
+      Title="ChooseDiningPage">
 
     <Grid Background="White">
-        
+        <StackPanel Orientation="Horizontal">
+            <Button
+            x:Name="DiningPlaceBtn"
+            Width="100"    
+            Height="50" 
+            Content="매장식사"
+            Click="DiningPlaceBtn_Click" />
+            <Button
+            x:Name="PaymentBtn"
+            Width="100"    
+            Height="50" 
+            Content="포장하기"
+            Click="PaymentBtn_Click" />
+        </StackPanel>
+
     </Grid>
 </Page>

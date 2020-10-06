@@ -27,8 +27,8 @@ namespace Burgerking_Kiosk.Pages
 
         private void OrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            ChooseDiningPlace chooseDP = new ChooseDiningPlace();
-            NavigationService.Navigate(chooseDP);
+            ChooseDiningPage chooseDiningPage = new ChooseDiningPage();
+            NavigationService.Navigate(chooseDiningPage);
         }
     }
 }

@@ -24,5 +24,15 @@ namespace Burgerking_Kiosk.Pages
         {
             InitializeComponent();
         }
+        private void PaymentCardBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PaymentCardPage paymentCardPage = new PaymentCardPage();
+            NavigationService.Navigate(paymentCardPage);
+        }
+        private void PaymentMoneyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PaymentMoneyPage paymentMoneyPage= new PaymentMoneyPage();
+            NavigationService.Navigate(paymentMoneyPage);
+        }
     }
 }
