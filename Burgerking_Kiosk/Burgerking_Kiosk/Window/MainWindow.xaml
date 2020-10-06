@@ -46,7 +46,8 @@
                 x:Name="paymentHome" 
                 Width="48"
                 HorizontalAlignment="Right"
-                VerticalAlignment="Center" Source="/Resources/home_icon.png"/>
+                VerticalAlignment="Center" 
+                Source="/Resources/home_icon.png"/>
         </Grid>
         
         <Frame 
