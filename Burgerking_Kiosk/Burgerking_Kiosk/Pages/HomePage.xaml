@@ -5,16 +5,39 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Burgerking_Kiosk.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="980" d:DesignWidth="1920"
       Title="HomePage">
 
     <Grid Background="White">
         <TextBlock Text="HomePage"></TextBlock>
-        <Button
-            x:Name="nextBtn"
-            Width="100"    
-            Height="100"
-            Content="주문하기"
-            Click="nextBtn_Click"></Button>
+        <StackPanel Background="Beige">
+            <MediaElement 
+                Source="C:\Users\user\Downloads\[버거킹] NEW 기네스 할로윈 와퍼 출시!.mp4" 
+                VerticalAlignment="top"
+                HorizontalAlignment="Center" 
+                Margin="300, 0, 300, 1"
+                > 
+            </MediaElement> <!-- 광고 영상 -->
+
+            <Label
+                Content="주문 하시려면 아래 버튼을 눌러주세요" 
+                FontSize ="25"
+                HorizontalContentAlignment="Center"
+                Margin="0, 25, 0, 0"
+                FontFamily="배달의민족 도현">
+            </Label><!-- 안내 문구 -->
+
+
+            <Button 
+                Content="주문하기"
+                Margin="600, 50, 600, 0" 
+                FontFamily ="배달의민족 도현"
+                Background ="aqua" 
+                HorizontalAlignment="center"
+                HorizontalContentAlignment="Center"
+                FontSize ="40"
+                Click="nextBtn_Click" >
+            </Button> <!-- 주문 버튼 -->           
+        </StackPanel>
     </Grid>
 </Page>

@@ -92,7 +92,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window\MainWindow.xaml">
+    <Page Include="WIndow\mainwindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -127,8 +127,8 @@
     <Compile Include="Pages\StatisticsPage.xaml.cs">
       <DependentUpon>StatisticsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="WIndow\mainwindow.xaml.cs">
+      <DependentUpon>mainwindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -170,46 +170,9 @@
   <ItemGroup>
     <Resource Include="Resources\money.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\Burgers_img\불고기버거.png" />
-    <Resource Include="Resources\Burgers_img\불고기와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\치즈버거.png" />
-    <Resource Include="Resources\Burgers_img\치즈와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\콰트로치즈와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\통새우와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\트러플머쉬룸와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\할라피뇨불고기버거.png" />
-    <Resource Include="Resources\Burgers_img\할라피뇨와퍼주니어.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Drink_img\미닛메이드오렌지.png" />
-    <Resource Include="Resources\Drink_img\순수미네랄워터.png" />
-    <Resource Include="Resources\Drink_img\스프라이트.png" />
-    <Resource Include="Resources\Drink_img\씨그램.png" />
-    <Resource Include="Resources\Drink_img\아메리카노.png" />
-    <Resource Include="Resources\Drink_img\아이스아메리카노.png" />
-    <Resource Include="Resources\Drink_img\아이스초코.png" />
-    <Resource Include="Resources\Drink_img\제로톡톡복숭아.png" />
-    <Resource Include="Resources\Drink_img\제로톡톡청포도.png" />
-    <Resource Include="Resources\Drink_img\제로톡톡체리.png" />
-    <Resource Include="Resources\Drink_img\코카콜라.png" />
-    <Resource Include="Resources\Drink_img\코카콜라제로.png" />
-    <Resource Include="Resources\Drink_img\핫초코.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Sides_img\21치즈스틱.png" />
-    <Resource Include="Resources\Sides_img\너겟킹%2810조각%29.png" />
-    <Resource Include="Resources\Sides_img\너겟킹%284조각%29.png" />
-    <Resource Include="Resources\Sides_img\너겟킹%286조각%29.png" />
-    <Resource Include="Resources\Sides_img\바삭킹%282조각%29.png" />
-    <Resource Include="Resources\Sides_img\바삭킹%284조각%29.png" />
-    <Resource Include="Resources\Sides_img\어니언링.png" />
-    <Resource Include="Resources\Sides_img\칠리크랩치즈프라이.png" />
-    <Resource Include="Resources\Sides_img\크리미모짜볼%2810조각%29.png" />
-    <Resource Include="Resources\Sides_img\크리미모짜볼%285조각%29.png" />
-    <Resource Include="Resources\Sides_img\트러플프라이.png" />
-    <Resource Include="Resources\Sides_img\프렌치프라이.png" />
+    <SplashScreen Include="Resources\loading16.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
