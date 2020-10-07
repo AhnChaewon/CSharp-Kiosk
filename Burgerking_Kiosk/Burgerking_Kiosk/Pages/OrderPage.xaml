@@ -119,20 +119,20 @@
         </Grid>
 
         <!--이동영역-->
-        <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="1">
-            <Grid Margin="360, 0 ,45 ,0">
+        <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
+            <Grid Margin="360, 0 ,80 ,0">
                 <Grid Height="60" VerticalAlignment="top">
                     <Button Content="이전" 
                             Style="{StaticResource BeforeButtonStyle}" />
                     <Button Content="다음" 
                             Style="{StaticResource NextButtonStyle}" 
-                            HorizontalAlignment="Left" Margin="415,5,0,5"/>
+                            HorizontalAlignment="Left" Margin="375 0 0 0"/>
                 </Grid>
             </Grid>
         </Grid>
 
         <!--주문내역-->
-        <Grid Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2">
+        <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
             <ListView Width="505" 
                       Height="725" 
                       Margin="0, 0, 360, 0" 
