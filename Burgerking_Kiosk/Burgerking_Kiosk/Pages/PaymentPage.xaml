@@ -5,30 +5,76 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Burgerking_Kiosk.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="980" d:DesignWidth="1920"
       Title="PaymentPage">
 
     <Grid Background="White">
-        <TextBlock Text="PaymentPage"></TextBlock>
-        <StackPanel Orientation="Horizontal">
-            <Button
-            x:Name="PaymentCardBtn"
-            Width="100"    
-            Height="50" 
-            Content="카드"
-            Click="PaymentCardBtn_Click"></Button>
-            <Button
-            x:Name="PaymentMoneyBtn"
-            Width="100"    
-            Height="50" 
-            Content="현금"
-            Click="PaymentMoneyBtn_Click"></Button>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
 
-        <Button x:Name="BackMainBtn"
-                Width="100"    
+        <Grid Grid.Column="0"
+              Width="760"
+              HorizontalAlignment="Right">
+            <TextBlock
+                Text="주문 리스트를 확인해주세요."
+                FontSize="18"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Center"
+                Margin="50"/>
+
+            <ListView
+                x:Name="orderList"
+                Height="500"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center" 
+                Width="400">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="항목" Width="150"/>
+                        <GridViewColumn Header="수량" Width="100"/>
+                        <GridViewColumn Header="가격" Width="150"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Button
+                x:Name="cancelBtn"
+                Width="140"
                 Height="50"
-                Content="이전으로"
-                Click="BackDiningBtn_Click"/>
+                Content="취소하기"
+                FontSize="18"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Background="White"
+                BorderBrush="Black"
+                Margin="0,0,0,40"
+                Click="cancelBtn_Click"/>
+        </Grid>
+
+        <Grid Grid.Column="1"
+              Width="760"
+              HorizontalAlignment="Left">
+            <Image
+                x:Name="cardBtn"
+                Width="200"
+                Height="164"
+                Source="/Resources/card.png"
+                Margin="0 0 300 0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                MouseDown="cardBtn_MouseDown"/>
+
+            <Image
+                x:Name="moneyBtn"
+                Width="200"
+                Height="164"
+                Source="/Resources/money.png"
+                Margin="300 0 0 0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                MouseDown="moneyBtn_MouseDown"/>
+        </Grid>
     </Grid>
 </Page>

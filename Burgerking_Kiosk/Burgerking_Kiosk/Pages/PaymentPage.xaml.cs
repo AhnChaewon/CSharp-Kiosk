@@ -24,17 +24,23 @@ namespace Burgerking_Kiosk.Pages
         {
             InitializeComponent();
         }
-        private void PaymentCardBtn_Click(object sender, RoutedEventArgs e)
+
+        private void cardBtn_MouseDown(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Pages/PaymentCardPage.xaml", UriKind.Relative));
         }
-        private void PaymentMoneyBtn_Click(object sender, RoutedEventArgs e)
+
+        private void moneyBtn_MouseDown(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Pages/PaymentMoneyPage.xaml", UriKind.Relative));
         }
-        private void BackDiningBtn_Click(object sender, RoutedEventArgs e)
+
+        private void cancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
         }
     }
 }
