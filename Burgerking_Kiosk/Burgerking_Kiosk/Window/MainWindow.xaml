@@ -8,55 +8,44 @@
         Title="MainWindow" Height="1080" Width="1920">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="0" Background="White" Width="1280">
-            <Image 
-                x:Name="logo" 
-                Width="64"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center">
+            <Image x:Name="logo" 
+                   Width="72"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top">
                 <Image.Source>
-                    <BitmapImage 
-                        x:Name="burgerkingLogo" 
-                        UriSource="/Resources/burgerking_logo.png"/>
+                    <BitmapImage x:Name="burgerkingLogo" 
+                                     UriSource="/Resources/burgerking_logo.png"/>
                 </Image.Source>
             </Image>
-
-            <StackPanel 
-                Orientation="Vertical"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Margin="0 0 90 0">
-                <TextBlock 
-                    x:Name="date" 
-                    Text="Load..."
-                    FontSize="18"
-                    HorizontalAlignment="Center"/>
-                <TextBlock 
-                    x:Name="time" 
-                    Text="Load..."
-                    FontSize="18"
-                    HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Margin="0 0 120 0">
+                <TextBlock x:Name="date" 
+                               Text="Load..."
+                               FontSize="15"
+                               HorizontalAlignment="Center"/>
+                <TextBlock x:Name="time" 
+                               Text="Load..."
+                               FontSize="15"
+                               HorizontalAlignment="Center"/>
             </StackPanel>
-
-            <Image 
-                x:Name="homeBtn" 
-                Width="48"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center" 
-                Source="/Resources/home_icon.png"
-                MouseDown="homeBtn_MouseDown"/>
+            <Image x:Name="homeBtn" 
+                   Width="50"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top" 
+                   Source="/Resources/home_icon.png"
+                   MouseDown="homeBtn_MouseDown"/>
         </Grid>
-        
-        <Frame 
-            Name="frame" 
-            Grid.Row="1" 
-            NavigationUIVisibility="Hidden" 
-            Source="/Pages/HomePage.xaml"/>
-        
+        <Frame Name="frame" 
+               Grid.Row="1" 
+               NavigationUIVisibility="Hidden" 
+               Source="/Pages/HomePage.xaml"/>
     </Grid>
 
 </Window>
