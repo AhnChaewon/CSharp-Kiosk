@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0"
-              Width="760"
+              Width="640"
               HorizontalAlignment="Right">
             <TextBlock
                 Text="주문 리스트를 확인해주세요."
@@ -26,15 +26,15 @@
 
             <ListView
                 x:Name="orderList"
-                Height="500"
+                Height="450"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center" 
-                Width="400">
+                Width="300">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="항목" Width="150"/>
-                        <GridViewColumn Header="수량" Width="100"/>
-                        <GridViewColumn Header="가격" Width="150"/>
+                        <GridViewColumn Header="항목" Width="110"/>
+                        <GridViewColumn Header="수량" Width="70"/>
+                        <GridViewColumn Header="가격" Width="120"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -54,27 +54,32 @@
         </Grid>
 
         <Grid Grid.Column="1"
-              Width="760"
+              Width="640"
               HorizontalAlignment="Left">
-            <Image
-                x:Name="cardBtn"
-                Width="200"
+            <StackPanel
+                Width="400"
                 Height="164"
-                Source="/Resources/card.png"
-                Margin="0 0 300 0"
+                Orientation="Horizontal"
                 VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                MouseDown="cardBtn_MouseDown"/>
-
-            <Image
-                x:Name="moneyBtn"
-                Width="200"
-                Height="164"
-                Source="/Resources/money.png"
-                Margin="300 0 0 0"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                MouseDown="moneyBtn_MouseDown"/>
+                HorizontalAlignment="Center">
+                <Image
+                    x:Name="cardBtn"
+                    Width="200"
+                    Height="164"
+                    Source="/Resources/card.png"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    MouseDown="cardBtn_MouseDown"/>
+                <Image
+                    x:Name="moneyBtn"
+                    Width="200"
+                    Height="164"
+                    Source="/Resources/money.png"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    MouseDown="moneyBtn_MouseDown"/>
+            </StackPanel>
+            
         </Grid>
     </Grid>
 </Page>
