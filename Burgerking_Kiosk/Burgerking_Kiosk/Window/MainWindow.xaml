@@ -43,11 +43,12 @@
             </StackPanel>
 
             <Image 
-                x:Name="paymentHome" 
+                x:Name="homeBtn" 
                 Width="48"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center" 
-                Source="/Resources/home_icon.png"/>
+                Source="/Resources/home_icon.png"
+                MouseDown="homeBtn_MouseDown"/>
         </Grid>
         
         <Frame 

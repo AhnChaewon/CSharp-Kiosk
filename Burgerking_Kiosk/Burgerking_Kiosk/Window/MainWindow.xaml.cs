@@ -35,5 +35,10 @@ namespace Burgerking_Kiosk
             date.Text = System.DateTime.Now.ToString("yyyy년 MM월 dd일");
             time.Text = System.DateTime.Now.ToString("HH:mm:ss");
         }
+
+        private void homeBtn_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            frame.Source = new Uri("/Pages/HomePage.xaml", UriKind.Relative);
+        }
     }
 }
