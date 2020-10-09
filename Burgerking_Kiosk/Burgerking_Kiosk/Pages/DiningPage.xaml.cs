@@ -32,7 +32,11 @@ namespace Burgerking_Kiosk.Pages
 
         private void BackChooseDiningBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
+            
         }
     }
 }
