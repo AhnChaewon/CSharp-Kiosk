@@ -5,10 +5,46 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Burgerking_Kiosk.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1030" d:DesignWidth="1920"
       Title="FinishPaymentPage">
 
     <Grid Background="White">
-        <TextBlock Text="FinishPaymentPage"></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Width="1280">
+            <TextBlock 
+                x:Name="name" 
+                Text="회원명 : "
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontSize="20"
+                Margin="50 70"/>
+            
+            <TextBlock 
+                x:Name="card" 
+                Text="인식된 카드번호 : "
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontSize="20"
+                Margin="250 70"/>
+            
+            <TextBlock 
+                x:Name="money" 
+                Text="총 금액 : "
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontSize="20"
+                Margin="50 140"/>
+            
+            <TextBlock 
+                x:Name="order" 
+                Text="주문번호 : "
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="50"/>
+        </Grid>
+        
     </Grid>
 </Page>
