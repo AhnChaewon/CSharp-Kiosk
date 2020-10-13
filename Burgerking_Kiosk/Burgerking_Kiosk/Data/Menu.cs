@@ -8,13 +8,12 @@ namespace Burgerking_Kiosk.Data
 { 
     class Menu
     {
-        public String name;
-        public int num;
+        public String Name { get; set; }
+        public int Num { get; set; }
 
-        public Menu()
-        {
+        public int Money { get; set; }
 
-        }
+        
 
     }
 }

@@ -10,10 +10,10 @@ namespace Burgerking_Kiosk.Data
     class OrderData
     {
 
-        public static int table;
+        public static int table = -1;
         public static String payment;
         public static MemberData member;
-        public static List<Menu> menuList;
+        public static List<Menu> menuList = new List<Menu>();
 
         public OrderData()
         {

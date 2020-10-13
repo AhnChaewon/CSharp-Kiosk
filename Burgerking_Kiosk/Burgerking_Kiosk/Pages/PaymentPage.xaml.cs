@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Burgerking_Kiosk.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace Burgerking_Kiosk.Pages
         public PaymentPage()
         {
             InitializeComponent();
+            OrderData.menuList.Add(new Data.Menu() { Name = "a", Num = 1, Money = 1000});
+            orderList.ItemsSource = OrderData.menuList;
+            
         }
 
         private void cardBtn_MouseDown(object sender, MouseButtonEventArgs e)

@@ -32,9 +32,9 @@
                 Width="300">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="항목" Width="110"/>
-                        <GridViewColumn Header="수량" Width="70"/>
-                        <GridViewColumn Header="가격" Width="120"/>
+                        <GridViewColumn Header="항목" Width="110" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="수량" Width="70" DisplayMemberBinding="{Binding Num}"/>
+                        <GridViewColumn Header="가격" Width="120" DisplayMemberBinding="{Binding Money}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
