@@ -100,6 +100,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\MemberData.cs" />
+    <Compile Include="Data\Menu.cs" />
+    <Compile Include="Data\OrderData.cs" />
     <Compile Include="Pages\ChooseDiningPage.xaml.cs">
       <DependentUpon>ChooseDiningPage.xaml</DependentUpon>
     </Compile>
