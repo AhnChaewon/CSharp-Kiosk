@@ -16,12 +16,7 @@
             <Image x:Name="logo" 
                    Width="72"
                    HorizontalAlignment="Left"
-                   VerticalAlignment="Top">
-                <Image.Source>
-                    <BitmapImage x:Name="burgerkingLogo" 
-                                     UriSource="/Resources/burgerking_logo.png"/>
-                </Image.Source>
-            </Image>
+                   VerticalAlignment="Top" Source="/Assets/burgerking_logo.png"/>
             <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
@@ -39,7 +34,7 @@
                    Width="50"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Top" 
-                   Source="/Resources/home_icon.png"
+                   Source="/Assets/home_icon.png"
                    MouseDown="homeBtn_MouseDown"/>
         </Grid>
         <Frame Name="frame" 

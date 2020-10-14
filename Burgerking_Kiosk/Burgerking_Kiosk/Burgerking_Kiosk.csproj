@@ -34,6 +34,28 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -100,6 +122,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\Category.cs" />
+    <Compile Include="Data\Food.cs" />
     <Compile Include="Data\MemberData.cs" />
     <Compile Include="Data\Menu.cs" />
     <Compile Include="Data\OrderData.cs" />
@@ -130,6 +154,11 @@
     <Compile Include="Pages\StatisticsPage.xaml.cs">
       <DependentUpon>StatisticsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="WIndow\mainwindow.xaml.cs">
       <DependentUpon>mainwindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -139,11 +168,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -151,6 +175,7 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -162,58 +187,65 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\burgerking_logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\home_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\card.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\money.png" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Resource Include="Resources\Burgers_img\불고기버거.png" />
-    <Resource Include="Resources\Burgers_img\불고기와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\치즈버거.png" />
-    <Resource Include="Resources\Burgers_img\치즈와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\콰트로치즈와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\통새우와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\트러플머쉬룸와퍼주니어.png" />
-    <Resource Include="Resources\Burgers_img\할라피뇨불고기버거.png" />
-    <Resource Include="Resources\Burgers_img\할라피뇨와퍼주니어.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Drinks_img\미닛메이드오렌지.png" />
-    <Resource Include="Resources\Drinks_img\순수미네랄워터.png" />
-    <Resource Include="Resources\Drinks_img\스프라이트.png" />
-    <Resource Include="Resources\Drinks_img\씨그램.png" />
-    <Resource Include="Resources\Drinks_img\아메리카노.png" />
-    <Resource Include="Resources\Drinks_img\아이스아메리카노.png" />
-    <Resource Include="Resources\Drinks_img\아이스초코.png" />
-    <Resource Include="Resources\Drinks_img\제로톡톡복숭아.png" />
-    <Resource Include="Resources\Drinks_img\제로톡톡청포도.png" />
-    <Resource Include="Resources\Drinks_img\제로톡톡체리.png" />
-    <Resource Include="Resources\Drinks_img\코카콜라.png" />
-    <Resource Include="Resources\Drinks_img\코카콜라제로.png" />
-    <Resource Include="Resources\Drinks_img\핫초코.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Sides_img\21치즈스틱.png" />
-    <Resource Include="Resources\Sides_img\너겟킹%2810조각%29.png" />
-    <Resource Include="Resources\Sides_img\너겟킹%284조각%29.png" />
-    <Resource Include="Resources\Sides_img\너겟킹%286조각%29.png" />
-    <Resource Include="Resources\Sides_img\바삭킹%282조각%29.png" />
-    <Resource Include="Resources\Sides_img\바삭킹%284조각%29.png" />
-    <Resource Include="Resources\Sides_img\어니언링.png" />
-    <Resource Include="Resources\Sides_img\칠리크랩치즈프라이.png" />
-    <Resource Include="Resources\Sides_img\크리미모짜볼%2810조각%29.png" />
-    <Resource Include="Resources\Sides_img\크리미모짜볼%285조각%29.png" />
-    <Resource Include="Resources\Sides_img\트러플프라이.png" />
-    <Resource Include="Resources\Sides_img\프렌치프라이.png" />
+    <Resource Include="Assets\burgerking_logo.png" />
+    <Content Include="Assets\Burgers\burger1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Burgers\burger2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Burgers\burger3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Burgers\burger4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Burgers\burger5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Burgers\burger6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Burgers\burger7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Burgers\burger8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Burgers\burger9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Burgers\burger10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Assets\card.png" />
+    <Resource Include="Assets\Drinks\drink1.png" />
+    <Resource Include="Assets\Drinks\drink2.png" />
+    <Resource Include="Assets\Drinks\drink3.png" />
+    <Resource Include="Assets\Drinks\drink4.png" />
+    <Resource Include="Assets\Drinks\drink5.png" />
+    <Resource Include="Assets\Drinks\drink6.png" />
+    <Resource Include="Assets\Drinks\drink7.png" />
+    <Resource Include="Assets\Drinks\drink8.png" />
+    <Resource Include="Assets\Drinks\drink9.png" />
+    <Resource Include="Assets\Drinks\drink10.png" />
+    <Resource Include="Assets\Drinks\drink11.png" />
+    <Resource Include="Assets\Drinks\drink12.png" />
+    <Resource Include="Assets\Drinks\drink13.png" />
+    <Resource Include="Assets\home_icon.png" />
+    <Resource Include="Assets\money.png" />
+    <Resource Include="Assets\Sides\side1.png" />
+    <Resource Include="Assets\Sides\side2.png" />
+    <Resource Include="Assets\Sides\side4.png" />
+    <Resource Include="Assets\Sides\side3.png" />
+    <Resource Include="Assets\Sides\side6.png" />
+    <Resource Include="Assets\Sides\side5.png" />
+    <Resource Include="Assets\Sides\side7.png" />
+    <Resource Include="Assets\Sides\side8.png" />
+    <Resource Include="Assets\Sides\side9.png" />
+    <Resource Include="Assets\Sides\side10.png" />
+    <Resource Include="Assets\Sides\side11.png" />
+    <Resource Include="Assets\Sides\side12.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
