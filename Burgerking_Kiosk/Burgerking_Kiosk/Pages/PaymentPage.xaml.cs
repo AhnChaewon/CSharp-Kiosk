@@ -25,6 +25,7 @@ namespace Burgerking_Kiosk.Pages
         {
             InitializeComponent();
             OrderData.menuList.Add(new Data.Menu() { Name = "a", Num = 1, Money = 1000});
+            Console.Write(OrderData.menuList.Count);
             orderList.ItemsSource = OrderData.menuList;
             
         }

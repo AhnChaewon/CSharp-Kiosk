@@ -49,10 +49,12 @@ namespace Burgerking_Kiosk
             {
                 if(MessageBox.Show(content, "경고", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
                 {
-                    OrderData.table = -1;
+                    /*OrderData.table = -1;
                     OrderData.member = null;
-                    OrderData.menuList = null;
-                    OrderData.member = null;
+
+                    OrderData.menuList.RemoveRange(0, OrderData.menuList.Count);
+
+                    OrderData.member = null;*/
                     
                 }
             }

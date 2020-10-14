@@ -32,10 +32,10 @@ namespace Burgerking_Kiosk.Pages
                 NavigationService?.RemoveBackEntry(); 
             }
 
-            OrderData.table = -1;
+            /*OrderData.table = -1;
             OrderData.member = null;
-            OrderData.menuList = null;
-            OrderData.member = null;
+            OrderData.menuList.RemoveRange(0, OrderData.menuList.Count);
+            OrderData.member = null;*/
 
             NavigationService.Navigate(new HomePage());
         }
