@@ -23,7 +23,7 @@ namespace Burgerking_Kiosk
     public partial class MainWindow : Window
     {
 
-        public String content = "주문하던 중이였습니다.취소하시겠습니까?";
+        public String content = "주문하던 중이였습니다. 취소하시겠습니까?";
         public MainWindow()
         {
             InitializeComponent();
@@ -35,26 +35,31 @@ namespace Burgerking_Kiosk
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            date.Text = System.DateTime.Now.ToString("yyyy년 MM월 dd일");
-            time.Text = System.DateTime.Now.ToString("HH:mm:ss");
+            String day = System.DateTime.Now.ToString("yyyy년 MM월 dd일 (ddd)");
+            String t = System.DateTime.Now.ToString("tt h:mm:ss");
+            
+            date.Text = day;
+            time.Text = t;
         }
+
 
         private void homeBtn_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(OrderData.menuList != null)
+            if(OrderData.menuList.Count != 0)
             {
-                if(MessageBox.Show(content, "경고", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if(MessageBox.Show(content, "경고", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
                 {
                     OrderData.table = -1;
                     OrderData.member = null;
                     OrderData.menuList = null;
                     OrderData.member = null;
-                    frame.Source = new Uri("/Pages/HomePage.xaml", UriKind.Relative);
+                    
                 }
-            } 
+            }
+            frame.Source = new Uri("/Pages/HomePage.xaml", UriKind.Relative);
 
 
-            
+
         }
     }
 }
