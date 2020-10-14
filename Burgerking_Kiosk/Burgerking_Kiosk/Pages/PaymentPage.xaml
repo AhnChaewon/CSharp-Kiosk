@@ -66,7 +66,7 @@
                     x:Name="cardBtn"
                     Width="200"
                     Height="164"
-                    Source="/Resources/card.png"
+                    Source="/Assets/card.png"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
                     MouseDown="cardBtn_MouseDown"/>
@@ -74,7 +74,7 @@
                     x:Name="moneyBtn"
                     Width="200"
                     Height="164"
-                    Source="/Resources/money.png"
+                    Source="/Assets/money.png"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     MouseDown="moneyBtn_MouseDown"/>

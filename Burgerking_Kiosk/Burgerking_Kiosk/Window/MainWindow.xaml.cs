@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Burgerking_Kiosk.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,8 @@ namespace Burgerking_Kiosk
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public String content = "주문하던 중이였습니다.취소하시겠습니까?";
         public MainWindow()
         {
             InitializeComponent();
@@ -38,7 +41,20 @@ namespace Burgerking_Kiosk
 
         private void homeBtn_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            frame.Source = new Uri("/Pages/HomePage.xaml", UriKind.Relative);
+            if(OrderData.menuList != null)
+            {
+                if(MessageBox.Show(content, "경고", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    OrderData.table = -1;
+                    OrderData.member = null;
+                    OrderData.menuList = null;
+                    OrderData.member = null;
+                    frame.Source = new Uri("/Pages/HomePage.xaml", UriKind.Relative);
+                }
+            } 
+
+
+            
         }
     }
 }

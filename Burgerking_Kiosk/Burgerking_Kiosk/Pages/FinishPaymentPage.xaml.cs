@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Burgerking_Kiosk.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,20 @@ namespace Burgerking_Kiosk.Pages
         public FinishPaymentPage()
         {
             InitializeComponent();
+        }
+
+        private void finishBtn_Click(object sender, RoutedEventArgs e)
+        {
+            while (NavigationService?.CanGoBack == true) { 
+                NavigationService?.RemoveBackEntry(); 
+            }
+
+            OrderData.table = -1;
+            OrderData.member = null;
+            OrderData.menuList = null;
+            OrderData.member = null;
+
+            NavigationService.Navigate(new HomePage());
         }
     }
 }

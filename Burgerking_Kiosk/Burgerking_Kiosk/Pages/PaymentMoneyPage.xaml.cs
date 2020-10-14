@@ -24,19 +24,8 @@ namespace Burgerking_Kiosk.Pages
         {
             InitializeComponent();
         }
-        private void FinishPaymentBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (NavigationService.CanGoForward)
-            {
-                NavigationService.GoForward();
-            }
-            else
-            {
-                NavigationService.Navigate(new Uri("/Pages/FinishPaymentPage.xaml", UriKind.Relative));
-            }
-            
-        }
-        private void BackPaymentBtn_Click(object sender, RoutedEventArgs e)
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
         {
             if (NavigationService.CanGoBack)
             {

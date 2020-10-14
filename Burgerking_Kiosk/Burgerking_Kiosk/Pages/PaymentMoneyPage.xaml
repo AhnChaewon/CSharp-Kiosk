@@ -9,19 +9,50 @@
       Title="PaymentMoneyPage">
 
     <Grid Background="White">
-        <TextBlock Text="PaymentMoneyPage"></TextBlock>
-        <StackPanel Orientation="Horizontal">
-        <Button
-            x:Name="FinishPaymentBtn"
-            Width="100"    
-            Height="50" 
-            Content="결제"
-            Click="FinishPaymentBtn_Click" />
-        <Button x:Name="BackMainBtn"
-                Width="100"    
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid
+            Grid.Column="0"
+            Width="1280">
+
+            <TextBlock
+                Text="현금 계산을 선택하셨습니다."
+                FontSize="30"
+                Margin="50 70"/>
+
+            <TextBlock
+                Text="현금영수증 카드를 제시해주세요"
+                FontSize="30"
+                Margin="50 110"/>
+
+            <StackPanel
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+
+                <TextBlock
+                    x:Name="moneyText"
+                    Text="총 금액 : "
+                    FontSize="25"/>
+
+
+            </StackPanel>
+
+            <Button
+                x:Name="backBtn"
+                Width="300"
                 Height="50"
-                Content="이전으로"
-                Click="BackPaymentBtn_Click"/>
-        </StackPanel>
+                FontSize="25"
+                Content="이전"
+                Background="White"
+                BorderBrush="Black"
+                BorderThickness="2"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Margin="70 60"
+                Click="backBtn_Click"/>
+
+        </Grid>
     </Grid>
 </Page>
