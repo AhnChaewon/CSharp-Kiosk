@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Burgerking_Kiosk.Pages"
+      xmlns:qrcode="clr-namespace:KQRCode;assembly=KQRCode"
       mc:Ignorable="d" 
       d:DesignHeight="1030" d:DesignWidth="1920"
       Title="PaymentCardPage">
@@ -19,24 +20,33 @@
 
             <TextBlock
                 Text="카드 계산을 선택하셨습니다."
-                FontSize="30"
+                FontSize="20"
                 Margin="50 70"/>
 
             <TextBlock
                 Text="카메라에 QR코드를 인식하세요."
-                FontSize="30"
+                FontSize="20"
                 Margin="50 110"/>
 
             <StackPanel
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center">
                 
+                
+                <qrcode:KQRWebCam 
+                    x:Name="webcam" 
+                    Width="400"
+                    Height="400"
+                    Margin="12" 
+                    QrDecoded="webcam_QrDecoded"/>
+
                 <TextBlock
                     x:Name="moneyText"
                     Text="총 금액 : "
-                    FontSize="25"/>
-                
-                
+                    FontSize="15"
+                    HorizontalAlignment="Right"/>
+
+
             </StackPanel>
 
             <Button

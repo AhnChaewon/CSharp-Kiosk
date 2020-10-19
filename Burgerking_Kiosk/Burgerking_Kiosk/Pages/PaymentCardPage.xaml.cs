@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KQRCode;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace Burgerking_Kiosk.Pages
         public PaymentCardPage()
         {
             InitializeComponent();
+            webcam.CameraIndex = 0;
+            
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
@@ -31,6 +34,11 @@ namespace Burgerking_Kiosk.Pages
             {
                 NavigationService.GoBack();
             }
+        }
+
+        private void webcam_QrDecoded(object sender, string e)
+        {
+            moneyText.Text = e;
         }
     }
 }
