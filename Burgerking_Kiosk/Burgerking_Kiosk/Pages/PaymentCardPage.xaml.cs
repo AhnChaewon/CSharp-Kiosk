@@ -38,7 +38,7 @@ namespace Burgerking_Kiosk.Pages
 
         private void webcam_QrDecoded(object sender, string e)
         {
-            moneyText.Text = e;
+            NavigationService.Navigate(new Uri("/Pages/FinishPaymentPage.xaml", UriKind.Relative));
         }
     }
 }
