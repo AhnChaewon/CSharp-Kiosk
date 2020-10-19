@@ -28,7 +28,7 @@ namespace Burgerking_Kiosk.Pages
             InitializeComponent();
             webcam.CameraIndex = 0;
 
-            connect();
+            //connect();
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
