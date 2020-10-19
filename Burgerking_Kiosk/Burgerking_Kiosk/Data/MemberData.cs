@@ -9,16 +9,10 @@ namespace Burgerking_Kiosk.Data
 {
     class MemberData
     {
-        public String name;
-        public String cardNum;
-        public int money;
+        public String name { get; set; }
+        public String cardNum { get; set; }
+        public int money { get; set; }
 
-        public MemberData(String name, String cardNum, int money)
-        {
-            this.name = name;
-            this.cardNum = cardNum;
-            this.money = money;
-        }
 
     }
 }
