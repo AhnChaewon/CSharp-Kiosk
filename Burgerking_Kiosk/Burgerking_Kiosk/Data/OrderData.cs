@@ -15,10 +15,6 @@ namespace Burgerking_Kiosk.Data
         public static MemberData member;
         public static List<Menu> menuList = new List<Menu>();
 
-        public OrderData()
-        {
-
-        }
 
     }
 }

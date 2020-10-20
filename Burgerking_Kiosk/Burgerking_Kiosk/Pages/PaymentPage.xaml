@@ -79,7 +79,13 @@
                     HorizontalAlignment="Right"
                     MouseDown="moneyBtn_MouseDown"/>
             </StackPanel>
-            
+            <TextBlock
+                Text="총 금액 : "
+                FontSize="30"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="100"/>
+
         </Grid>
     </Grid>
 </Page>
