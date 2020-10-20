@@ -47,12 +47,12 @@ namespace Burgerking_Kiosk.Pages
 
         private void connect()
         {
-            string connStr = "Server=127.0.0.1;Database=csdb;Uid=root;Pwd=rbtjr0614!";
+            string connStr = "Server=10.80.161.167;Database=csdb;Uid=root;Pwd=rbtjr0614!";
             MySqlConnection conn = new MySqlConnection(connStr);
             try
             {
                 conn.Open();
-                string sql = "Insert into csdb.sell (MenuId, Price, Day, Seat, Sale, Member) Values (2,100,\"20201010\",9, 10, \"ㅁㅁ\")";
+                string sql = "Insert into csdb.sell (MenuId, Price, Day, Seat, Sale, Member) Values (3,100,\"20201010\",9, 10, \"ㅁㅁ\")";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
             }

@@ -11,7 +11,6 @@ namespace Burgerking_Kiosk.Data
     {
         public String name { get; set; }
         public String cardNum { get; set; }
-        public int money { get; set; }
 
 
     }
