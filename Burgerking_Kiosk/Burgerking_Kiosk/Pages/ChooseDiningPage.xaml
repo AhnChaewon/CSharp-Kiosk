@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Burgerking_Kiosk.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="ChooseDiningPage">
 
     <Grid Background="White">
@@ -13,22 +13,30 @@
         <StackPanel Orientation="Horizontal">
             <Button
             x:Name="DiningPlaceBtn"
-            Width="100"    
-            Height="50" 
+            Width="800"    
+            Height="450" 
             Content="매장식사"
+            Background="CadetBlue"
+            FontSize="50"
+            Margin="120, 0, 0 ,0"
             Click="DiningPlaceBtn_Click" />
             <Button
             x:Name="PaymentBtn"
-            Width="100"    
-            Height="50" 
+            Width="800"    
+            Height="450" 
             Content="포장하기"
+            Background="CadetBlue"
+            FontSize="50"
+            Margin="100"
             Click="PaymentBtn_Click" />
         </StackPanel>
         <Button x:Name="BackMainBtn"
-                Width="100"    
-                Height="50"
+                Width="400"    
+                Height="150"
                 Content="이전으로"
+                FontSize="40"
+                Margin="0, 800, 0, 0"
                 Click="BackMainBtn_Click"/>
-
+        
     </Grid>
 </Page>
