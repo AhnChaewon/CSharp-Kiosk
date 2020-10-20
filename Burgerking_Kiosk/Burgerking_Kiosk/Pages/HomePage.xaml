@@ -12,7 +12,7 @@
         <TextBlock Text="HomePage"></TextBlock>
         <StackPanel Background="Beige">
             <MediaElement 
-                Source="/Assets/Videos/버거킹광고.mp4" 
+                Source="C:\Users\user\Downloads\[버거킹] NEW 기네스 할로윈 와퍼 출시!.mp4" 
                 VerticalAlignment="top"
                 HorizontalAlignment="Center" 
                 Margin="300, 0, 300, 1"
@@ -24,14 +24,14 @@
                 FontSize ="25"
                 HorizontalContentAlignment="Center"
                 Margin="0, 25, 0, 0"
-               >
+                FontFamily="배달의민족 도현">
             </Label><!-- 안내 문구 -->
 
 
             <Button 
                 Content="주문하기"
                 Margin="600, 50, 600, 0" 
-           
+                FontFamily ="배달의민족 도현"
                 Background ="aqua" 
                 HorizontalAlignment="center"
                 HorizontalContentAlignment="Center"
