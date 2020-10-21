@@ -38,9 +38,17 @@
         <Style x:Key="GridViewColumnHeader" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Height" Value="50" />
-            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontSize" Value="16" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
+        
+        <!--주문목록버튼-->
+        <Style x:Key="lvText" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Foreground" Value="Black" />
+        </Style>        
     </Page.Resources>
 
     <Grid Background="White" 
@@ -81,7 +89,7 @@
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem }">
                             <Setter Property="Foreground" 
-                                    Value="gray" />
+                                    Value="#CBCBCB" />
                             <Setter Property="Padding" 
                                     Value="60 15 60 15" />
                             <Setter Property="FontSize" 
@@ -90,6 +98,10 @@
                                     Value="Bold" />
                             <Setter Property="VerticalAlignment"
                                     Value="Top" />
+                            <Setter Property="Background"
+                                    Value="#F2F2F2" />
+                            <Setter Property="BorderThickness"
+                                    Value="1" />
 
                             <Setter Property="Template">
                                 <Setter.Value>
@@ -130,6 +142,7 @@
             </Grid>
             <Grid Grid.Row="1" HorizontalAlignment="Right">
                 <ListBox x:Name="lbMenus"
+                         SelectionChanged="menuList_SelectionChanged"
                          Width="520"
                          Margin="0 0 80 0"
                          Height="645"
@@ -172,10 +185,12 @@
         <Grid Grid.Row="1" Grid.Column="0" Grid.RowSpan="2">
             <Grid Margin="360 0 80 0">
                 <Grid Height="60" VerticalAlignment="top">
-                    <Button x:Name="menuBackBtn"
+                    <Button x:Name="previewBtn"
+                            Click="previewBtn_Click"
                             Content="이전" 
-                            Style="{StaticResource BeforeButtonStyle}" />
-                    <Button x:Name="menuNextBtn"
+                            Style="{StaticResource BeforeButtonStyle}"/>
+                    <Button x:Name="nextBtn"
+                            Click="nextBtn_Click"
                             Content="다음" 
                             Style="{StaticResource NextButtonStyle}" 
                             HorizontalAlignment="Left" Margin="375 0 0 0"/>
@@ -185,27 +200,73 @@
 
         <!--주문내역-->
         <Grid Grid.Column="1" Grid.Row="0">
-            <ListView Width="505" 
+            <ListView x:Name="lvSelected"
+                      Width="560" 
                       Height="725" 
-                      Margin="0 25 360 0" 
+                      Margin="0 25 330 0" 
                       HorizontalAlignment="Right"
-                      VerticalAlignment="Top">
-                <ListView.View>
+                      VerticalAlignment="Top"
+                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                      ScrollViewer.VerticalScrollBarVisibility="Visible">
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="210" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="60" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="110" />
+                                <ColumnDefinition Width="40" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <TextBlock Text="{Binding name}"
+                                           Style="{StaticResource lvText}"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Button x:Name="subtractBtn" Content="-" Height="40" Width="40" HorizontalAlignment="Center" Click="countBtn_Click"
+                                        />
+                            </Grid>
+                            <Grid Grid.Column="2">
+                                <TextBlock Text="{Binding count}"
+                                           Style="{StaticResource lvText}"/>
+                            </Grid>
+                            <Grid Grid.Column="3">
+                                <Button x:Name="addBtn" Content="+" Height="40" Width="40" HorizontalAlignment="Center" Click="countBtn_Click" />
+                            </Grid>
+                            <Grid Grid.Column="4">
+                                <TextBlock Text="{Binding price}"
+                                           Style="{StaticResource lvText}"/>
+                            </Grid>
+                            <Grid Grid.Column="5">
+                                <Button x:Name="deleteBtn" Content="x" Height="30" Width="30" HorizontalAlignment="Center" VerticalAlignment="Center" Click="deleteBtn_Click"/>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <!--<ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding MenuName}" 
+                        <GridViewColumn DisplayMemberBinding="{Binding name}" 
                                         Header="메뉴명" 
-                                        Width="240" 
+                                        Width="240"
                                         HeaderContainerStyle="{StaticResource GridViewColumnHeader}"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Amount}" 
+                        <GridViewColumn Width="50"
+                                        Header="-"
+                                        HeaderContainerStyle="{StaticResource GridViewColumnHeader}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding count}" 
                                         Header="수량" 
-                                        Width="100" 
+                                        Width="70" 
                                         HeaderContainerStyle="{StaticResource GridViewColumnHeader}"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Price}" 
+                        <GridViewColumn Width="50"
+                                        Header="+"
+                                        HeaderContainerStyle="{StaticResource GridViewColumnHeader}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding price}" 
                                         Header="가격" 
-                                        Width="160" 
+                                        Width="150" 
                                         HeaderContainerStyle="{StaticResource GridViewColumnHeader}"/>
                     </GridView>
-                </ListView.View>
+                </ListView.View>-->
             </ListView>
         </Grid>
 
@@ -217,7 +278,8 @@
                            VerticalAlignment="Center" 
                            FontSize="18" 
                            FontWeight="Regular"/>
-                <TextBlock Text="0" 
+                <TextBlock x:Name="totalPrice"
+                           Text="0"
                            HorizontalAlignment="Right" 
                            VerticalAlignment="Center" 
                            FontSize="25" 
