@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Burgerking_Kiosk.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Burgerking_Kiosk.Pages
         public PaymentMoneyPage()
         {
             InitializeComponent();
+            OrderData.payment = "money";
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)

@@ -28,6 +28,8 @@ namespace Burgerking_Kiosk.Pages
             InitializeComponent();
             webcam.CameraIndex = 0;
 
+            OrderData.payment = "card";
+
             //connect();
         }
 
@@ -41,7 +43,7 @@ namespace Burgerking_Kiosk.Pages
 
         private void webcam_QrDecoded(object sender, string e)
         {
-            OrderData.member = new MemberData() { };
+            OrderData.member = e;
             NavigationService.Navigate(new Uri("/Pages/FinishPaymentPage.xaml", UriKind.Relative));
         }
 
