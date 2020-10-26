@@ -29,8 +29,6 @@ namespace Burgerking_Kiosk.Pages
             webcam.CameraIndex = 0;
 
             OrderData.payment = "card";
-
-            //connect();
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
@@ -47,21 +45,6 @@ namespace Burgerking_Kiosk.Pages
             NavigationService.Navigate(new Uri("/Pages/FinishPaymentPage.xaml", UriKind.Relative));
         }
 
-        private void connect()
-        {
-            string connStr = "Server=10.80.161.167;Database=csdb;Uid=root;Pwd=rbtjr0614!";
-            MySqlConnection conn = new MySqlConnection(connStr);
-            try
-            {
-                conn.Open();
-                string sql = "Insert into csdb.sell (MenuId, Price, Day, Seat, Sale, Member) Values (3,100,\"20201010\",9, 10, \"ㅁㅁ\")";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                MySqlDataReader reader = cmd.ExecuteReader();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
+        
     }
 }
