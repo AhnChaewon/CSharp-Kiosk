@@ -29,5 +29,10 @@ namespace Burgerking_Kiosk.Pages
         {
             NavigationService.Navigate(new Uri("/Pages/OrderPage.xaml", UriKind.Relative));
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Pages/StatisticsPage.xaml", UriKind.Relative));
+        }
     }
 }

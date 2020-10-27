@@ -37,7 +37,16 @@
                 HorizontalContentAlignment="Center"
                 FontSize ="40"
                 Click="nextBtn_Click" >
-            </Button> <!-- 주문 버튼 -->           
+            </Button> <!-- 주문 버튼 -->
+
+            <Button
+                Content="관리"
+                Width="100"
+                Height="50"
+                Background="AliceBlue"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Click="Button_Click"/>
         </StackPanel>
     </Grid>
 </Page>

@@ -40,7 +40,7 @@
         <Frame Name="frame" 
                Grid.Row="1" 
                NavigationUIVisibility="Hidden" 
-               Source="/Pages/StatisticsPage.xaml"/>
+               Source="/Pages/HomePage.xaml"/>
     </Grid>
 
 </Window>
