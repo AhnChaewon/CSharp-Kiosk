@@ -61,27 +61,52 @@ namespace Burgerking_Kiosk.Pages
         {
             if (lbCategory.SelectedIndex == -1) return; 
             Data.Category category = (Data.Category)lbCategory.SelectedIndex;
-
             lbMenus.ItemsSource = foodData.lstFood.Where(x => x.category == category).ToList();
         }
 
         private void menuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            int flag = 0;
+
+            if(lbMenus.SelectedIndex == -1)
+            {
+                return;
+            }
+
             Food food = (Food)lbMenus.SelectedItem;
-            foods.Add(food);
+
+            for(int i = 0; i < foods.Count; i++)
+            {
+                if (food.name == foods[i].name)
+                {
+                    foods[i].count++;
+                    flag = 1;
+                    break;
+                }
+            }
+
+            if(flag == 0)
+            {
+                food.count++;
+                foods.Add(food);
+            }
+
+
+            totalPrice.Text = setTotalPrice() + "원";
             lvSelected.Items.Refresh();
-            RefreshFood(food);
+
+            lbMenus.SelectedIndex = -1;
         }
 
 
-        private void previewBtn_Click(object sender, EventArgs e) // 메뉴 목록 이전 버튼
+        private void previewBtn_Click(object sender, RoutedEventArgs e) // 메뉴 목록 이전 버튼
         {
- 
+
         }
 
-        private void nextBtn_Click(object sender, EventArgs e) // 메뉴 목록 다음 버튼
+        private void nextBtn_Click(object sender, RoutedEventArgs e) // 메뉴 목록 다음 버튼
         {
-
+            previewBtn.IsEnabled = true;
         }
 
         private void countBtn_Click(object sender, RoutedEventArgs e) // 선택한 메뉴의 -, + 버튼 클릭 시
@@ -96,6 +121,7 @@ namespace Burgerking_Kiosk.Pages
             {
                 if(food.count == 1)
                 {
+                    food.count = 0;
                     foodRemove(food);
                 }
                 else
@@ -116,10 +142,48 @@ namespace Burgerking_Kiosk.Pages
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e) // 선택한 메뉴 삭제 버튼 클릭 시
         {
-            var food = ((ListBoxItem)lvSelected.ContainerFromElement(sender as Button)).Content as Food;
+            var food = ((ListViewItem)lvSelected.ContainerFromElement(sender as Button)).Content as Food;
+            food.count = 0;
             foodRemove(food);
-            RefreshFood(food);
         }
+
+        private void deleteAllBtn_Click(object sender, RoutedEventArgs e) // 선택한 메뉴 전체 삭제
+        {
+
+            if (MessageBox.Show("선택한 메뉴를 모두 삭제하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foodClear();
+                MessageBox.Show("삭제되었습니다.", "안내");
+            }
+            else
+            {
+                MessageBox.Show("취소되었습니다", "안내");
+            }
+        }
+
+
+        private void orderCancelBtn_Click(object sender, RoutedEventArgs e) // 주문 취소
+        {
+            if (MessageBox.Show("주문을 취소하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foodClear();
+                NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MessageBox.Show("취소되었습니다", "안내");
+            }
+            
+        }
+
+        private void foodClear() // 주문한 메뉴 전체 삭제
+        {
+
+            foods.Clear();
+            lvSelected.Items.Refresh();
+            totalPrice.Text = "0";
+        }
+
 
         private void RefreshFood(Food food) // 계산한 총 금액 출력
         {
@@ -133,7 +197,7 @@ namespace Burgerking_Kiosk.Pages
 
             foreach (Food food in foodData.lstFood)
             {
-                total += (food.price * food.count);
+                total += food.price * food.count;
             }
 
             return total;
