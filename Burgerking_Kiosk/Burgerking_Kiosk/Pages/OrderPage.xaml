@@ -20,11 +20,6 @@
 
         <!--다음-->
         <Style x:Key="NextButtonStyle" TargetType="Button">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#3473B5" />
-                </Trigger>
-            </Style.Triggers>
             <Setter Property="Width" Value="140" />
             <Setter Property="Height" Value="50" />
             <Setter Property="FontSize" Value="18" />
@@ -70,7 +65,8 @@
             <Setter Property="FontSize" Value="20" />
             <Setter Property="FontWeight" Value="Light" />
         </Style>
-
+        
+        <!--삭제 버튼-->
         <Style x:Key="deleteBtn" TargetType="Button">
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Width" Value="30" />
@@ -134,7 +130,7 @@
                                     Value="#F2F2F2" />
                             <Setter Property="BorderThickness"
                                     Value="1" />
-
+                            
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -147,7 +143,7 @@
                                                     SnapsToDevicePixels="True">
                                                 <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                                                    VerticalAlignment="{TemplateBinding VerticalAlignment}"></ContentPresenter>
+                                                                    VerticalAlignment="{TemplateBinding VerticalAlignment}" />
                                             </Border>
                                         </Grid>
                                         <ControlTemplate.Triggers>
@@ -246,7 +242,7 @@
                       VerticalAlignment="Bottom"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <ListView.ItemTemplate>
+                    <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -267,21 +263,30 @@
                                            Style="{StaticResource lvText}"/>
                             </Grid>
                             <Grid Grid.Column="2">
-                                <Button x:Name="subtractBtn" Content="-" Click="countBtn_Click" Style="{StaticResource countBtn}" />
+                                <Button x:Name="subtractBtn" 
+                                        Content="-" 
+                                        Click="countBtn_Click" 
+                                        Style="{StaticResource countBtn}" />
                             </Grid>
                             <Grid Grid.Column="3">
                                 <TextBlock Text="{Binding count}"
                                            Style="{StaticResource lvText}"/>
                             </Grid>
                             <Grid Grid.Column="4">
-                                    <Button x:Name="addBtn" Content="+" Click="countBtn_Click" Style="{StaticResource countBtn}" />
+                                    <Button x:Name="addBtn" 
+                                            Content="+" 
+                                            Click="countBtn_Click" 
+                                            Style="{StaticResource countBtn}" />
                             </Grid>
                             <Grid Grid.Column="5">
                                 <TextBlock Text="{Binding price}"
                                            Style="{StaticResource lvText}"/>
                             </Grid>
                             <Grid Grid.Column="6">
-                                <Button x:Name="deleteBtn" Content="x" Click="deleteBtn_Click" Style="{StaticResource deleteBtn}"/>
+                                <Button x:Name="deleteBtn" 
+                                        Content="x" 
+                                        Click="deleteBtn_Click" 
+                                        Style="{StaticResource deleteBtn}"/>
                             </Grid>
                         </Grid>
                     </DataTemplate>

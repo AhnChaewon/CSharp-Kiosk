@@ -24,7 +24,15 @@ namespace Burgerking_Kiosk.Pages
     {
         CategoryData categoryData = new CategoryData();
         FoodData foodData = new FoodData();
-        List<Food> foods = new List<Food> {};
+        List<Food> foods = new List<Food>() 
+        { 
+            // 담기는 리스트
+        };
+
+        List<Food> showFood = new List<Food>()
+        {
+            // 보이는 리스트
+        };
 
         private int pageCount = 1;
 
@@ -91,7 +99,6 @@ namespace Burgerking_Kiosk.Pages
                 foods.Add(food);
             }
 
-
             totalPrice.Text = setTotalPrice() + "원";
             lvSelected.Items.Refresh();
 
@@ -123,7 +130,7 @@ namespace Burgerking_Kiosk.Pages
                 {
                     food.count = 0;
                     foodRemove(food);
-                }
+                    }
                 else
                 {
                     food.count--;
@@ -135,7 +142,6 @@ namespace Burgerking_Kiosk.Pages
         private void foodRemove(Food food) // 선택한 메뉴 삭제
         {
             var itemSource = lvSelected.ItemsSource as List<Food>;
-
             itemSource.Remove(food);
             RefreshFood(food);
         }
@@ -147,7 +153,7 @@ namespace Burgerking_Kiosk.Pages
             foodRemove(food);
         }
 
-        private void deleteAllBtn_Click(object sender, RoutedEventArgs e) // 선택한 메뉴 전체 삭제
+        private void deleteAllBtn_Click(object sender, RoutedEventArgs e) // 메뉴 전체 삭제
         {
 
             if (MessageBox.Show("선택한 메뉴를 모두 삭제하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -178,9 +184,12 @@ namespace Burgerking_Kiosk.Pages
 
         private void foodClear() // 주문한 메뉴 전체 삭제
         {
-
+            for(int i=0; i < foods.Count; i++)
+            {
+                foods[i].count = 0;
+            }
             foods.Clear();
-            lvSelected.Items.Refresh();
+            lvSelected.Items.Refresh(); 
             totalPrice.Text = "0";
         }
 
@@ -202,7 +211,5 @@ namespace Burgerking_Kiosk.Pages
 
             return total;
         }
-
-
     }
 }
