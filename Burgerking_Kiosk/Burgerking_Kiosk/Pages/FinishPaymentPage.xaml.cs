@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace Burgerking_Kiosk.Pages
 {
@@ -24,6 +25,11 @@ namespace Burgerking_Kiosk.Pages
         public FinishPaymentPage()
         {
             InitializeComponent();
+            //DB 연결되면 DB Member 테이블 접근해서 이름 받아와야 함
+            card.Text = "인식된 카드 번호 : " +OrderData.member;
+
+            //SELECT OrderId FROM csdb.sell ORDER BY OrderId desc LIMIT 1;
+            //이 코드를 사용하면 주문번호 중 제일 큰 거 받아옴 여기에 +1해주면 됨
         }
 
         private void finishBtn_Click(object sender, RoutedEventArgs e)
@@ -32,10 +38,7 @@ namespace Burgerking_Kiosk.Pages
                 NavigationService?.RemoveBackEntry(); 
             }
 
-            /*OrderData.table = -1;
-            OrderData.member = null;
-            OrderData.menuList.RemoveRange(0, OrderData.menuList.Count);
-            OrderData.member = null;*/
+            
 
             NavigationService.Navigate(new HomePage());
         }
