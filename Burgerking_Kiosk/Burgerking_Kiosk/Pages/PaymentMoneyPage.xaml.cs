@@ -34,5 +34,11 @@ namespace Burgerking_Kiosk.Pages
                 NavigationService.GoBack();
             }
         }
+
+        private void barcodeText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            OrderData.member = barcodeText.Text;
+            NavigationService.Navigate(new Uri("/Pages/FinishPaymentPage.xaml", UriKind.Relative));
+        }
     }
 }

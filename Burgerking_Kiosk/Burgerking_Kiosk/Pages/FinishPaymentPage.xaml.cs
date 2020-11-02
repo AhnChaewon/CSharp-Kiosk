@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace Burgerking_Kiosk.Pages
 {
@@ -24,6 +25,7 @@ namespace Burgerking_Kiosk.Pages
         public FinishPaymentPage()
         {
             InitializeComponent();
+            card.Text = "인식된 카드 번호 : " +OrderData.member;
         }
 
         private void finishBtn_Click(object sender, RoutedEventArgs e)
@@ -32,10 +34,7 @@ namespace Burgerking_Kiosk.Pages
                 NavigationService?.RemoveBackEntry(); 
             }
 
-            /*OrderData.table = -1;
-            OrderData.member = null;
-            OrderData.menuList.RemoveRange(0, OrderData.menuList.Count);
-            OrderData.member = null;*/
+            
 
             NavigationService.Navigate(new HomePage());
         }

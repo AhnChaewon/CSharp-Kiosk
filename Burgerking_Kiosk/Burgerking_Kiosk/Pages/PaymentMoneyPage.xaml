@@ -29,8 +29,8 @@
 
             <StackPanel
                 VerticalAlignment="Center"
-                HorizontalAlignment="Center">
-
+                HorizontalAlignment="Right"
+                Margin="0,802,332,194.4">
                 <TextBlock
                     x:Name="moneyText"
                     Text="총 금액 : "
@@ -38,6 +38,25 @@
 
 
             </StackPanel>
+
+            <StackPanel
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FocusManager.FocusedElement="{Binding ElementName=barcodeText}">
+                <TextBox
+                    x:Name="barcodeText"
+                    Width="300"
+                    Height="40"
+                    FontSize="25"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    Cursor="No"
+                    CaretBrush="White"
+                    TextChanged="barcodeText_TextChanged"/>
+                
+            </StackPanel>
+
+            
 
             <Button
                 x:Name="backBtn"
