@@ -101,6 +101,7 @@ namespace Burgerking_Kiosk.Pages
 
             totalPrice.Text = setTotalPrice() + "원";
             lvSelected.Items.Refresh();
+            btnIsEnbled();
 
             lbMenus.SelectedIndex = -1;
         }
@@ -129,12 +130,14 @@ namespace Burgerking_Kiosk.Pages
                 if(food.count == 1)
                 {
                     food.count = 0;
+                    
                     foodRemove(food);
                     }
                 else
                 {
                     food.count--;
                 }
+                btnIsEnbled();
             }
             RefreshFood(food);
         }
@@ -144,6 +147,7 @@ namespace Burgerking_Kiosk.Pages
             var itemSource = lvSelected.ItemsSource as List<Food>;
             itemSource.Remove(food);
             RefreshFood(food);
+            
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e) // 선택한 메뉴 삭제 버튼 클릭 시
@@ -151,7 +155,22 @@ namespace Burgerking_Kiosk.Pages
             var food = ((ListViewItem)lvSelected.ContainerFromElement(sender as Button)).Content as Food;
             food.count = 0;
             foodRemove(food);
+            btnIsEnbled();
         }
+
+        private void btnIsEnbled() // 버튼 활성화
+        {
+            if(foods.Count != 0) {
+                orderBtn.IsEnabled = true;
+                deleteAllBtn.IsEnabled = true;
+            }
+            else
+            {
+                orderBtn.IsEnabled = false;
+                deleteAllBtn.IsEnabled = false;
+            }
+        }
+
 
         private void deleteAllBtn_Click(object sender, RoutedEventArgs e) // 메뉴 전체 삭제
         {
@@ -159,6 +178,7 @@ namespace Burgerking_Kiosk.Pages
             if (MessageBox.Show("선택한 메뉴를 모두 삭제하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foodClear();
+                btnIsEnbled();
                 MessageBox.Show("삭제되었습니다.", "안내");
             }
             else
@@ -168,17 +188,25 @@ namespace Burgerking_Kiosk.Pages
         }
 
 
-        private void orderCancelBtn_Click(object sender, RoutedEventArgs e) // 주문 취소
+        private void prePageBtn_Click(object sender, RoutedEventArgs e) // 주문 취소
         {
-            if (MessageBox.Show("주문을 취소하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if(foods.Count != 0)
             {
-                foodClear();
-                NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
+                if (MessageBox.Show("주문을 취소하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    foodClear();
+                    NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    MessageBox.Show("취소되었습니다", "안내");
+                }
             }
             else
             {
-                MessageBox.Show("취소되었습니다", "안내");
+                NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
             }
+            
             
         }
 

@@ -242,6 +242,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\burgerking_logo.png" />
+    <Content Include="Assets\Burgerking_Advertising.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Burgers\burger1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

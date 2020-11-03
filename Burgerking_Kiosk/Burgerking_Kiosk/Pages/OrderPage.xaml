@@ -291,6 +291,7 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <!--아래 주석친 코드는 수정할 예정-->
                 <!--<ListView.View>
                     <GridView>
                         <GridViewColumn DisplayMemberBinding="{Binding name}" 
@@ -317,6 +318,8 @@
             </Grid>
             <Grid Grid.Row="1">
                 <Button Click="deleteAllBtn_Click" 
+                        x:Name="deleteAllBtn"
+                        IsEnabled="False"
                         Height="50" 
                         Width="120" 
                         Content="전체 삭제" Margin="175 0 0 0"
@@ -347,13 +350,14 @@
         <!--주문 버튼-->
         <Grid Grid.Column="1" Grid.Row="2">
             <Grid Margin="92 0 360 0" Height="50" VerticalAlignment="Top">
-                <Button Content="주문취소" Width="140" 
-                        Click="orderCancelBtn_Click"
+                <Button Content="이전으로" Width="140" 
+                        Click="prePageBtn_Click"
                         x:Name="orderCancleBtn"
                         Background="#363636"
                         Margin="0 0 200 0" 
                         Style="{StaticResource OrderButtonStyle}"/>
-                <Button x:Name="orderBtn" 
+                <Button x:Name="orderBtn"
+                        IsEnabled="False"
                         Content="주문하기" Width="180" 
                         Background="#185494" FontSize="18"
                         Margin="170 0 0 0" 
