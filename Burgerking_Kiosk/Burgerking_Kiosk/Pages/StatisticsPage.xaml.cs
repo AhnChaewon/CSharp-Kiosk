@@ -63,7 +63,7 @@ namespace Burgerking_Kiosk.Pages
                     "Sale = CASE Name WHEN \'" + menu2.Text + "\' THEN " + sale2.Text + " ELSE Sale END WHERE Name IN (\'" + menu1.Text + "\',\'" + menu2.Text + "\')";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                cmd.ExecuteNonQuery();
 
                 MessageBox.Show("적용되었습니다!", "띵동", MessageBoxButton.OK, MessageBoxImage.Information);
                 conn.Close();
@@ -82,7 +82,8 @@ namespace Burgerking_Kiosk.Pages
                 conn.Open();
                 string sql = "UPDATE csdb.menu SET Sale = 0";
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                MySqlDataReader reader = cmd.ExecuteReader();
+                cmd.ExecuteNonQuery();
+                conn.Close();
             }
             catch(Exception ex)
             {

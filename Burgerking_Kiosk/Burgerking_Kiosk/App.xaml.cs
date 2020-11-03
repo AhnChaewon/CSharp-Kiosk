@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -16,6 +17,7 @@ namespace Burgerking_Kiosk
     {
         Stopwatch sw = new Stopwatch();
         public static double time = 0;
+        public static int originTime = 0;
 
         public App()
         {
@@ -27,6 +29,26 @@ namespace Burgerking_Kiosk
         {
             sw.Stop();
             time = sw.ElapsedMilliseconds / 1000;
+            Console.WriteLine(time);
+
+            string connStr = "Server=10.80.161.167;Database=csdb;Uid=root;Pwd=rbtjr0614!";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            try
+            {
+                conn.Open();
+                string sql = "UPDATE csdb.time SET Time = " + (originTime + time);
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
             Console.WriteLine("구동시간 : "+time);
         }
 
@@ -34,6 +56,28 @@ namespace Burgerking_Kiosk
         {
             sw.Reset();
             sw.Start();
+            string connStr = "Server=10.80.161.167;Database=csdb;Uid=root;Pwd=rbtjr0614!";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            try
+            {
+                conn.Open();
+                string sql = "SELECT * FROM csdb.time";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    originTime = Convert.ToInt32(reader["Time"]);
+                }
+                Console.WriteLine(originTime);
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         
