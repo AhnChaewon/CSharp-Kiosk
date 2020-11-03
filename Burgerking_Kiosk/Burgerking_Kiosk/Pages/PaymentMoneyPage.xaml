@@ -39,22 +39,19 @@
 
             </StackPanel>
 
-            <StackPanel
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                FocusManager.FocusedElement="{Binding ElementName=barcodeText}">
-                <TextBox
-                    x:Name="barcodeText"
-                    Width="300"
-                    Height="40"
-                    FontSize="25"
-                    VerticalContentAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    Cursor="No"
-                    CaretBrush="White"
-                    TextChanged="barcodeText_TextChanged"/>
+            
+            <TextBox
+               x:Name="barcodeText"
+               Width="300"
+               Height="40"
+               FontSize="25"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center"
+               Cursor="No"
+               CaretBrush="White"
+               TextChanged="barcodeText_TextChanged"/>
                 
-            </StackPanel>
+            
 
             
 

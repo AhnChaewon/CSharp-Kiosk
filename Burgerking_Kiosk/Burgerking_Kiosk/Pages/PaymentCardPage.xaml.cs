@@ -42,7 +42,7 @@ namespace Burgerking_Kiosk.Pages
         private void webcam_QrDecoded(object sender, string e)
         {
             OrderData.member = e;
-            NavigationService.Navigate(new Uri("/Pages/FinishPaymentPage.xaml", UriKind.Relative));
+            NavigationService?.Navigate(new Uri("/Pages/FinishPaymentPage.xaml", UriKind.Relative));
         }
 
         

@@ -1,4 +1,5 @@
 ﻿using Burgerking_Kiosk.Data;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,25 +23,88 @@ namespace Burgerking_Kiosk.Pages
     /// </summary>
     public partial class FinishPaymentPage : Page
     {
+
+        int orderNum = 0;
         public FinishPaymentPage()
         {
             InitializeComponent();
-            //DB 연결되면 DB Member 테이블 접근해서 이름 받아와야 함
-            card.Text = "인식된 카드 번호 : " +OrderData.member;
-
-            //SELECT OrderId FROM csdb.sell ORDER BY OrderId desc LIMIT 1;
-            //이 코드를 사용하면 주문번호 중 제일 큰 거 받아옴 여기에 +1해주면 됨
+            connectionDB();
         }
 
         private void finishBtn_Click(object sender, RoutedEventArgs e)
         {
-            while (NavigationService?.CanGoBack == true) { 
-                NavigationService?.RemoveBackEntry(); 
+            while (NavigationService?.CanGoBack == true)
+            {
+                NavigationService?.RemoveBackEntry();
             }
 
-            
+            NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
+        }
 
-            NavigationService.Navigate(new HomePage());
+        private void connectionDB()
+        {
+            string connStr = "Server=10.80.161.167;Database=csdb;Uid=root;Pwd=rbtjr0614!";
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            takeOrderNum(conn);
+            takeUser(conn);
+        }
+
+        private void takeOrderNum(MySqlConnection conn)
+        {
+            try
+            {
+                conn.Open();
+                string sql = "SELECT OrderId FROM csdb.sell ORDER BY OrderId desc LIMIT 1";
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    orderNum = Convert.ToInt32(reader["OrderId"]) + 1;
+                    order.Text = "주문번호 : " + orderNum.ToString();
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+        }
+
+        private void takeUser(MySqlConnection conn)
+        {
+            if (OrderData.payment.Equals("card"))
+            {
+                card.Text = "인식된 카드 번호 : " + OrderData.member;
+                name.Text = "회원명 : " + OrderData.member;
+            }
+            else
+            {
+                try
+                {
+                    conn.Open();
+                    string sql = "SELECT Name FROM csdb.user WHERE Barcode = \"" + OrderData.member +"\"";
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        OrderData.member = reader["Name"].ToString();
+                        name.Text = "회원명 : " + OrderData.member;
+                    }
+
+                    conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+            
         }
     }
 }

@@ -66,6 +66,7 @@ namespace Burgerking_Kiosk.Pages
                 MySqlDataReader reader = cmd.ExecuteReader();
 
                 MessageBox.Show("적용되었습니다!", "띵동", MessageBoxButton.OK, MessageBoxImage.Information);
+                conn.Close();
             }
             catch (Exception ex)
             {

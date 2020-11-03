@@ -22,10 +22,20 @@ namespace Burgerking_Kiosk.Pages
     /// </summary>
     public partial class PaymentMoneyPage : Page
     {
+        String b1 = "2112345678900";
+        String b2 = "02345673";
+        String b3 = "9790260532113";
+
         public PaymentMoneyPage()
         {
             InitializeComponent();
+            this.Loaded += PaymentMoneyPage_Loaded;
             OrderData.payment = "money";
+        }
+
+        private void PaymentMoneyPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            barcodeText.Focus();
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
@@ -38,8 +48,12 @@ namespace Burgerking_Kiosk.Pages
 
         private void barcodeText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            OrderData.member = barcodeText.Text;
-            NavigationService.Navigate(new Uri("/Pages/FinishPaymentPage.xaml", UriKind.Relative));
+            if(b1 == barcodeText.Text || b2 == barcodeText.Text || b3  == barcodeText.Text)
+            {
+                OrderData.member = barcodeText.Text;
+                NavigationService.Navigate(new Uri("/Pages/FinishPaymentPage.xaml", UriKind.Relative));
+            }
+            
         }
     }
 }
