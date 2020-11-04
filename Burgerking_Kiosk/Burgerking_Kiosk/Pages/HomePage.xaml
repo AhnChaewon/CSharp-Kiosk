@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Burgerking_Kiosk.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
+      Loaded="HomePage_Loaded"
       Title="HomePage">
 
     <Grid Background="White">

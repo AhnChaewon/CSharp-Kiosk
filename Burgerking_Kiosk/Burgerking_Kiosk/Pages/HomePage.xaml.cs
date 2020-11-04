@@ -28,6 +28,12 @@ namespace Burgerking_Kiosk.Pages
             this.startMedia.MediaEnded += new RoutedEventHandler(startMedia_MediaEnded);
         }
 
+        private void HomePage_Loaded(object sender, RoutedEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            window.KeyDown += keyDownEvent;
+        }
+
         private void startMedia_MediaEnded(object sender, RoutedEventArgs e)
         {
 
@@ -47,6 +53,14 @@ namespace Burgerking_Kiosk.Pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Pages/StatisticsPage.xaml", UriKind.Relative));
+        }
+
+        private void keyDownEvent(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.F2)
+            {
+                NavigationService.Navigate(new Uri("/Pages/StatisticsPage.xaml", UriKind.Relative));
+            }
         }
     }
 }
