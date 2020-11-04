@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Burgerking_Kiosk.DBManger;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -31,18 +32,14 @@ namespace Burgerking_Kiosk
             time = sw.ElapsedMilliseconds / 1000;
             Console.WriteLine(time);
 
-            string connStr = "Server=10.80.161.167;Database=csdb;Uid=root;Pwd=rbtjr0614!";
-            MySqlConnection conn = new MySqlConnection(connStr);
-
             try
             {
-                conn.Open();
+                DBConnection db = new DBConnection();
+                db.connectDB();
                 string sql = "UPDATE csdb.time SET Time = " + (originTime + time);
-                Console.WriteLine(sql);
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-
-                conn.Close();
+                db.setCommand(sql);
+                db.execute();
+                db.closeConnection();
             }
             catch (Exception ex)
             {
@@ -56,23 +53,23 @@ namespace Burgerking_Kiosk
         {
             sw.Reset();
             sw.Start();
-            string connStr = "Server=10.80.161.167;Database=csdb;Uid=root;Pwd=rbtjr0614!";
-            MySqlConnection conn = new MySqlConnection(connStr);
 
             try
             {
-                conn.Open();
+                DBConnection db = new DBConnection();
+                db.connectDB();
                 string sql = "SELECT * FROM csdb.time";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                db.setCommand(sql);
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                MySqlDataReader reader = db.executeReadQuery();
 
                 while (reader.Read())
                 {
                     originTime = Convert.ToInt32(reader["Time"]);
                 }
                 Console.WriteLine(originTime);
-                conn.Close();
+                db.closeConnection();
+                
             }
             catch (Exception ex)
             {

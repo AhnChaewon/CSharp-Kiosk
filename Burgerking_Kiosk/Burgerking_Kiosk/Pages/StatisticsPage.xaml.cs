@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
+using Burgerking_Kiosk.DBManger;
 
 namespace Burgerking_Kiosk.Pages
 {
@@ -29,14 +30,17 @@ namespace Burgerking_Kiosk.Pages
         {
             InitializeComponent();
 
-           
-            
+        }
+
+        private void calculateTime()
+        {
+
         }
 
         private void saleMenuBtn_Click(object sender, RoutedEventArgs e)
         {
-            string connStr = "Server=10.80.161.167;Database=csdb;Uid=root;Pwd=rbtjr0614!";
-
+            
+            
             if (menu1.Text == menu2.Text)
             {
                 MessageBox.Show("서로 다른 메뉴를 선택하십시오!", "경고", MessageBoxButton.OK, MessageBoxImage.Exclamation);
@@ -52,21 +56,24 @@ namespace Burgerking_Kiosk.Pages
                 MessageBox.Show("할인율을 적어주십시오!", "경고", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
+            else if((Convert.ToInt32(sale1.Text) <= 0 || Convert.ToInt32(sale1.Text) >= 100) || (Convert.ToInt32(sale2.Text) <= 0 || Convert.ToInt32(sale2.Text) >= 100))
+            {
+                MessageBox.Show("할인율은 1~99 사이의 숫자를 적어주십시오!", "경고", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return;
+            }
 
-            clearDB(connStr);
-
-            MySqlConnection conn = new MySqlConnection(connStr);
+            clearDB();
             try
             {
-                conn.Open();
+                DBConnection db = new DBConnection();
+                db.connectDB();
                 string sql = "UPDATE csdb.menu SET Sale = CASE Name WHEN \'" + menu1.Text + "\' THEN " + sale1.Text + " ELSE Sale END," +
                     "Sale = CASE Name WHEN \'" + menu2.Text + "\' THEN " + sale2.Text + " ELSE Sale END WHERE Name IN (\'" + menu1.Text + "\',\'" + menu2.Text + "\')";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                cmd.ExecuteNonQuery();
+                db.setCommand(sql);
+                db.execute();
+                db.closeConnection();
 
                 MessageBox.Show("적용되었습니다!", "띵동", MessageBoxButton.OK, MessageBoxImage.Information);
-                conn.Close();
             }
             catch (Exception ex)
             {
@@ -74,16 +81,16 @@ namespace Burgerking_Kiosk.Pages
             }
         }
 
-        private void clearDB(string db)
+        private void clearDB()
         {
-            MySqlConnection conn = new MySqlConnection(db);
             try
             {
-                conn.Open();
+                DBConnection db = new DBConnection();
+                db.connectDB();
                 string sql = "UPDATE csdb.menu SET Sale = 0";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                db.setCommand(sql);
+                db.execute();
+                db.closeConnection();
             }
             catch(Exception ex)
             {

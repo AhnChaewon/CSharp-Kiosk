@@ -32,9 +32,9 @@
                 Width="300">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="항목" Width="110" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="수량" Width="70" DisplayMemberBinding="{Binding Num}"/>
-                        <GridViewColumn Header="가격" Width="120" DisplayMemberBinding="{Binding Money}"/>
+                        <GridViewColumn Header="항목" Width="110" DisplayMemberBinding="{Binding name}"/>
+                        <GridViewColumn Header="수량" Width="70" DisplayMemberBinding="{Binding num}"/>
+                        <GridViewColumn Header="가격" Width="120" DisplayMemberBinding="{Binding money}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -80,6 +80,7 @@
                     MouseDown="moneyBtn_MouseDown"/>
             </StackPanel>
             <TextBlock
+                x:Name="sum"
                 Text="총 금액 : "
                 FontSize="30"
                 HorizontalAlignment="Right"

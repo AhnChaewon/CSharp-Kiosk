@@ -14,6 +14,7 @@ namespace Burgerking_Kiosk.Data
         public static String payment;
         public static String member;
         public static List<Menu> menuList = new List<Menu>();
+        public static int sumMoney = 0;
 
     }
 }

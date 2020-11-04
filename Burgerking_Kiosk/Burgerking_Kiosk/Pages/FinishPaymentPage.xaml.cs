@@ -1,4 +1,5 @@
 ﻿using Burgerking_Kiosk.Data;
+using Burgerking_Kiosk.DBManger;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Burgerking_Kiosk.Pages
         public FinishPaymentPage()
         {
             InitializeComponent();
-            connectionDB();
+            
         }
 
         private void finishBtn_Click(object sender, RoutedEventArgs e)
@@ -41,24 +42,15 @@ namespace Burgerking_Kiosk.Pages
             NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
         }
 
-        private void connectionDB()
-        {
-            string connStr = "Server=10.80.161.167;Database=csdb;Uid=root;Pwd=rbtjr0614!";
-            MySqlConnection conn = new MySqlConnection(connStr);
-
-            takeOrderNum(conn);
-            takeUser(conn);
-        }
-
-        private void takeOrderNum(MySqlConnection conn)
+        private void takeOrderNum()
         {
             try
             {
-                conn.Open();
+                DBConnection db = new DBConnection();
+                db.connectDB();
                 string sql = "SELECT OrderId FROM csdb.sell ORDER BY OrderId desc LIMIT 1";
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                MySqlDataReader reader = cmd.ExecuteReader();
+                db.setCommand(sql);
+                MySqlDataReader reader = db.executeReadQuery();
 
                 while (reader.Read())
                 {
@@ -66,7 +58,8 @@ namespace Burgerking_Kiosk.Pages
                     order.Text = "주문번호 : " + orderNum.ToString();
                 }
 
-                conn.Close();
+                db.closeConnection();
+                
             }
             catch (Exception ex)
             {
@@ -85,19 +78,18 @@ namespace Burgerking_Kiosk.Pages
             {
                 try
                 {
-                    conn.Open();
+                    DBConnection db = new DBConnection();
+                    db.connectDB();
                     string sql = "SELECT Name FROM csdb.user WHERE Barcode = \"" + OrderData.member +"\"";
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                    MySqlDataReader reader = cmd.ExecuteReader();
+                    db.setCommand(sql);
+                    MySqlDataReader reader = db.executeReadQuery();
 
                     while (reader.Read())
                     {
                         OrderData.member = reader["Name"].ToString();
                         name.Text = "회원명 : " + OrderData.member;
                     }
-
-                    conn.Close();
+                    db.closeConnection();
                 }
                 catch (Exception ex)
                 {

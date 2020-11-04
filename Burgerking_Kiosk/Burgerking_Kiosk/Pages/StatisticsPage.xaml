@@ -22,7 +22,15 @@
         <Grid
             Grid.Column="0"
             Grid.Row="0">
-            
+
+            <TextBlock
+                x:Name="dirvingTime"
+                Text="구동 시간 : 30분 30초"
+                FontSize="16"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Margin="40"/>
+
         </Grid>
 
         <Grid
