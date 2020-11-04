@@ -7,62 +7,87 @@
       mc:Ignorable="d" 
       d:DesignHeight="1030" d:DesignWidth="1920"
       Title="PaymentPage">
+    <Page.Resources>
+        <Style x:Key="columnHeader" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Height" Value="40" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Page.Resources>
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0"
               Width="640"
               HorizontalAlignment="Right">
-            <TextBlock
-                Text="주문 리스트를 확인해주세요."
-                FontSize="18"
-                VerticalAlignment="Top"
-                HorizontalAlignment="Center"
-                Margin="50"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
 
-            <ListView
+            <Grid Grid.Row="0">
+                <TextBlock
+                Text="주문하신 메뉴를 확인해주세요"
+                VerticalAlignment="Bottom"
+                FontSize="18"
+                HorizontalAlignment="Center"
+                FontWeight="DemiBold"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <ListView
                 x:Name="orderList"
-                Height="450"
+                Height="500"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center" 
-                Width="300">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="항목" Width="110" DisplayMemberBinding="{Binding name}"/>
-                        <GridViewColumn Header="수량" Width="70" DisplayMemberBinding="{Binding num}"/>
-                        <GridViewColumn Header="가격" Width="120" DisplayMemberBinding="{Binding money}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                Width="400">
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource columnHeader}">
+                            <GridViewColumn Header="메뉴명" Width="210" DisplayMemberBinding="{Binding name}"/>
+                            <GridViewColumn Header="수량" Width="70" DisplayMemberBinding="{Binding count}"/>
+                            <GridViewColumn Header="가격" Width="120" DisplayMemberBinding="{Binding price}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
 
-            <Button
+            <Grid Grid.Row="2">
+                <Button
                 x:Name="cancelBtn"
                 Width="140"
                 Height="50"
                 Content="취소하기"
                 FontSize="18"
-                VerticalAlignment="Bottom"
                 HorizontalAlignment="Center"
+                VerticalAlignment="Top"
                 Background="White"
                 BorderBrush="Black"
-                Margin="0,0,0,40"
                 Click="cancelBtn_Click"/>
+            </Grid>
         </Grid>
 
         <Grid Grid.Column="1"
               Width="640"
               HorizontalAlignment="Left">
-            <StackPanel
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*" />
+                <RowDefinition Height="7*" />
+                <RowDefinition Height="4*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <StackPanel
                 Width="400"
                 Height="164"
                 Orientation="Horizontal"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center">
-                <Image
+                    <Image
                     x:Name="cardBtn"
                     Width="200"
                     Height="164"
@@ -70,7 +95,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
                     MouseDown="cardBtn_MouseDown"/>
-                <Image
+                    <Image
                     x:Name="moneyBtn"
                     Width="200"
                     Height="164"
@@ -78,15 +103,31 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     MouseDown="moneyBtn_MouseDown"/>
-            </StackPanel>
-            <TextBlock
-                x:Name="sum"
-                Text="총 금액 : "
-                FontSize="30"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Margin="100"/>
+                </StackPanel>
+            </Grid>
 
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45" />
+                    <RowDefinition Height="55" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <TextBlock
+                        Text="총 금액"
+                        FontSize="25"
+                        FontWeight="Light"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBlock x:Name="sum"
+                               Text="12000"
+                               FontWeight="DemiBold"
+                               FontSize="30"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Bottom"/>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Page>
