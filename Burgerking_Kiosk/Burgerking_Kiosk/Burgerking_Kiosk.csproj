@@ -241,7 +241,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="Assets\loading.gif" />
     <Resource Include="Assets\burgerking_logo.png" />
     <Content Include="Assets\Burgerking_Advertising.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
