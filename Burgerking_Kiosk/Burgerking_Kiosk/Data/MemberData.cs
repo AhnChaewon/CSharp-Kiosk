@@ -10,7 +10,12 @@ namespace Burgerking_Kiosk.Data
     class MemberData
     {
         public String name { get; set; }
-        public String cardNum { get; set; }
+
+        public String card { get; set; }
+
+        public String barcode { get; set; }
+
+
 
 
     }

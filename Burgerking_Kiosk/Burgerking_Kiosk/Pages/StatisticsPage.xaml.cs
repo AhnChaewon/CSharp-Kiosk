@@ -17,6 +17,8 @@ using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
 using Burgerking_Kiosk.DBManger;
+using System.Collections;
+using Burgerking_Kiosk.Data;
 
 namespace Burgerking_Kiosk.Pages
 {
@@ -25,11 +27,13 @@ namespace Burgerking_Kiosk.Pages
     /// </summary>
     public partial class StatisticsPage : Page
     {
+        List<MemberData> member = new List<MemberData>();
 
         public StatisticsPage()
         {
             InitializeComponent();
             drivingTime();
+            callMember();
         }
 
         private void drivingTime()
@@ -83,6 +87,34 @@ namespace Burgerking_Kiosk.Pages
             Console.WriteLine("초 시간 : " + sec);
 
             dirvingTimeText.Text = String.Format("구동 시간 : {0}일 {1}시간 {2}분 {3}초", day, hour, min, sec);
+        } //시간 불러오기
+
+        private void callMember()
+        {
+            try
+            {
+                DBConnection db = new DBConnection();
+                db.connectDB();
+                string sql = "SELECT * FROM csdb.user";
+                db.setCommand(sql);
+
+                MySqlDataReader reader = db.executeReadQuery();
+
+                while (reader.Read())
+                {
+                    MemberData m = new MemberData { name = reader["Name"].ToString(), barcode = reader["BarCode"].ToString(), card = reader["QRCode"].ToString() };
+                    member.Add(m);
+                 
+                }
+                db.closeConnection();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            memberList.ItemsSource = member;
         }
 
         private void saleMenuBtn_Click(object sender, RoutedEventArgs e)
@@ -126,7 +158,7 @@ namespace Burgerking_Kiosk.Pages
             {
                 Console.WriteLine(ex);
             }
-        }
+        }//할인율 설정
 
         private void clearDB()
         {
@@ -143,14 +175,14 @@ namespace Burgerking_Kiosk.Pages
             {
                 Console.WriteLine(ex);
             }
-        }
+        } // 할인율 비우기
 
         private void sale_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+"); 
             e.Handled = regex.IsMatch(e.Text);
 
-        }
+        } //숫자 외의 입력 방지
 
     }
 }

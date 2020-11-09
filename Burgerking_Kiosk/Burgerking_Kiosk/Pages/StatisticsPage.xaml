@@ -31,6 +31,23 @@
                 HorizontalAlignment="Left"
                 Margin="40"/>
 
+            <ListView
+                    x:Name="memberList"
+                    Height="300"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right" 
+                    Width="200">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="이름" Width="70" 
+                                            DisplayMemberBinding="{Binding name}"/>
+                        <GridViewColumn Header="카드번호" Width="60" 
+                                            DisplayMemberBinding="{Binding card}"/>
+                        <GridViewColumn Header="현금영수증" Width="70" 
+                                            DisplayMemberBinding="{Binding barcode}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </Grid>
 
         <Grid
