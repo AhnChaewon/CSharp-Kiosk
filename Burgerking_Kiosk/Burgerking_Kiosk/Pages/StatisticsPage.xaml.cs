@@ -29,18 +29,65 @@ namespace Burgerking_Kiosk.Pages
         public StatisticsPage()
         {
             InitializeComponent();
-
+            drivingTime();
         }
 
-        private void calculateTime()
+        private void drivingTime()
         {
+            int time = 0;
+            int day = 0;
+            int hour = 0;
+            int min = 0;
+            int sec = 0;
 
+            try
+            {
+                DBConnection db = new DBConnection();
+                db.connectDB();
+                string sql = "SELECT * FROM csdb.time";
+                db.setCommand(sql);
+
+                MySqlDataReader reader = db.executeReadQuery();
+
+                while (reader.Read())
+                {
+                    time = Convert.ToInt32(reader["Time"]);
+                }
+                Console.WriteLine(time);
+                db.closeConnection();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            Console.WriteLine("처음 시간 : " + time);
+
+            if(time >= 86400)
+            {
+                day = time / 86400;
+                time = time % 86400;
+            }
+            if(time >= 3600)
+            {
+                hour = time / 3600;
+                time = time % 3600;
+            }
+            if(time >= 60)
+            {
+                min = time / 60;
+                time = time % 60;
+                Console.WriteLine("분 계산 시간 : " + time);
+            }
+            sec = time;
+            Console.WriteLine("초 시간 : " + sec);
+
+            dirvingTimeText.Text = String.Format("구동 시간 : {0}일 {1}시간 {2}분 {3}초", day, hour, min, sec);
         }
 
         private void saleMenuBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            
+          
             if (menu1.Text == menu2.Text)
             {
                 MessageBox.Show("서로 다른 메뉴를 선택하십시오!", "경고", MessageBoxButton.OK, MessageBoxImage.Exclamation);

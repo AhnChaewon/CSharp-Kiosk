@@ -17,11 +17,11 @@ namespace Burgerking_Kiosk
     public partial class App : Application
     {
         Stopwatch sw = new Stopwatch();
-        public static double time = 0;
-        public static int originTime = 0;
+        double time = 0;
 
         public App()
         {
+    
             this.Startup += App_Startup;
             this.Exit += App_Exit;
         }
@@ -30,13 +30,12 @@ namespace Burgerking_Kiosk
         {
             sw.Stop();
             time = sw.ElapsedMilliseconds / 1000;
-            Console.WriteLine(time);
 
             try
             {
                 DBConnection db = new DBConnection();
                 db.connectDB();
-                string sql = "UPDATE csdb.time SET Time = " + (originTime + time);
+                string sql = "UPDATE csdb.time SET Time = Time + "+time;
                 db.setCommand(sql);
                 db.execute();
                 db.closeConnection();
@@ -45,36 +44,12 @@ namespace Burgerking_Kiosk
             {
                 Console.WriteLine(ex);
             }
-
-            Console.WriteLine("구동시간 : "+time);
         }
 
         private void App_Startup(object sender, StartupEventArgs e)
         {
             sw.Reset();
             sw.Start();
-
-            try
-            {
-                DBConnection db = new DBConnection();
-                db.connectDB();
-                string sql = "SELECT * FROM csdb.time";
-                db.setCommand(sql);
-
-                MySqlDataReader reader = db.executeReadQuery();
-
-                while (reader.Read())
-                {
-                    originTime = Convert.ToInt32(reader["Time"]);
-                }
-                Console.WriteLine(originTime);
-                db.closeConnection();
-                
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
         }
 
         
