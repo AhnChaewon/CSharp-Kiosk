@@ -34,6 +34,7 @@ namespace Burgerking_Kiosk.Pages
             InitializeComponent();
             drivingTime();
             callMember();
+            callSales();
         }
 
         private void drivingTime()
@@ -115,6 +116,64 @@ namespace Burgerking_Kiosk.Pages
             }
 
             memberList.ItemsSource = member;
+        }//회원 불러오기
+
+        private void callSales()
+        {
+            double sum = 0;
+            double netSum = 0;
+            double saleSum = 0;
+            double cardSum = 0;
+            double moneySum = 0;
+            try
+            {
+                DBConnection db = new DBConnection();
+                db.connectDB();
+                string sql = "SELECT * FROM csdb.sell";
+                db.setCommand(sql);
+
+                MySqlDataReader reader = db.executeReadQuery();
+
+                while (reader.Read())
+                {
+                    double price = Convert.ToDouble(reader["Price"]);
+                    double sale = Convert.ToDouble(reader["Sale"]);
+                    netSum += price;
+                    if (sale == 0)
+                    {
+                        Console.WriteLine("0%");
+                        sum += price;
+
+                    }
+                    else
+                    {
+                        Console.WriteLine(sale);
+                        Console.WriteLine(price);
+                        saleSum += (price * (sale / 100));
+                        sum += price - (price * (sale / 100));
+                    }
+
+                    if(reader["Payment"].ToString() == "card")
+                    {
+                        cardSum += price;
+                    }
+                    else
+                    {
+                        moneySum += price;
+                    }
+                    
+
+                    
+                }
+                db.closeConnection();
+
+                salesText.Text = String.Format("총 매출액 : {0} \n순수 매출액 : {1} \n할인 금액 : {2} \n\n\n\n카드 매출액 : {3} \n현금 매출액 : {4}",sum, netSum, saleSum, cardSum, moneySum);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         private void saleMenuBtn_Click(object sender, RoutedEventArgs e)
