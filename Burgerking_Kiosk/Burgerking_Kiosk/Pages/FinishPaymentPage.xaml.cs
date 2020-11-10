@@ -29,7 +29,9 @@ namespace Burgerking_Kiosk.Pages
         public FinishPaymentPage()
         {
             InitializeComponent();
-            
+            takeOrderNum();
+            takeUser();
+            sellDB();
         }
 
         private void finishBtn_Click(object sender, RoutedEventArgs e)
@@ -67,7 +69,7 @@ namespace Burgerking_Kiosk.Pages
             }
         }
 
-        private void takeUser(MySqlConnection conn)
+        private void takeUser()
         {
             if (OrderData.payment.Equals("card"))
             {
@@ -97,6 +99,28 @@ namespace Burgerking_Kiosk.Pages
                 }
             }
             
+        }
+
+        private void sellDB()
+        {
+            String time = DateTime.Now.ToString("yyyy-MM-dd H:mm:ss");
+            foreach(Data.Menu m in OrderData.menuList)
+            {
+                try
+                {
+                    DBConnection db = new DBConnection();
+                    db.connectDB();
+                    string sql = String.Format("INSERT INTO csdb.sell(OrderId, Price, Seat, Sale, Member, BuyTime, Menu, Payment, Num) VALUE({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})",
+                        orderNum,m.money, OrderData.table, m.sale, OrderData.member, time, m.name, OrderData.payment, m.num);
+                    db.setCommand(sql);
+                    db.execute();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+           
         }
     }
 }

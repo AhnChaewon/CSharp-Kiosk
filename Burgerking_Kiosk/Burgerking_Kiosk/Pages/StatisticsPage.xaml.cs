@@ -43,8 +43,6 @@ namespace Burgerking_Kiosk.Pages
             int day = 0;
             int hour = 0;
             int min = 0;
-            int sec = 0;
-
             try
             {
                 DBConnection db = new DBConnection();
@@ -66,7 +64,7 @@ namespace Burgerking_Kiosk.Pages
             {
                 Console.WriteLine(ex);
             }
-            Console.WriteLine("처음 시간 : " + time);
+
 
             if(time >= 86400)
             {
@@ -82,11 +80,9 @@ namespace Burgerking_Kiosk.Pages
             {
                 min = time / 60;
                 time = time % 60;
-                Console.WriteLine("분 계산 시간 : " + time);
+              
             }
-            sec = time;
-            Console.WriteLine("초 시간 : " + sec);
-
+            int sec = time;
             dirvingTimeText.Text = String.Format("구동 시간 : {0}일 {1}시간 {2}분 {3}초", day, hour, min, sec);
         } //시간 불러오기
 

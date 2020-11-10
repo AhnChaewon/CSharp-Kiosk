@@ -12,6 +12,8 @@ namespace Burgerking_Kiosk.Data
         public int num { get; set; }
         public int money { get; set; }
 
+        public int sale { get; set; }
+
         
 
     }
