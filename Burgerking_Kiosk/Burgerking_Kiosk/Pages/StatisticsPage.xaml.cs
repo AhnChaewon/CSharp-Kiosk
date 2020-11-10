@@ -28,7 +28,7 @@ namespace Burgerking_Kiosk.Pages
     public partial class StatisticsPage : Page
     {
         List<MemberData> member = new List<MemberData>();
-
+        String computer = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[0];
         public StatisticsPage()
         {
             InitializeComponent();
@@ -39,6 +39,7 @@ namespace Burgerking_Kiosk.Pages
 
         private void drivingTime()
         {
+            Console.WriteLine(computer);
             int time = 0;
             int day = 0;
             int hour = 0;
@@ -47,7 +48,7 @@ namespace Burgerking_Kiosk.Pages
             {
                 DBConnection db = new DBConnection();
                 db.connectDB();
-                string sql = "SELECT * FROM csdb.time";
+                string sql = "SELECT * FROM csdb.time WHERE Computer = \""+ computer+"\"";
                 db.setCommand(sql);
 
                 MySqlDataReader reader = db.executeReadQuery();
