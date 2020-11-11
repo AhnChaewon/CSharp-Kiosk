@@ -31,6 +31,7 @@ namespace Burgerking_Kiosk.Pages
             InitializeComponent();
             this.Loaded += PaymentMoneyPage_Loaded;
             OrderData.payment = "money";
+            //moneyText.Text = OrderData.sumMoney.ToString();
         }
 
         private void PaymentMoneyPage_Loaded(object sender, RoutedEventArgs e)

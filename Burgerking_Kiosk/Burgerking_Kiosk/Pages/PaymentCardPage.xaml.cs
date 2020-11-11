@@ -29,6 +29,7 @@ namespace Burgerking_Kiosk.Pages
             webcam.CameraIndex = 0;
 
             OrderData.payment = "card";
+            //moneyText.Text = OrderData.sumMoney.ToString();
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
