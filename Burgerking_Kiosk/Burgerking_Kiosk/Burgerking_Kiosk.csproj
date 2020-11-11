@@ -247,6 +247,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\DiningImage1.png" />
+    <Resource Include="Assets\DiningImage2.png" />
     <SplashScreen Include="Assets\loading.gif" />
     <Resource Include="Assets\burgerking_logo.png" />
     <Content Include="Assets\Burgerking_Advertising.mp4">
