@@ -195,7 +195,7 @@
                                                HorizontalAlignment="Center" 
                                                Margin="0 8 0 0" FontSize="15" 
                                                FontWeight="SemiBold"/>
-                                    <TextBlock Text="{Binding price}" 
+                                    <TextBlock Text="{Binding sale}" 
                                                VerticalAlignment="Center" 
                                                HorizontalAlignment="Center" 
                                                Margin="0 5 0 0" FontSize="13" 
@@ -214,12 +214,12 @@
             <Grid Margin="360 0 80 0">
                 <Grid Height="60" VerticalAlignment="top">
                     <Button x:Name="previewBtn"
-                            Click="previewBtn_Click"
+                            Click="navBtn_Click"
                             IsEnabled="False"
                             Content="이전" 
                             Style="{StaticResource BeforeButtonStyle}"/>
                     <Button x:Name="nextBtn"
-                            Click="nextBtn_Click"
+                            Click="navBtn_Click"
                             Content="다음" 
                             Style="{StaticResource NextButtonStyle}" 
                             HorizontalAlignment="Left" Margin="375 0 0 0"/>
@@ -279,7 +279,7 @@
                                             Style="{StaticResource countBtn}" />
                             </Grid>
                             <Grid Grid.Column="5">
-                                <TextBlock Text="{Binding price}"
+                                <TextBlock Text="{Binding sale}"
                                            Style="{StaticResource lvText}"/>
                             </Grid>
                             <Grid Grid.Column="6">
