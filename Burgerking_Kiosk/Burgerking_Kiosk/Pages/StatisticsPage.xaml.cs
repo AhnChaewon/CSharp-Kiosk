@@ -19,6 +19,7 @@ using LiveCharts.Wpf;
 using Burgerking_Kiosk.DBManger;
 using System.Collections;
 using Burgerking_Kiosk.Data;
+using System.Data.OleDb;
 
 namespace Burgerking_Kiosk.Pages
 {
@@ -175,6 +176,8 @@ namespace Burgerking_Kiosk.Pages
 
         private void saleMenuBtn_Click(object sender, RoutedEventArgs e)
         {
+            int menuPrice1;
+            int menuPrice2;
           
             if (menu1.Text == menu2.Text)
             {
@@ -197,13 +200,22 @@ namespace Burgerking_Kiosk.Pages
                 return;
             }
 
+            menuPrice1 = originalPrice(menu1.Text);
+            menuPrice2 = originalPrice(menu2.Text);
+
+            double salePrice1 = menuPrice1 - ((double)menuPrice1 * (Convert.ToDouble(sale1.Text) / 100));
+            double salePrice2 = menuPrice2 - ((double)menuPrice2 * (Convert.ToDouble(sale2.Text) / 100));
+
+            Console.WriteLine(salePrice1 + " " + salePrice2);
+
+
             clearDB();
             try
             {
                 DBConnection db = new DBConnection();
                 db.connectDB();
-                string sql = "UPDATE csdb.menu SET Sale = CASE Name WHEN \'" + menu1.Text + "\' THEN " + sale1.Text + " ELSE Sale END," +
-                    "Sale = CASE Name WHEN \'" + menu2.Text + "\' THEN " + sale2.Text + " ELSE Sale END WHERE Name IN (\'" + menu1.Text + "\',\'" + menu2.Text + "\')";
+                string sql = "UPDATE csdb.menu SET Sale = CASE Name WHEN \'" + menu1.Text + "\' THEN " + salePrice1 + " ELSE Sale END," +
+                    "Sale = CASE Name WHEN \'" + menu2.Text + "\' THEN " + salePrice2 + " ELSE Sale END WHERE Name IN (\'" + menu1.Text + "\',\'" + menu2.Text + "\')";
                 db.setCommand(sql);
                 db.execute();
                 db.closeConnection();
@@ -222,7 +234,7 @@ namespace Burgerking_Kiosk.Pages
             {
                 DBConnection db = new DBConnection();
                 db.connectDB();
-                string sql = "UPDATE csdb.menu SET Sale = 0";
+                string sql = "UPDATE csdb.menu SET Sale = Price";
                 db.setCommand(sql);
                 db.execute();
                 db.closeConnection();
@@ -231,7 +243,29 @@ namespace Burgerking_Kiosk.Pages
             {
                 Console.WriteLine(ex);
             }
-        } // 할인율 비우기
+        } // 할인율 초기화
+
+        private int originalPrice(String menu)
+        {
+            int price = 0;
+            try
+            {
+                DBConnection db = new DBConnection();
+                db.connectDB();
+                String sql = "SELECT Price FROM csdb.menu WHERE Name = \"" + menu + "\"";
+                db.setCommand(sql);
+                MySqlDataReader reader = db.executeReadQuery();
+
+                while (reader.Read())
+                {
+                    price = Convert.ToInt32(reader["Price"]);
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return price;
+        }
 
         private void sale_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
