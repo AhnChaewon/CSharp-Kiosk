@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Burgerking_Kiosk.Network;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +35,24 @@ namespace Burgerking_Kiosk.Pages
         {
             var window = Window.GetWindow(this);
             window.KeyDown += keyDownEvent;
+
+            ClientManger cm = new ClientManger();
+            cm.StartClient();
+            cm.Send(loginJson());
+
+        }
+
+        private String loginJson()
+        {
+            JObject json = new JObject();
+            json.Add("MSGType", 0);
+            json.Add("Id", 2111);
+            json.Add("Content", "");
+            json.Add("ShopName", "");
+            json.Add("OrderNumber", "");
+            json.Add("Menus", null);
+
+            return JsonConvert.SerializeObject(json);
         }
 
         private void startMedia_MediaEnded(object sender, RoutedEventArgs e)
