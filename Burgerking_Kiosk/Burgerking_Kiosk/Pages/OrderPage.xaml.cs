@@ -1,6 +1,7 @@
 ﻿using Burgerking_Kiosk.Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Burgerking_Kiosk.DBManger;
 
 namespace Burgerking_Kiosk.Pages
 {
@@ -23,25 +25,65 @@ namespace Burgerking_Kiosk.Pages
     public partial class OrderPage : Page
     {
         CategoryData categoryData = new CategoryData();
-        FoodData foodData = new FoodData();
-        List<Food> foods = new List<Food>() 
-        { 
-            // 담기는 리스트
-        };
+        List<Data.Menu> foodData = new List<Data.Menu>();
+        List<Data.Menu> foods = new List<Data.Menu>();// 담기는 리스트
 
-        List<Food> showFood = new List<Food>()
-        {
-            // 보이는 리스트
-        };
+        int categorySelect = 1;
 
-        private int pageCount = 1;
+        List<Data.Menu> showFood = new List<Data.Menu>(); // 보여지는 리스트
+
+        private int MenuCount = 0;
 
         public OrderPage()
         {
             InitializeComponent();
+
             this.Loaded += OrderPage_Loaded;
             InitData();
+        }
 
+        //주석 부분은 나중에 다시 정리할 예정
+        //private void insertNowMenu(int pageNum)
+        //{
+        //    for(int i=MenuCount; i<MenuCount+6; i++)
+        //    {
+        //        if(foodData[i].page!= pageNum)
+        //        {
+        //            return;
+        //        }
+        //            showFood.Add(foodData[i]);
+        //    }
+            
+        //}
+
+        private void navBtn_Click(object sender, RoutedEventArgs e) // 메뉴 목록 이전 버튼
+        {
+            //var name = ((Button)sender).Name;
+            MenuCount += 6;
+            lbMenus.ItemsSource = null;
+            //insertNowMenu(categorySelect);
+
+            lbMenus.ItemsSource = foodData;
+
+            //if (name == "nextBtn")
+            //{
+            //    if (pageCount == 1)
+            //    {
+            //        for (int i = 5; i < 11; i++)
+            //        {
+            //            showFood.Add(foodData[i]);
+            //        }
+            //        pageCount++;
+            //    }
+            //    else if (pageCount == 2)
+            //    {
+            //        for (int i = 11; i < 17; i++)
+            //        {
+            //            showFood.Add(foodData[i]);
+            //        }
+            //        pageCount = 1;
+            //    }
+            //}
         }
 
         private void OrderPage_Loaded(object sender, RoutedEventArgs e)
@@ -54,8 +96,10 @@ namespace Burgerking_Kiosk.Pages
             categoryData.Load();
             lbCategory.ItemsSource = categoryData.lstCategory;
 
-            foodData.Load();
-            lbMenus.ItemsSource = foodData.lstFood;
+            DBMenu db = new DBMenu();
+            foodData = db.GetMenu();
+
+            lbMenus.ItemsSource = foodData;
 
             lvSelected.ItemsSource = foods;
         }
@@ -67,9 +111,29 @@ namespace Burgerking_Kiosk.Pages
 
         private void lbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            MenuCount = 0;
             if (lbCategory.SelectedIndex == -1) return; 
             Data.Category category = (Data.Category)lbCategory.SelectedIndex;
-            lbMenus.ItemsSource = foodData.lstFood.Where(x => x.category == category).ToList();
+            //Debug.WriteLine(category.ToString());
+            if (category.ToString().Equals("BURGERS"))
+            {
+                categorySelect = 1;
+            }
+            else if (category.ToString().Equals("DRINKS"))
+            {
+                categorySelect = 2;
+                MenuCount = 11;
+
+
+            }
+            else
+            {
+                categorySelect = 3;
+                MenuCount = 24;
+
+            }
+
+            lbMenus.ItemsSource = foodData.Where(x => x.category == category).ToList();
         }
 
         private void menuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -81,7 +145,7 @@ namespace Burgerking_Kiosk.Pages
                 return;
             }
 
-            Food food = (Food)lbMenus.SelectedItem;
+            Data.Menu food = (Data.Menu)lbMenus.SelectedItem;
 
             for(int i = 0; i < foods.Count; i++)
             {
@@ -106,21 +170,10 @@ namespace Burgerking_Kiosk.Pages
             lbMenus.SelectedIndex = -1;
         }
 
-
-        private void previewBtn_Click(object sender, RoutedEventArgs e) // 메뉴 목록 이전 버튼
-        {
-
-        }
-
-        private void nextBtn_Click(object sender, RoutedEventArgs e) // 메뉴 목록 다음 버튼
-        {
-            previewBtn.IsEnabled = true;
-        }
-
         private void countBtn_Click(object sender, RoutedEventArgs e) // 선택한 메뉴의 -, + 버튼 클릭 시
         {
             var name = ((Button)sender).Name;
-            var food = ((ListViewItem)lvSelected.ContainerFromElement(sender as Button)).Content as Food;
+            var food = ((ListViewItem)lvSelected.ContainerFromElement(sender as Button)).Content as Data.Menu;
             if (name == "addBtn")
             {
                 food.count++;
@@ -139,20 +192,21 @@ namespace Burgerking_Kiosk.Pages
                 }
                 btnIsEnbled();
             }
-            RefreshFood(food);
+            refreshFood(food);
+            
         }
 
-        private void foodRemove(Food food) // 선택한 메뉴 삭제
+        private void foodRemove(Data.Menu food) // 선택한 메뉴 삭제
         {
-            var itemSource = lvSelected.ItemsSource as List<Food>;
+            var itemSource = lvSelected.ItemsSource as List<Data.Menu>;
             itemSource.Remove(food);
-            RefreshFood(food);
+            refreshFood(food);
             
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e) // 선택한 메뉴 삭제 버튼 클릭 시
         {
-            var food = ((ListViewItem)lvSelected.ContainerFromElement(sender as Button)).Content as Food;
+            var food = ((ListViewItem)lvSelected.ContainerFromElement(sender as Button)).Content as Data.Menu;
             food.count = 0;
             foodRemove(food);
             btnIsEnbled();
@@ -222,7 +276,7 @@ namespace Burgerking_Kiosk.Pages
         }
 
 
-        private void RefreshFood(Food food) // 계산한 총 금액 출력
+        private void refreshFood(Data.Menu food) // 계산한 총 금액 출력
         {
             totalPrice.Text = setTotalPrice() + "원";
             lvSelected.Items.Refresh();
@@ -232,9 +286,9 @@ namespace Burgerking_Kiosk.Pages
         {
             int total = 0;
 
-            foreach (Food food in foodData.lstFood)
+            foreach (Data.Menu food in foodData)
             {
-                total += food.price * food.count;
+                total += food.sale * food.count;
             }
 
             return total;
