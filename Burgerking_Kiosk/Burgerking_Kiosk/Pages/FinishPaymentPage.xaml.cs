@@ -111,7 +111,7 @@ namespace Burgerking_Kiosk.Pages
                     DBConnection db = new DBConnection();
                     db.connectDB();
                     string sql = String.Format("INSERT INTO csdb.sell(OrderId, Price, Seat, Sale, Member, BuyTime, Menu, Payment, Num) VALUE({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})",
-                        orderNum,m.money, OrderData.table, m.sale, OrderData.member, time, m.name, OrderData.payment, m.num);
+                        orderNum,m.price, OrderData.table, m.sale, OrderData.member, time, m.name, OrderData.payment, m.count);
                     db.setCommand(sql);
                     db.execute();
                 }
