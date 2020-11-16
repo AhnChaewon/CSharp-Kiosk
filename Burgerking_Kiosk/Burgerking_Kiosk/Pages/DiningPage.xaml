@@ -10,7 +10,27 @@
 
     <Grid Background="White">
         <TextBlock Text="DiningPage"></TextBlock>
+
+        <ComboBox 
+            x:Name="table"
+            Height="30" 
+            Width="300"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Margin="50">
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="4"/>
+            <ComboBoxItem Content="5"/>
+            <ComboBoxItem Content="6"/>
+            <ComboBoxItem Content="7"/>
+            <ComboBoxItem Content="8"/>
+            <ComboBoxItem Content="9"/>
+        </ComboBox>
         <StackPanel Orientation="Horizontal">
+            
+            
         <Button
             x:Name="PaymentBtn"
             Width="100"    

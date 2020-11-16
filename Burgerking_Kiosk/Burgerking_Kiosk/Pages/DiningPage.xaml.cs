@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Burgerking_Kiosk.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,7 @@ namespace Burgerking_Kiosk.Pages
 
         private void PaymentBtn_Click(object sender, RoutedEventArgs e)
         {
+            OrderData.table = Convert.ToInt32(table.Text);
             NavigationService.Navigate(new Uri("/Pages/PaymentPage.xaml", UriKind.Relative));
         }
 
@@ -38,5 +40,7 @@ namespace Burgerking_Kiosk.Pages
             }
             
         }
+
+
     }
 }

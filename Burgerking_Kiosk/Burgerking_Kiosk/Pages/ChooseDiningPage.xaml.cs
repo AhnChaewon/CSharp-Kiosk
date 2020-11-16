@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Burgerking_Kiosk.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,11 +28,13 @@ namespace Burgerking_Kiosk.Pages
 
         private void DiningPlaceBtn_Click(object sender, RoutedEventArgs e)
         {
+
             NavigationService.Navigate(new Uri("/Pages/DiningPage.xaml", UriKind.Relative));
         }
 
         private void PaymentBtn_Click(object sender, RoutedEventArgs e)
         {
+            OrderData.table = -1;
             NavigationService.Navigate(new Uri("/Pages/PaymentPage.xaml", UriKind.Relative));
         }
 
@@ -43,5 +46,7 @@ namespace Burgerking_Kiosk.Pages
             }
             
         }
+
+        
     }
 }

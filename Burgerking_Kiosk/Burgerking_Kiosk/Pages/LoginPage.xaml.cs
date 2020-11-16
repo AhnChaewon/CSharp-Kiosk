@@ -30,18 +30,13 @@ namespace Burgerking_Kiosk.Pages
 
             Console.WriteLine(Settings.Default.AutoLogin);
 
-            // checkAutoLogin();
-            if (Settings.Default.AutoLogin)
-            {
-                moveHome();
-            }
         }
 
         private void checkAutoLogin()
         {
             if (Settings.Default.AutoLogin)
             {
-                moveHome();
+                moveHome(); //왜 널이 잡히지...????? 말이 안되는데
             }
         }
 
@@ -55,7 +50,7 @@ namespace Burgerking_Kiosk.Pages
                     Settings.Default.Save();
                     
                 }
-                moveHome();
+                moveHome(); //여긴 또 된다?
             }
         }
 

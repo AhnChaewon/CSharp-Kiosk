@@ -172,7 +172,7 @@ namespace Burgerking_Kiosk.Pages
             {
                 Console.WriteLine(ex);
             }
-        }
+        } //할인율 불러오기
 
         private void saleMenuBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -265,7 +265,7 @@ namespace Burgerking_Kiosk.Pages
                 Console.WriteLine(ex);
             }
             return price;
-        }
+        } // 원래 가격
 
         private void sale_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
