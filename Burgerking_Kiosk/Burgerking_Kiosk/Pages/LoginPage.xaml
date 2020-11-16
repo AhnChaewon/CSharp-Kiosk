@@ -5,38 +5,96 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Burgerking_Kiosk.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="LoginPage">
+    <!--<Page.Resources>
+        <Style x:Key="TextBoxFocus" TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocused" Value="true">
+                    <Setter Property="Background" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>-->
 
     <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <TextBox
-            x:Name="idBox"
-            Margin="0 0 0 100"
-            Width="300"
-            Height="20"
-            Background="LightSlateGray"/>
+        <Grid Grid.Row="0">
+            <Image Source="/Assets/burgerking_logo.png"
+                   Width="200"
+                   VerticalAlignment="Bottom"/>
+        </Grid>
 
-        <TextBox
-            x:Name="pwBox"
-            Width="300"
-            Height="20"
-            Background="LightSlateGray"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBox x:Name="idBox"
+                         VerticalContentAlignment="Center"
+                         FontSize="25"
+                         Padding="20 0 0 0"
+                         Width="500"
+                         Height="60"
+                         VerticalAlignment="Bottom"
+                         BorderBrush="#185494"
+                         Background="White"/>
+            </Grid>
 
-        <Button
-            x:Name="loginBtn"
-            Width="100"
-            Height="30"
-            Margin="0 100 0 0"
-            Content="로그인하기"
-            Background="White"
-            BorderBrush="BlueViolet"
-            Click="loginBtn_Click"/>
+            <Grid Grid.Row="1">
+                <PasswordBox x:Name="pwBox"
+                         VerticalContentAlignment="Center"
+                         FontSize="25"
+                         Padding="20 0 0 0"
+                         Width="500"
+                         Height="60"
+                         BorderBrush="#185494"
+                         Background="White"
+                         VerticalAlignment="Top"
+                         Margin="0 20 0 0"
+                         />
+            </Grid>
 
-        <CheckBox
-            x:Name="autoLoginCheck"
-            Content="자동 로그인"
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Center"/>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="7*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Button x:Name="loginBtn"
+                        Width="500"
+                        Height="60"
+                        Content="로그인"
+                        VerticalAlignment="Top"
+                        Foreground="White"
+                        FontSize="25"
+                        FontWeight="DemiBold"
+                        Background="#185494"
+                        BorderThickness="0"
+                        Click="loginBtn_Click"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <CheckBox x:Name="autoLoginCheck"
+                          Content="자동 로그인"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Center">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="2" ScaleY="2" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
+
