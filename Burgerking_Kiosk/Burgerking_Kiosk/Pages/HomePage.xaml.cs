@@ -36,9 +36,9 @@ namespace Burgerking_Kiosk.Pages
             var window = Window.GetWindow(this);
             window.KeyDown += keyDownEvent;
 
-            ClientManger cm = new ClientManger();
-            cm.StartClient();
-            cm.Send(loginJson());
+            //ClientManger cm = new ClientManger();
+            //cm.StartClient();
+            //cm.Send(loginJson());
 
         }
 

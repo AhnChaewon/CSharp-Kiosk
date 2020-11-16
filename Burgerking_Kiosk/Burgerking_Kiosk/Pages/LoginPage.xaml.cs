@@ -28,10 +28,20 @@ namespace Burgerking_Kiosk.Pages
         {
             InitializeComponent();
 
+            Console.WriteLine(Settings.Default.AutoLogin);
 
+            // checkAutoLogin();
             if (Settings.Default.AutoLogin)
             {
-                NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
+                moveHome();
+            }
+        }
+
+        private void checkAutoLogin()
+        {
+            if (Settings.Default.AutoLogin)
+            {
+                moveHome();
             }
         }
 
@@ -42,10 +52,16 @@ namespace Burgerking_Kiosk.Pages
                 if ((bool)autoLoginCheck.IsChecked)
                 {
                     Settings.Default.AutoLogin = true;
+                    Settings.Default.Save();
                     
                 }
-                NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
+                moveHome();
             }
+        }
+
+        private void moveHome()
+        {
+            NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
         }
     }
 }
