@@ -42,7 +42,7 @@ namespace Burgerking_Kiosk.Pages
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(idBox.Text.Equals(id) && pwBox.Text.Equals(pw))
+            if(idBox.Text.Equals(id) && pwBox.Password.Equals(pw))
             {
                 if ((bool)autoLoginCheck.IsChecked)
                 {
