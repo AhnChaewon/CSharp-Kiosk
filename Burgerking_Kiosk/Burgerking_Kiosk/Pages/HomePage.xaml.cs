@@ -28,6 +28,8 @@ namespace Burgerking_Kiosk.Pages
         {
             InitializeComponent();
 
+            Settings.Default.AutoLogin = false;
+            Settings.Default.Save();
 
             this.startMedia.Play();
             this.startMedia.MediaEnded += new RoutedEventHandler(startMedia_MediaEnded);
@@ -41,7 +43,7 @@ namespace Burgerking_Kiosk.Pages
 
             if (!Settings.Default.AutoLogin)
             {
-                NavigationService.Navigate("/Pages/LoginPage.xaml", UriKind.Relative);
+                NavigationService.Navigate(new Uri("/Pages/LoginPage.xaml", UriKind.Relative));
             }
 
             //ClientManger cm = new ClientManger();

@@ -31,13 +31,6 @@ namespace Burgerking_Kiosk.Pages
             Console.WriteLine(Settings.Default.AutoLogin);
         }
 
-        private void checkAutoLogin()
-        {
-            if (Settings.Default.AutoLogin)
-            {
-                
-            }
-        }
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
