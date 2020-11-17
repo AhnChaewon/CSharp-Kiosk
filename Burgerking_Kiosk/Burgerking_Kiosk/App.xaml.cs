@@ -78,8 +78,6 @@ namespace Burgerking_Kiosk
                     if (reader["Computer"].Equals(computer))
                     {
                         check = true;
-                        Console.WriteLine("됨");
-                        
                     }
                 }
                 Console.WriteLine(time);

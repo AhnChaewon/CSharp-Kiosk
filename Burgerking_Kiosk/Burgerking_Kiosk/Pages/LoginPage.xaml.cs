@@ -29,34 +29,40 @@ namespace Burgerking_Kiosk.Pages
             InitializeComponent();
 
             Console.WriteLine(Settings.Default.AutoLogin);
-
         }
 
         private void checkAutoLogin()
         {
             if (Settings.Default.AutoLogin)
             {
-                moveHome(); //왜 널이 잡히지...????? 말이 안되는데
+                
             }
         }
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(idBox.Text.Equals(id) && pwBox.Password.Equals(pw))
+            if (idBox.Text.Equals(id) && pwBox.Password.Equals(pw))
             {
                 if ((bool)autoLoginCheck.IsChecked)
                 {
                     Settings.Default.AutoLogin = true;
                     Settings.Default.Save();
-                    
+
                 }
-                moveHome(); //여긴 또 된다?
+                NavigationService.GoBack();
+            }
+            else
+            {
+                MessageBox.Show("잘못된 입력값입니다!");
             }
         }
 
+
+#if false //not used
         private void moveHome()
         {
             NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
         }
+#endif
     }
 }

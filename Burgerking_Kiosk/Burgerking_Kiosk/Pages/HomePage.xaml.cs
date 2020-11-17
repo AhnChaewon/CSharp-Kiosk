@@ -1,4 +1,5 @@
 ﻿using Burgerking_Kiosk.Network;
+using Burgerking_Kiosk.Properties;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -27,6 +28,7 @@ namespace Burgerking_Kiosk.Pages
         {
             InitializeComponent();
 
+
             this.startMedia.Play();
             this.startMedia.MediaEnded += new RoutedEventHandler(startMedia_MediaEnded);
         }
@@ -35,6 +37,12 @@ namespace Burgerking_Kiosk.Pages
         {
             var window = Window.GetWindow(this);
             window.KeyDown += keyDownEvent;
+
+
+            if (!Settings.Default.AutoLogin)
+            {
+                NavigationService.Navigate("/Pages/LoginPage.xaml", UriKind.Relative);
+            }
 
             //ClientManger cm = new ClientManger();
             //cm.StartClient();

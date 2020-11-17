@@ -24,8 +24,8 @@ namespace Burgerking_Kiosk.Pages
         public PaymentPage()
         {
             InitializeComponent();
-            //OrderData.menuList.Add(new Data.Menu { name = "qq", num = 2, money = 3000 });
-            //orderList.ItemsSource = OrderData.menuList;
+            Console.WriteLine(OrderData.menuList.Count);
+            orderList.ItemsSource = OrderData.menuList;
         }
 
         private void cardBtn_MouseDown(object sender, MouseButtonEventArgs e)
