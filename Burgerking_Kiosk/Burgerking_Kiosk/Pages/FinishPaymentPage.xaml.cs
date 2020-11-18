@@ -28,7 +28,14 @@ namespace Burgerking_Kiosk.Pages
         int orderNum = 0;
         public FinishPaymentPage()
         {
+            this.Loaded += FinishPaymentPage_Loaded;
             InitializeComponent();
+            
+        }
+
+        private void FinishPaymentPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            money.Text = "총 금액 : " + OrderData.sumMoney;
             takeOrderNum();
             takeUser();
             sellDB();
@@ -110,8 +117,8 @@ namespace Burgerking_Kiosk.Pages
                 {
                     DBConnection db = new DBConnection();
                     db.connectDB();
-                    string sql = String.Format("INSERT INTO csdb.sell(OrderId, Price, Seat, Sale, Member, BuyTime, Menu, Payment, Num) VALUE({0}, {1}, {2}, {3}, {4}, {5}, {6}, {7})",
-                        orderNum,m.price, OrderData.table, m.sale, OrderData.member, time, m.name, OrderData.payment, m.count);
+                    string sql = String.Format("INSERT INTO csdb.sell(OrderId, Price, Seat, Sale, Member, BuyTime, Menu, Payment, Num) VALUE({0}, {1}, {2}, {3}, \"{4}\", \"{5}\", \"{6}\", \"{7}\", {8})",
+                        orderNum, m.price, OrderData.table, m.sale, OrderData.member, time, m.name, OrderData.payment, m.count);
                     db.setCommand(sql);
                     db.execute();
                 }

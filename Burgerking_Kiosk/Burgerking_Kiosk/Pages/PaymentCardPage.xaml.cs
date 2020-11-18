@@ -26,10 +26,15 @@ namespace Burgerking_Kiosk.Pages
         public PaymentCardPage()
         {
             InitializeComponent();
-            webcam.CameraIndex = 0;
+            this.Loaded += PaymentCardPage_Loaded;
+            
+        }
 
+        private void PaymentCardPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            webcam.CameraIndex = 0;
             OrderData.payment = "card";
-            //moneyText.Text = OrderData.sumMoney.ToString();
+            moneyText.Text = OrderData.sumMoney.ToString();
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)

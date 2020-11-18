@@ -189,7 +189,7 @@
     <Compile Include="DBManger\DBConnection.cs" />
     <Compile Include="DBManger\DBMenu.cs" />
     <Compile Include="DBManger\DBPassword.cs" />
-    <Compile Include="Network\ClientManger.cs" />
+    <Compile Include="Network\ClientManager.cs" />
     <Compile Include="Pages\ChooseDiningPage.xaml.cs">
       <DependentUpon>ChooseDiningPage.xaml</DependentUpon>
     </Compile>

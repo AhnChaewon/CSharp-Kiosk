@@ -28,6 +28,40 @@ namespace Burgerking_Kiosk
             this.Exit += App_Exit;
         }
 
+        private void App_Startup(object sender, StartupEventArgs e)
+        {
+
+            sw.Reset();
+            sw.Start();
+            Console.WriteLine(computer);
+            try
+            {
+                DBConnection db = new DBConnection();
+                db.connectDB();
+                string sql = "SELECT * FROM csdb.time";
+                db.setCommand(sql);
+
+                MySqlDataReader reader = db.executeReadQuery();
+
+                while (reader.Read())
+                {
+                    if (reader["Computer"].Equals(computer))
+                    {
+                        check = true;
+                    }
+                }
+                Console.WriteLine(time);
+                db.closeConnection();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            
+        }
+
         private void App_Exit(object sender, ExitEventArgs e)
         {
             sw.Stop();
@@ -59,36 +93,7 @@ namespace Burgerking_Kiosk
 
         }
 
-        private void App_Startup(object sender, StartupEventArgs e)
-        {
-            sw.Reset();
-            sw.Start();
-            Console.WriteLine(computer);
-            try
-            {
-                DBConnection db = new DBConnection();
-                db.connectDB();
-                string sql = "SELECT * FROM csdb.time";
-                db.setCommand(sql);
-
-                MySqlDataReader reader = db.executeReadQuery();
-
-                while (reader.Read())
-                {
-                    if (reader["Computer"].Equals(computer))
-                    {
-                        check = true;
-                    }
-                }
-                Console.WriteLine(time);
-                db.closeConnection();
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-        }
+        
 
         
 
