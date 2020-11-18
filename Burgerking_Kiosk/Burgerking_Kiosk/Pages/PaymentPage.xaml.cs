@@ -25,7 +25,10 @@ namespace Burgerking_Kiosk.Pages
         {
             InitializeComponent();
             Console.WriteLine(OrderData.menuList.Count);
+            
             orderList.ItemsSource = OrderData.menuList;
+
+            sum.Text = OrderData.sumMoney + "원";
         }
 
         private void cardBtn_MouseDown(object sender, MouseButtonEventArgs e)

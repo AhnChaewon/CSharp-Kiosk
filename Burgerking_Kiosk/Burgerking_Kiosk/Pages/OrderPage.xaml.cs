@@ -26,18 +26,13 @@ namespace Burgerking_Kiosk.Pages
     {
         CategoryData categoryData = new CategoryData();
         List<Data.Menu> foodData = new List<Data.Menu>();
-        List<Data.Menu> foods = new List<Data.Menu>();// 담기는 리스트
-
-        int categorySelect = 1;
-
         List<Data.Menu> showFood = new List<Data.Menu>(); // 보여지는 리스트
 
-        private int MenuCount = 0;
+        int categorySelect = 1;
 
         public OrderPage()
         {
             InitializeComponent();
-
             this.Loaded += OrderPage_Loaded;
             InitData();
         }
@@ -53,17 +48,17 @@ namespace Burgerking_Kiosk.Pages
         //        }
         //            showFood.Add(foodData[i]);
         //    }
-            
+
         //}
 
         private void navBtn_Click(object sender, RoutedEventArgs e) // 메뉴 목록 이전 버튼
         {
             //var name = ((Button)sender).Name;
-            MenuCount += 6;
-            lbMenus.ItemsSource = null;
+            //MenuCount += 6;
+            //lbMenus.ItemsSource = null;
             //insertNowMenu(categorySelect);
 
-            lbMenus.ItemsSource = foodData;
+            //lbMenus.ItemsSource = foodData;
 
             //if (name == "nextBtn")
             //{
@@ -89,6 +84,9 @@ namespace Burgerking_Kiosk.Pages
         private void OrderPage_Loaded(object sender, RoutedEventArgs e)
         {
             lbCategory.SelectedIndex = 0;
+            lvSelected.ItemsSource = OrderData.menuList;
+            totalPrice.Text = OrderData.sumMoney + "원";
+            btnIsEnbled();
         }
 
         private void InitData()
@@ -101,73 +99,87 @@ namespace Burgerking_Kiosk.Pages
 
             lbMenus.ItemsSource = foodData;
 
-            lvSelected.ItemsSource = foods;
+            //if (OrderData.menuList.Count != 0)
+            //{
+            //    foods = OrderData.menuList;
+            //}
+
+            //lvSelected.ItemsSource = OrderData.menuList;
+
+
         }
 
         private void OrderBtn_Click(object sender, RoutedEventArgs e)
         {
+            OrderData.sumMoney = setTotalPrice();
             NavigationService.Navigate(new Uri("/Pages/ChooseDiningPage.xaml", UriKind.Relative));
         }
 
         private void lbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MenuCount = 0;
-            if (lbCategory.SelectedIndex == -1) return; 
+            if (lbCategory.SelectedIndex == -1) return;
             Data.Category category = (Data.Category)lbCategory.SelectedIndex;
             //Debug.WriteLine(category.ToString());
-            if (category.ToString().Equals("BURGERS"))
-            {
-                categorySelect = 1;
-            }
-            else if (category.ToString().Equals("DRINKS"))
-            {
-                categorySelect = 2;
-                MenuCount = 11;
+            //if (category.ToString().Equals("BURGERS"))
+            //{
+            //    categorySelect = 1;
+            //}
+            //else if (category.ToString().Equals("DRINKS"))
+            //{
+            //    categorySelect = 2;
+            //    MenuCount = 11;
 
 
-            }
-            else
-            {
-                categorySelect = 3;
-                MenuCount = 24;
+            //}
+            //else
+            //{
+            //    categorySelect = 3;
+            //    MenuCount = 24;
 
-            }
+            //}
 
             lbMenus.ItemsSource = foodData.Where(x => x.category == category).ToList();
+
         }
 
         private void menuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int flag = 0;
 
-            if(lbMenus.SelectedIndex == -1)
+            if (lbMenus.SelectedIndex == -1)
             {
                 return;
             }
 
             Data.Menu food = (Data.Menu)lbMenus.SelectedItem;
 
-            for(int i = 0; i < foods.Count; i++)
+            for (int i = 0; i < OrderData.menuList.Count; i++)
             {
-                if (food.name == foods[i].name)
+                if (food.name == OrderData.menuList[i].name)
                 {
-                    foods[i].count++;
+                    OrderData.menuList[i].count++;
                     flag = 1;
                     break;
                 }
             }
 
-            if(flag == 0)
+            if (flag == 0)
             {
                 food.count++;
-                foods.Add(food);
+                
+                OrderData.menuList.Add(food);
             }
 
-            totalPrice.Text = setTotalPrice() + "원";
+            setTotalPrice();
+            totalPrice.Text = OrderData.sumMoney + "원";
             lvSelected.Items.Refresh();
             btnIsEnbled();
 
             lbMenus.SelectedIndex = -1;
+
+            lvSelected.ItemsSource = OrderData.menuList;
+
+
         }
 
         private void countBtn_Click(object sender, RoutedEventArgs e) // 선택한 메뉴의 -, + 버튼 클릭 시
@@ -177,31 +189,31 @@ namespace Burgerking_Kiosk.Pages
             if (name == "addBtn")
             {
                 food.count++;
+                setTotalPrice();
             }
             else
             {
-                if(food.count == 1)
+                if (food.count == 1)
                 {
                     food.count = 0;
-                    
+
                     foodRemove(food);
-                    }
+                }
                 else
                 {
                     food.count--;
                 }
                 btnIsEnbled();
             }
-            refreshFood(food);
-            
+            refreshFood();
+
         }
 
         private void foodRemove(Data.Menu food) // 선택한 메뉴 삭제
         {
             var itemSource = lvSelected.ItemsSource as List<Data.Menu>;
             itemSource.Remove(food);
-            refreshFood(food);
-            
+            refreshFood();
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e) // 선택한 메뉴 삭제 버튼 클릭 시
@@ -210,11 +222,14 @@ namespace Burgerking_Kiosk.Pages
             food.count = 0;
             foodRemove(food);
             btnIsEnbled();
+            refreshFood();
+            totalPrice.Text = OrderData.sumMoney + "원";
         }
 
         private void btnIsEnbled() // 버튼 활성화
         {
-            if(foods.Count != 0) {
+            if (OrderData.menuList.Count != 0)
+            {
                 orderBtn.IsEnabled = true;
                 deleteAllBtn.IsEnabled = true;
             }
@@ -228,7 +243,6 @@ namespace Burgerking_Kiosk.Pages
 
         private void deleteAllBtn_Click(object sender, RoutedEventArgs e) // 메뉴 전체 삭제
         {
-
             if (MessageBox.Show("선택한 메뉴를 모두 삭제하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foodClear();
@@ -244,7 +258,7 @@ namespace Burgerking_Kiosk.Pages
 
         private void prePageBtn_Click(object sender, RoutedEventArgs e) // 주문 취소
         {
-            if(foods.Count != 0)
+            if (OrderData.menuList.Count != 0)
             {
                 if (MessageBox.Show("주문을 취소하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
@@ -260,38 +274,41 @@ namespace Burgerking_Kiosk.Pages
             {
                 NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
             }
-            
-            
+
+
         }
 
         private void foodClear() // 주문한 메뉴 전체 삭제
         {
-            for(int i=0; i < foods.Count; i++)
+            for (int i = 0; i < OrderData.menuList.Count; i++)
             {
-                foods[i].count = 0;
+                OrderData.menuList[i].count = 0;
             }
-            foods.Clear();
-            lvSelected.Items.Refresh(); 
-            totalPrice.Text = "0";
+            OrderData.menuList.Clear();
+            lvSelected.Items.Refresh();
+            totalPrice.Text = "";
         }
 
 
-        private void refreshFood(Data.Menu food) // 계산한 총 금액 출력
+        private void refreshFood() // 계산한 총 금액 출력
         {
             totalPrice.Text = setTotalPrice() + "원";
             lvSelected.Items.Refresh();
+
         }
 
         private int setTotalPrice() // 총 금액 계산
         {
             int total = 0;
 
-            foreach (Data.Menu food in foodData)
+            for(int i = 0; i<OrderData.menuList.Count; i++)
             {
-                total += food.sale * food.count;
+                total += OrderData.menuList[i].count * OrderData.menuList[i].sale;
             }
+            
+            OrderData.sumMoney = total;
 
-            return total;
+            return OrderData.sumMoney;
         }
     }
 }

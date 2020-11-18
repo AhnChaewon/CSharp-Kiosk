@@ -5,30 +5,51 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Burgerking_Kiosk.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="ChooseDiningPage">
 
     <Grid Background="White">
-        <TextBlock Text="ChooseDiningPage"></TextBlock>
-        <StackPanel Orientation="Horizontal">
-            <Button
-            x:Name="DiningPlaceBtn"
-            Width="100"    
-            Height="50" 
-            Content="매장식사"
-            Click="DiningPlaceBtn_Click" />
-            <Button
-            x:Name="PaymentBtn"
-            Width="100"    
-            Height="50" 
-            Content="포장하기"
-            Click="PaymentBtn_Click" />
-        </StackPanel>
-        <Button x:Name="BackMainBtn"
-                Width="100"    
-                Height="50"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0">
+            <TextBlock Text="원하시는 식사 장소를 선택해주세요"
+                       FontSize="32"
+                       Foreground="#2E2E2E"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Center"
+                       FontWeight="DemiBold"/>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Button Click="DiningPlaceBtn_Click" Width="330" Height="330" Background="#185494" BorderThickness="0" Margin="330 0 0 0">
+                <Image Source="/Assets/DiningImage1.png" Height="180" />
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Button Click="PaymentBtn_Click" Width="330" Height="330" Background="#185494" BorderThickness="0" Margin="0 0 330 0">
+                <Image Source="/Assets/DiningImage2.png" Height="180" />
+            </Button>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+            <Button x:Name="BackMainBtn"
+                Width="210"    
+                Height="80"
                 Content="이전으로"
+                FontSize="25"
+                Background="White"
+                BorderThickness="1"
                 Click="BackMainBtn_Click"/>
+        </Grid>
 
     </Grid>
 </Page>
