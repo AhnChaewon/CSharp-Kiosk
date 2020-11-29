@@ -42,23 +42,6 @@ namespace Burgerking_Kiosk.Pages
                 NavigationService.Navigate(new Uri("/Pages/LoginPage.xaml", UriKind.Relative));
             }
 
-            //ClientManger cm = new ClientManger();
-            //cm.StartClient();
-            //cm.Send(loginJson());
-
-        }
-
-        private String loginJson()
-        {
-            JObject json = new JObject();
-            json.Add("MSGType", 0);
-            json.Add("Id", 2111);
-            json.Add("Content", "");
-            json.Add("ShopName", "");
-            json.Add("OrderNumber", "");
-            json.Add("Menus", null);
-
-            return JsonConvert.SerializeObject(json);
         }
 
         private void startMedia_MediaEnded(object sender, RoutedEventArgs e)
