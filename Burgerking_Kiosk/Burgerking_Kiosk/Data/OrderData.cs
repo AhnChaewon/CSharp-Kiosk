@@ -21,6 +21,10 @@ namespace Burgerking_Kiosk.Data
             table = -1;
             payment = "";
             member = "";
+            for (int i = 0; i < menuList.Count; i++)
+            {
+                menuList[i].count = 0;
+            }
             menuList.Clear();
             sumMoney = 0;
         }
