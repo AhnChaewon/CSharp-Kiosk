@@ -39,18 +39,21 @@ namespace Burgerking_Kiosk.Pages
             InitializeComponent();
         }
 
-        private void PaymentBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //OrderData.table = Convert.ToInt32(table.Text);
-            NavigationService.Navigate(new Uri("/Pages/PaymentPage.xaml", UriKind.Relative));
-        }
 
         private void BackChooseDiningBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (NavigationService.CanGoBack)
+            if (MessageBox.Show("테이블 선택을 취소 하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                NavigationService.GoBack();
+                if (NavigationService.CanGoBack)
+                {
+                    NavigationService.GoBack();
+                }
             }
+            else
+            {
+                return;
+            }
+            
 
         }
 
@@ -71,6 +74,15 @@ namespace Burgerking_Kiosk.Pages
             Button a = (Button)sender;
             OrderData.table = Convert.ToInt32(a.Content);
             Console.WriteLine(Convert.ToInt32(a.Content));
+            if (MessageBox.Show("테이블을 선택하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                NavigationService.Navigate(new Uri("/Pages/PaymentPage.xaml", UriKind.Relative));
+            }
+            else
+            {
+                return;
+            }
+            
 
             //dt.Interval = TimeSpan.FromSeconds(1);
             //dt.Tick += new EventHandler(timer_Tick);
