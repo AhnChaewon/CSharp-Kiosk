@@ -34,8 +34,8 @@ namespace Burgerking_Kiosk.Pages
 
         private void HomePage_Loaded(object sender, RoutedEventArgs e)
         {
-            var window = Window.GetWindow(this);
-            window.KeyDown += keyDownEvent;
+            //var window = Window.GetWindow(this);
+            //window.KeyDown += keyDownEvent;
 
             if (!(Settings.Default.AutoLogin) && !(NavigationService.CanGoForward))
             {
@@ -67,10 +67,10 @@ namespace Burgerking_Kiosk.Pages
 
         private void keyDownEvent(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.F2)
-            {
-                NavigationService.Navigate(new Uri("/Pages/StatisticsPage.xaml", UriKind.Relative));
-            }
+            //if(e.Key == Key.F2)
+            //{
+            //    NavigationService.Navigate(new Uri("/Pages/StatisticsPage.xaml", UriKind.Relative));
+            //}
         }
     }
 }

@@ -24,6 +24,8 @@ namespace Burgerking_Kiosk.Pages
         String id = "1234";
         String pw = "1234";
 
+        public static Boolean loginCheck = false;
+
         public LoginPage()
         {
             InitializeComponent();
@@ -42,6 +44,7 @@ namespace Burgerking_Kiosk.Pages
                     Settings.Default.Save();
 
                 }
+                loginCheck = true;
                 NavigationService.GoBack();
             }
             else

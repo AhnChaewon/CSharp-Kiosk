@@ -50,6 +50,9 @@ namespace Burgerking_Kiosk.Pages
                 NavigationService?.RemoveBackEntry();
             }
 
+            OrderData.clearData();
+
+           
             NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
         }
 
