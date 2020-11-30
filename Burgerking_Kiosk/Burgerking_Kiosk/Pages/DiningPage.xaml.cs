@@ -28,8 +28,16 @@ namespace Burgerking_Kiosk.Pages
 
         private void PaymentBtn_Click(object sender, RoutedEventArgs e)
         {
-            OrderData.table = Convert.ToInt32(table.Text);
-            NavigationService.Navigate(new Uri("/Pages/PaymentPage.xaml", UriKind.Relative));
+            if (table.Text == null || table.Text.Equals(""))
+            {
+                MessageBox.Show("선택해주시기 바랍니다!");
+            }
+            else
+            {
+                OrderData.table = Convert.ToInt32(table.Text);
+                NavigationService.Navigate(new Uri("/Pages/PaymentPage.xaml", UriKind.Relative));
+            }
+            
         }
 
         private void BackChooseDiningBtn_Click(object sender, RoutedEventArgs e)
