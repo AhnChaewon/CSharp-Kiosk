@@ -62,8 +62,61 @@
         <Grid
             Grid.Row="0"
             Grid.Column="1">
-            
-            
+
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                <ComboBox 
+                    x:Name="soldOutSet"
+                    Height="30" 
+                    Width="300"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left">
+                    <ComboBoxItem Content="불고기버거"/>
+                    <ComboBoxItem Content="불고기와퍼주니어"/>
+                    <ComboBoxItem Content="와퍼주니어"/>
+                    <ComboBoxItem Content="치즈버거"/>
+                    <ComboBoxItem Content="치즈와퍼주니어"/>
+                    <ComboBoxItem Content="콰트로치즈와퍼주니어"/>
+                    <ComboBoxItem Content="통새우와퍼주니어"/>
+                    <ComboBoxItem Content="트러플머쉬룸와퍼주니어"/>
+                    <ComboBoxItem Content="할리피뇨불고기버거"/>
+                    <ComboBoxItem Content="할라피뇨와퍼주니어"/>
+                    <ComboBoxItem Content="미닛메이드오렌지"/>
+                    <ComboBoxItem Content="순수미네랄워터"/>
+                    <ComboBoxItem Content="스프라이트"/>
+                    <ComboBoxItem Content="씨그램"/>
+                    <ComboBoxItem Content="아메리카노"/>
+                    <ComboBoxItem Content="아이스아메리카노"/>
+                    <ComboBoxItem Content="아이스초코"/>
+                    <ComboBoxItem Content="제로톡톡복숭아"/>
+                    <ComboBoxItem Content="제로톡톡청포도"/>
+                    <ComboBoxItem Content="제로톡톡체리"/>
+                    <ComboBoxItem Content="코카콜라"/>
+                    <ComboBoxItem Content="코카콜라제로"/>
+                    <ComboBoxItem Content="핫초코"/>
+                    <ComboBoxItem Content="21치즈스틱"/>
+                    <ComboBoxItem Content="너겟킹(10조각)"/>
+                    <ComboBoxItem Content="너겟킹(6조각)"/>
+                    <ComboBoxItem Content="너겟킹(4조각)"/>
+                    <ComboBoxItem Content="바삭킹(4조각)"/>
+                    <ComboBoxItem Content="바삭킹(2조각)"/>
+                    <ComboBoxItem Content="어니언링"/>
+                    <ComboBoxItem Content="칠리크랩치즈프라이"/>
+                    <ComboBoxItem Content="크리미모짜볼(10조각)"/>
+                    <ComboBoxItem Content="크리미모짜볼(5조각)"/>
+                    <ComboBoxItem Content="트러플프라이"/>
+                    <ComboBoxItem Content="프렌치프라이"/>
+                </ComboBox>
+                
+                <Button
+                    x:Name="soldOutBtn"
+                    Width="100"
+                    Height="30"
+                    Content="품절 설정"
+                    Click="soldOutBtn_Click"/>
+            </StackPanel>
+
             
         </Grid>
 

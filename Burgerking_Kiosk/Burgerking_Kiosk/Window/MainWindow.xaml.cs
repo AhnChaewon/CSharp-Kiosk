@@ -74,15 +74,23 @@ namespace Burgerking_Kiosk
 
         private void msgSendBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!msgEdit.Text.Equals(""))
+            if (ClientManager.client.Connected)
             {
-                ClientManager.sendMessage(msgEdit.Text, 1, "", "", false, null);
-                msgEdit.Text = "";
+                if (!msgEdit.Text.Equals(""))
+                {
+                    ClientManager.sendMessage(msgEdit.Text, 1, "", "", false, null);
+                    msgEdit.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("메세지를 적어주세요!");
+                }
             }
             else
             {
-                MessageBox.Show("메세지를 적어주세요!");
+                MessageBox.Show("서버가 연결되어 있지 않습니다.");
             }
+            
 
         }
     }

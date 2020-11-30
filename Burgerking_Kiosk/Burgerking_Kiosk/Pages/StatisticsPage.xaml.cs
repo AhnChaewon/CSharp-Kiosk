@@ -204,7 +204,7 @@ namespace Burgerking_Kiosk.Pages
             Console.WriteLine(salePrice1 + " " + salePrice2);
 
 
-            clearDB();
+            clearSaleDB();
             try
             {
                 DBConnection db = new DBConnection();
@@ -223,7 +223,7 @@ namespace Burgerking_Kiosk.Pages
             }
         }//할인율 설정
 
-        private void clearDB()
+        private void clearSaleDB()
         {
             try
             {
@@ -269,5 +269,30 @@ namespace Burgerking_Kiosk.Pages
 
         } //숫자 외의 입력 방지
 
+        private void soldOutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(soldOutSet.Text == null || soldOutSet.Text.Equals(""))
+            {
+                MessageBox.Show("품절 메뉴를 설정해주세요.");
+            }
+            else
+            {
+                try
+                {
+                    DBConnection db = new DBConnection();
+                    db.connectDB();
+                    string sql = "UPDATE csdb.menu SET SoldOut = 1 WHERE Name = \'"+soldOutSet.Text+"\'";
+                    db.setCommand(sql);
+                    db.execute();
+                    db.closeConnection();
+
+                    MessageBox.Show("적용되었습니다!", "띵동", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+        }
     }
 }

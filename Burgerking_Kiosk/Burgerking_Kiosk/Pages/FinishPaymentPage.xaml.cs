@@ -136,30 +136,34 @@ namespace Burgerking_Kiosk.Pages
 
         private void sellInfoSendServer()
         {
-            String o = "";
-            int tempOrder = orderNum % 100;
-
-            if (orderNum < 10)
+            if (ClientManager.client.Connected)
             {
-                o = "00" + tempOrder.ToString();
-            }
-            else
-            {
-                o = "0" + tempOrder.ToString();
-            }
+                String o = "";
+                int tempOrder = orderNum % 100;
 
-            List<ServerMenu> sMenu = new List<ServerMenu>();
-            foreach(Data.Menu m in OrderData.menuList)
-            {
-                ServerMenu s = new ServerMenu();
-                s.Name = m.name;
-                s.Count = m.count;
-                s.Price = m.price;
-                sMenu.Add(s);
+                if (orderNum < 10)
+                {
+                    o = "00" + tempOrder.ToString();
+                }
+                else
+                {
+                    o = "0" + tempOrder.ToString();
+                }
+
+                List<ServerMenu> sMenu = new List<ServerMenu>();
+                foreach (Data.Menu m in OrderData.menuList)
+                {
+                    ServerMenu s = new ServerMenu();
+                    s.Name = m.name;
+                    s.Count = m.count;
+                    s.Price = m.price;
+                    sMenu.Add(s);
+                }
+
+
+                ClientManager.sendMessage("", 2, "버거왕", o, true, sMenu);
             }
-
-
-            ClientManager.sendMessage("", 2, "버거왕", o, true, sMenu);
+            
         }
 
         

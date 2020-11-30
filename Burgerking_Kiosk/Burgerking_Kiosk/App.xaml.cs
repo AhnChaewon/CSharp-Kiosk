@@ -65,7 +65,11 @@ namespace Burgerking_Kiosk
             }
 
             ClientManager.start();
-            ClientManager.sendMessage("", 0, "", "", false, null);
+            if (ClientManager.client.Connected)
+            {
+                ClientManager.sendMessage("", 0, "", "", false, null);
+            }
+            
 
             
         }

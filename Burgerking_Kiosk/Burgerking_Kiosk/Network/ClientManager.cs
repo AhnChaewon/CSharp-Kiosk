@@ -24,7 +24,7 @@ namespace Burgerking_Kiosk.Network
         private static AsyncCallback receiveCallback;
         private static AsyncCallback sendCallback;
 
-        static Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        public static Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         static IPEndPoint end = new IPEndPoint(IPAddress.Parse("10.80.162.152"), 80);
 
         public static void start()
