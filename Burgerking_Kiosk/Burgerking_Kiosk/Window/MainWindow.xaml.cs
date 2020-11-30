@@ -1,4 +1,5 @@
 ﻿using Burgerking_Kiosk.Data;
+using Burgerking_Kiosk.DBManger;
 using Burgerking_Kiosk.Network;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,10 @@ namespace Burgerking_Kiosk
         public MainWindow()
         {
             InitializeComponent();
+
+            DBMenu db = new DBMenu();
+            db.GetMenu();
+
             this.Loaded += MainWindow_Loaded;
             
         }

@@ -11,8 +11,10 @@ namespace Burgerking_Kiosk.DBManger
     class DBMenu
     {
         private DBConnection conDB = new DBConnection();
+        public static List<Menu> menus = new List<Menu>();
+        public static List<Menu> food = new List<Menu>();
 
-        public List<Menu> GetMenu()
+        public void GetMenu()
         {
             conDB.connectDB();
             try
@@ -21,7 +23,6 @@ namespace Burgerking_Kiosk.DBManger
                 MySqlDataReader reader = conDB.executeReadQuery();
 
                 Menu menu;
-                List<Menu> menus = new List<Menu>();
                 int buger = 1;
                 int drink = 1;
                 int side = 1;
@@ -34,30 +35,30 @@ namespace Burgerking_Kiosk.DBManger
                     menu.imagePath = (string)reader["ImagePath"];
                     menu.price = (int)reader["Price"];
                     menu.sale = (int)reader["Sale"];
+                    menu.soldOut = (int)reader["SoldOut"];
 
                     if (menu.id / 100 == 1)
                     {
                         menu.page = buger / 6;
-                        menu.category = Category.BURGERS;
+                        menu.category = Category.BURGERS;    
                         buger++;
+                        App.burgerList.Add(menu);
                     }
                     else if (menu.id / 100 == 2)
                     {
                         menu.page = drink / 6;
                         menu.category = Category.DRINKS;
                         drink++;
+                        App.drinkList.Add(menu);
                     }
                     else
                     {
                         menu.page = side / 6;
                         menu.category = Category.SIDES;
                         side++;
+                        App.sideList.Add(menu);
                     }
-
-                    menus.Add(menu);
                 }
-
-                return menus;
             }
             catch (MySqlException ex)
             {
@@ -73,7 +74,6 @@ namespace Burgerking_Kiosk.DBManger
                 }
             }
 
-            return null;
         }
     }
 }

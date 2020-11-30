@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Burgerking_Kiosk.Data
 { 
-    class Menu
+    public class Menu
     {
         public int id { get; set; }
         public Category category { get; set; }
@@ -17,5 +17,6 @@ namespace Burgerking_Kiosk.Data
         public int sale { get; set; }
         public int price { get; set; }
         public int page { get; set; }
+        public int soldOut { get; set; }
     }
 }

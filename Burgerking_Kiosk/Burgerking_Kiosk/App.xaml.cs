@@ -1,4 +1,5 @@
-﻿using Burgerking_Kiosk.DBManger;
+﻿using Burgerking_Kiosk.Data;
+using Burgerking_Kiosk.DBManger;
 using Burgerking_Kiosk.Network;
 using MySql.Data.MySqlClient;
 using System;
@@ -21,7 +22,11 @@ namespace Burgerking_Kiosk
         Stopwatch sw = new Stopwatch();
         double time = 0;
         String computer = System.Security.Principal.WindowsIdentity.GetCurrent().Name.Split('\\')[0];
-        Boolean check = false; 
+        Boolean check = false;
+
+        public static List<Menu> burgerList = new List<Menu>();
+        public static List<Menu> sideList = new List<Menu>();
+        public static List<Menu> drinkList = new List<Menu>();
 
         public App()
         {

@@ -25,10 +25,10 @@ namespace Burgerking_Kiosk.Pages
     public partial class OrderPage : Page
     {
         CategoryData categoryData = new CategoryData();
-        List<Data.Menu> foodData = new List<Data.Menu>();
-        List<Data.Menu> showFood = new List<Data.Menu>(); // 보여지는 리스트
+        List<Data.Menu> foodData = new List<Data.Menu>(); // 주문 목록 저장할 리스트
 
-        int categorySelect = 1;
+        //int categorySelect = 1;
+        int pageCount = 0;
 
         public OrderPage()
         {
@@ -37,48 +37,212 @@ namespace Burgerking_Kiosk.Pages
             InitData();
         }
 
-        //주석 부분은 나중에 다시 정리할 예정
-        //private void insertNowMenu(int pageNum)
-        //{
-        //    for(int i=MenuCount; i<MenuCount+6; i++)
-        //    {
-        //        if(foodData[i].page!= pageNum)
-        //        {
-        //            return;
-        //        }
-        //            showFood.Add(foodData[i]);
-        //    }
-
-        //}
-
-        private void navBtn_Click(object sender, RoutedEventArgs e) // 메뉴 목록 이전 버튼
+        private void previewBtn_Click(object sender, RoutedEventArgs e) // 메뉴 목록 이전 버튼
         {
-            //var name = ((Button)sender).Name;
-            //MenuCount += 6;
-            //lbMenus.ItemsSource = null;
-            //insertNowMenu(categorySelect);
+            if (lbCategory.SelectedIndex == 0 && pageCount > 0)
+            {
+                foodData.Clear();
+                pageCount -= 1;
 
-            //lbMenus.ItemsSource = foodData;
+                for (int i = pageCount * 6; i <= pageCount * 6 + 5; i++)
+                {
+                    if (i >= App.burgerList.Count) break;
+                    foodData.Add(App.burgerList[i]);
+                }
 
-            //if (name == "nextBtn")
-            //{
-            //    if (pageCount == 1)
-            //    {
-            //        for (int i = 5; i < 11; i++)
-            //        {
-            //            showFood.Add(foodData[i]);
-            //        }
-            //        pageCount++;
-            //    }
-            //    else if (pageCount == 2)
-            //    {
-            //        for (int i = 11; i < 17; i++)
-            //        {
-            //            showFood.Add(foodData[i]);
-            //        }
-            //        pageCount = 1;
-            //    }
-            //}
+                if (pageCount != 0)
+                {
+                    previewBtn.IsEnabled = true;
+                }
+                else
+                {
+                    previewBtn.IsEnabled = false;
+                }
+
+                if (pageCount == 1)
+                {
+                    nextBtn.IsEnabled = false;
+                }
+                else
+                {
+                    nextBtn.IsEnabled = true;
+                }
+
+                lbMenus.ItemsSource = foodData;
+                lbMenus.Items.Refresh();
+            }
+
+            else if (lbCategory.SelectedIndex == 1 && pageCount > 0)
+            {
+                foodData.Clear();
+                pageCount -= 1;
+
+                for (int i = pageCount * 6; i <= pageCount * 6 + 5; i++)
+                {
+                    if (i >= App.drinkList.Count) break;
+                    foodData.Add(App.drinkList[i]);
+                }
+
+                if (pageCount != 0)
+                {
+                    previewBtn.IsEnabled = true;
+                }
+                else
+                {
+                    previewBtn.IsEnabled = false;
+                }
+
+                if (pageCount == 2)
+                {
+                    nextBtn.IsEnabled = false;
+                }
+                else
+                {
+                    nextBtn.IsEnabled = true;
+                }
+
+                lbMenus.ItemsSource = foodData;
+                lbMenus.Items.Refresh();
+            }
+
+            else if (lbCategory.SelectedIndex == 2 && pageCount > 0)
+            {
+                foodData.Clear();
+                pageCount -= 1;
+
+                for (int i = pageCount * 6; i <= pageCount * 6 + 5; i++)
+                {
+                    if (i >= App.sideList.Count) break;
+                    foodData.Add(App.sideList[i]);
+                }
+
+                if (pageCount != 0)
+                {
+                    previewBtn.IsEnabled = true;
+                }
+                else
+                {
+                    previewBtn.IsEnabled = false;
+                }
+
+                if (pageCount == 1)
+                {
+                    nextBtn.IsEnabled = false;
+                }
+                else
+                {
+                    nextBtn.IsEnabled = true;
+                }
+
+                lbMenus.ItemsSource = foodData;
+                lbMenus.Items.Refresh();
+            }
+        }
+
+        private void nextBtn_Click(object sender, RoutedEventArgs e) // 메뉴 목록 다음 버튼
+        {
+            if (lbCategory.SelectedIndex == 0 && (pageCount + 1) * 6 <= App.burgerList.Count) //
+            {
+                
+
+                foodData.Clear();
+                pageCount += 1;
+
+                for (int i = pageCount * 6; i <= pageCount * 6 + 5; i++)
+                {
+                    if (i >= App.burgerList.Count) break; //
+                    foodData.Add(App.burgerList[i]); //
+                }
+
+                if (pageCount != 0)
+                {
+                    previewBtn.IsEnabled = true;
+                }
+                else
+                {
+                    previewBtn.IsEnabled = false;
+                }
+
+                if (pageCount == 1)
+                {
+                    nextBtn.IsEnabled = false;
+                }
+                else
+                {
+                    nextBtn.IsEnabled = true;
+                }
+
+                lbMenus.ItemsSource = foodData;
+                lbMenus.Items.Refresh();
+            }
+
+            else if (lbCategory.SelectedIndex == 1 && (pageCount + 1) * 6 <= App.drinkList.Count)
+            {
+
+                foodData.Clear();
+                pageCount += 1;
+
+                for (int i = pageCount * 6; i <= pageCount * 6 + 5; i++)
+                {
+                    if (i >= App.drinkList.Count) break;
+                    foodData.Add(App.drinkList[i]);
+                }
+
+                if (pageCount != 0)
+                {
+                    previewBtn.IsEnabled = true;
+                }
+                else
+                {
+                    previewBtn.IsEnabled = false;
+                }
+
+                if (pageCount == 2)
+                {
+                    nextBtn.IsEnabled = false;
+                }
+                else
+                {
+                    nextBtn.IsEnabled = true;
+                }
+
+                lbMenus.ItemsSource = foodData;
+                lbMenus.Items.Refresh();
+            }
+
+            else if (lbCategory.SelectedIndex == 2 && (pageCount + 1) * 6 <= App.sideList.Count)
+            {
+
+                foodData.Clear();
+                pageCount += 1;
+
+                for (int i = pageCount * 6; i <= pageCount * 6 + 5; i++)
+                {
+                    if (i >= App.sideList.Count) break;
+                    foodData.Add(App.sideList[i]);
+                }
+
+                if (pageCount != 0)
+                {
+                    previewBtn.IsEnabled = true;
+                }
+                else
+                {
+                    previewBtn.IsEnabled = false;
+                }
+
+                if (pageCount == 1)
+                {
+                    nextBtn.IsEnabled = false;
+                }
+                else
+                {
+                    nextBtn.IsEnabled = true;
+                }
+
+                lbMenus.ItemsSource = foodData;
+                lbMenus.Items.Refresh();    
+            }
         }
 
         private void OrderPage_Loaded(object sender, RoutedEventArgs e)
@@ -86,6 +250,7 @@ namespace Burgerking_Kiosk.Pages
             lbCategory.SelectedIndex = 0;
             lvSelected.ItemsSource = OrderData.menuList;
             totalPrice.Text = OrderData.sumMoney + "원";
+
             btnIsEnbled();
         }
 
@@ -94,19 +259,7 @@ namespace Burgerking_Kiosk.Pages
             categoryData.Load();
             lbCategory.ItemsSource = categoryData.lstCategory;
 
-            DBMenu db = new DBMenu();
-            foodData = db.GetMenu();
-
-            lbMenus.ItemsSource = foodData;
-
-            //if (OrderData.menuList.Count != 0)
-            //{
-            //    foods = OrderData.menuList;
-            //}
-
-            //lvSelected.ItemsSource = OrderData.menuList;
-
-
+            lbMenus.ItemsSource = App.burgerList;
         }
 
         private void OrderBtn_Click(object sender, RoutedEventArgs e)
@@ -118,28 +271,26 @@ namespace Burgerking_Kiosk.Pages
         private void lbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (lbCategory.SelectedIndex == -1) return;
+            pageCount = 0;
             Data.Category category = (Data.Category)lbCategory.SelectedIndex;
-            //Debug.WriteLine(category.ToString());
-            //if (category.ToString().Equals("BURGERS"))
-            //{
-            //    categorySelect = 1;
-            //}
-            //else if (category.ToString().Equals("DRINKS"))
-            //{
-            //    categorySelect = 2;
-            //    MenuCount = 11;
-
-
-            //}
-            //else
-            //{
-            //    categorySelect = 3;
-            //    MenuCount = 24;
-
-            //}
-
-            lbMenus.ItemsSource = foodData.Where(x => x.category == category).ToList();
-
+            if (lbCategory.SelectedIndex == 0)
+            {
+                lbMenus.ItemsSource = App.burgerList;
+                previewBtn.IsEnabled = false;
+                nextBtn.IsEnabled = true;
+            }
+            else if (lbCategory.SelectedIndex == 1)
+            {
+                lbMenus.ItemsSource = App.drinkList;
+                previewBtn.IsEnabled = false;
+                nextBtn.IsEnabled = true;
+            }
+            else if (lbCategory.SelectedIndex == 2)
+            {
+                lbMenus.ItemsSource = App.sideList;
+                previewBtn.IsEnabled = false;
+                nextBtn.IsEnabled = true;
+            }
         }
 
         private void menuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -153,21 +304,30 @@ namespace Burgerking_Kiosk.Pages
 
             Data.Menu food = (Data.Menu)lbMenus.SelectedItem;
 
-            for (int i = 0; i < OrderData.menuList.Count; i++)
+            if (food.soldOut == 0)
             {
-                if (food.name == OrderData.menuList[i].name)
+                for (int i = 0; i < OrderData.menuList.Count; i++)
                 {
-                    OrderData.menuList[i].count++;
-                    flag = 1;
-                    break;
+                    if (food.name == OrderData.menuList[i].name)
+                    {
+                        OrderData.menuList[i].count++;
+                        flag = 1;
+                        break;
+                    }
                 }
             }
 
             if (flag == 0)
             {
                 food.count++;
-                
+
                 OrderData.menuList.Add(food);
+            }
+
+
+            if (food.soldOut == 1) // 품절된 상품일때
+            {
+                MessageBox.Show("품절된 메뉴입니다.", "안내");
             }
 
             setTotalPrice();
@@ -178,14 +338,13 @@ namespace Burgerking_Kiosk.Pages
             lbMenus.SelectedIndex = -1;
 
             lvSelected.ItemsSource = OrderData.menuList;
-
-
         }
 
         private void countBtn_Click(object sender, RoutedEventArgs e) // 선택한 메뉴의 -, + 버튼 클릭 시
         {
             var name = ((Button)sender).Name;
             var food = ((ListViewItem)lvSelected.ContainerFromElement(sender as Button)).Content as Data.Menu;
+
             if (name == "addBtn")
             {
                 food.count++;
@@ -205,8 +364,8 @@ namespace Burgerking_Kiosk.Pages
                 }
                 btnIsEnbled();
             }
-            refreshFood();
 
+            refreshFood();
         }
 
         private void foodRemove(Data.Menu food) // 선택한 메뉴 삭제
@@ -274,8 +433,6 @@ namespace Burgerking_Kiosk.Pages
             {
                 NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
             }
-
-
         }
 
         private void foodClear() // 주문한 메뉴 전체 삭제
@@ -284,6 +441,7 @@ namespace Burgerking_Kiosk.Pages
             {
                 OrderData.menuList[i].count = 0;
             }
+
             OrderData.menuList.Clear();
             lvSelected.Items.Refresh();
             totalPrice.Text = "";
@@ -294,7 +452,6 @@ namespace Burgerking_Kiosk.Pages
         {
             totalPrice.Text = setTotalPrice() + "원";
             lvSelected.Items.Refresh();
-
         }
 
         private int setTotalPrice() // 총 금액 계산

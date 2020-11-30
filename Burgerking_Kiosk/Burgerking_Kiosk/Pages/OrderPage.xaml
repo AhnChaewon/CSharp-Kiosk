@@ -214,12 +214,12 @@
             <Grid Margin="360 0 80 0">
                 <Grid Height="60" VerticalAlignment="top">
                     <Button x:Name="previewBtn"
-                            Click="navBtn_Click"
-                            IsEnabled="False"
+                            Click="previewBtn_Click"
                             Content="이전" 
+                            IsEnabled="False"
                             Style="{StaticResource BeforeButtonStyle}"/>
                     <Button x:Name="nextBtn"
-                            Click="navBtn_Click"
+                            Click="nextBtn_Click"
                             Content="다음" 
                             Style="{StaticResource NextButtonStyle}" 
                             HorizontalAlignment="Left" Margin="375 0 0 0"/>
