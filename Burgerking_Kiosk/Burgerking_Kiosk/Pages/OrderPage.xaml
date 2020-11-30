@@ -351,7 +351,7 @@
         <Grid Grid.Column="1" Grid.Row="2">
             <Grid Margin="92 0 360 0" Height="50" VerticalAlignment="Top">
                 <Button Content="이전으로" Width="140" 
-                        Click="prePageBtn_Click"
+                        Click="prevPageBtn_Click"
                         x:Name="orderCancleBtn"
                         Background="#363636"
                         Margin="0 0 200 0" 
@@ -362,7 +362,7 @@
                         Background="#185494" FontSize="18"
                         Margin="170 0 0 0" 
                         Style="{StaticResource OrderButtonStyle}"
-                        Click="OrderBtn_Click"/>
+                        Click="orderBtn_Click"/>
             </Grid>
         </Grid>
     </Grid>
