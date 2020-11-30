@@ -1,4 +1,5 @@
 ﻿using Burgerking_Kiosk.Data;
+using Burgerking_Kiosk.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,12 @@ namespace Burgerking_Kiosk
         public MainWindow()
         {
             InitializeComponent();
+            this.Loaded += MainWindow_Loaded;
+            
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(0.01);
             timer.Tick += new EventHandler(timer_Tick);
@@ -49,18 +56,27 @@ namespace Burgerking_Kiosk
             {
                 if(MessageBox.Show(content, "경고", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
                 {
-                    /*OrderData.table = -1;
-                    OrderData.member = null;
-
-                    OrderData.menuList.RemoveRange(0, OrderData.menuList.Count);
-
-                    OrderData.member = null;*/
-                    
+                    OrderData.clearData();
                 }
+                else
+                {
+                    return;
+                }
+                
             }
             frame.Source = new Uri("/Pages/HomePage.xaml", UriKind.Relative);
+        }
 
-
+        private void msgSendBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!msgEdit.Text.Equals(""))
+            {
+                ClientManager.sendMessage(msgEdit.Text, 1);
+            }
+            else
+            {
+                MessageBox.Show("메세지를 적어주세요!");
+            }
 
         }
     }

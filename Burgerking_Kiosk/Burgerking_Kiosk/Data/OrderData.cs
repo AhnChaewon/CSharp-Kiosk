@@ -16,5 +16,14 @@ namespace Burgerking_Kiosk.Data
         public static List<Menu> menuList = new List<Menu>();
         public static int sumMoney = 0;
 
+        public static void clearData()
+        {
+            table = -1;
+            payment = "";
+            member = "";
+            menuList.Clear();
+            sumMoney = 0;
+        }
+
     }
 }

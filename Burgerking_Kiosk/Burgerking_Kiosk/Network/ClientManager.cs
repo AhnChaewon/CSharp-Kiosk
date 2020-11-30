@@ -9,6 +9,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Burgerking_Kiosk.Network
 {
@@ -31,21 +32,10 @@ namespace Burgerking_Kiosk.Network
         static Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         static IPEndPoint end = new IPEndPoint(IPAddress.Parse("10.80.162.152"), 80);
 
-
-        //public static int Main(String[] args)
-        //{
-        //    receiveCallback = new AsyncCallback(handleDataReceive);
-        //    sendCallback = new AsyncCallback(handleDataSend);
-        //    start();
-        //    SendMessage("", 0);
-        //    SendMessage("please finish test", 1);
-
-        //    Console.ReadLine();
-        //    return 0;
-        //}
-
         public static void start()
         {
+            receiveCallback = new AsyncCallback(handleDataReceive);
+            sendCallback = new AsyncCallback(handleDataSend);
             try
             {
                 client.Connect(end);
@@ -57,11 +47,25 @@ namespace Burgerking_Kiosk.Network
             }
             catch (Exception ex)
             {
+                MessageBox.Show("서버와 연결 중 오류가 발생하였습니다.");
                 Console.WriteLine(ex);
             }
         }
 
-        public static void SendMessage(String message, int type)
+        public static void close()
+        {
+            try
+            {
+                client.Close();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            
+        }
+
+        public static void sendMessage(String message, int type)
         {
             StateObject ao = new StateObject();
             ao.buffer = sendMsg(type, message);
@@ -74,6 +78,7 @@ namespace Burgerking_Kiosk.Network
             }
             catch (Exception ex)
             {
+                MessageBox.Show("메세지 전송 중 오류가 발생하였습니다!");
                 Console.WriteLine("전송 중 오류 발생!\n메세지: {0}", ex.Message);
             }
         }
@@ -97,7 +102,14 @@ namespace Burgerking_Kiosk.Network
             {
                 Byte[] msgByte = new Byte[recvBytes];
                 Array.Copy(ao.buffer, msgByte, recvBytes);
+                String msg = Encoding.UTF8.GetString(msgByte);
 
+                if (!msg.Equals("200"))
+                {
+                    MessageBox.Show(msg);
+                }
+
+                
                 // 받은 메세지를 출력
                 Console.WriteLine("메세지 받음: {0}", Encoding.UTF8.GetString(msgByte));
             }
@@ -108,6 +120,7 @@ namespace Burgerking_Kiosk.Network
             }
             catch (Exception ex)
             {
+                MessageBox.Show("수신 대기 중 오류가 발생하였습니다!");
                 Console.WriteLine("자료 수신 대기 도중 오류 발생! 메세지: {0}", ex.Message);
                 return;
             }
@@ -125,6 +138,7 @@ namespace Burgerking_Kiosk.Network
             }
             catch (Exception ex)
             {
+                MessageBox.Show("메세지 전송 중 오류가 발생하였습니다!");
                 Console.WriteLine("자료 송신 도중 오류 발생! 메세지: {0}", ex.Message);
                 return;
             }

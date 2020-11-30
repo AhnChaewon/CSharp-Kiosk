@@ -1,4 +1,5 @@
 ﻿using Burgerking_Kiosk.DBManger;
+using Burgerking_Kiosk.Network;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,6 @@ namespace Burgerking_Kiosk
 
             sw.Reset();
             sw.Start();
-            Console.WriteLine(computer);
             try
             {
                 DBConnection db = new DBConnection();
@@ -59,11 +59,15 @@ namespace Burgerking_Kiosk
                 Console.WriteLine(ex);
             }
 
+            ClientManager.start();
+            ClientManager.sendMessage("", 0);
+
             
         }
 
         private void App_Exit(object sender, ExitEventArgs e)
         {
+            ClientManager.close();
             sw.Stop();
             time = sw.ElapsedMilliseconds / 1000;
 

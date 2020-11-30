@@ -118,11 +118,11 @@ namespace Burgerking_Kiosk.Pages
 
         private void callSales()
         {
-            double sum = 0;
-            double netSum = 0;
-            double saleSum = 0;
-            double cardSum = 0;
-            double moneySum = 0;
+            int sum = 0;
+            int netSum = 0;
+            int saleSum = 0;
+            int cardSum = 0;
+            int moneySum = 0;
             try
             {
                 DBConnection db = new DBConnection();
@@ -134,34 +134,29 @@ namespace Burgerking_Kiosk.Pages
 
                 while (reader.Read())
                 {
-                    double price = Convert.ToDouble(reader["Price"]);
-                    double sale = Convert.ToDouble(reader["Sale"]);
+                    int price = Convert.ToInt32(reader["Price"]);
+                    int sale = Convert.ToInt32(reader["Sale"]);
+                    String payment = Convert.ToString(reader["Payment"]);
+
                     netSum += price;
-                    if (sale == 0)
+                    if(sale == price)
                     {
-                        Console.WriteLine("0%");
                         sum += price;
-
                     }
                     else
                     {
-                        Console.WriteLine(sale);
-                        Console.WriteLine(price);
-                        saleSum += (price * (sale / 100));
-                        sum += price - (price * (sale / 100));
+                        saleSum += price - sale;
                     }
 
-                    if(reader["Payment"].ToString() == "card")
-                    {
-                        cardSum += price;
-                    }
-                    else
+                    if (payment.Equals("money"))
                     {
                         moneySum += price;
                     }
-                    
+                    else
+                    {
+                        cardSum += price;
+                    }
 
-                    
                 }
                 db.closeConnection();
 

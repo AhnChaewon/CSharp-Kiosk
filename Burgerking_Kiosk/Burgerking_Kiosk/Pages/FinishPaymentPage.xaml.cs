@@ -89,7 +89,7 @@ namespace Burgerking_Kiosk.Pages
                 {
                     DBConnection db = new DBConnection();
                     db.connectDB();
-                    string sql = "SELECT Name FROM csdb.user WHERE Barcode = \"" + OrderData.member +"\"";
+                    string sql = "SELECT Name, BarCode FROM csdb.user WHERE Barcode = \"" + OrderData.member +"\"";
                     db.setCommand(sql);
                     MySqlDataReader reader = db.executeReadQuery();
 
@@ -97,6 +97,7 @@ namespace Burgerking_Kiosk.Pages
                     {
                         OrderData.member = reader["Name"].ToString();
                         name.Text = "회원명 : " + OrderData.member;
+                        card.Text = "인식된 카드 번호 : " + reader["BarCode"].ToString();
                     }
                     db.closeConnection();
                 }
@@ -111,6 +112,7 @@ namespace Burgerking_Kiosk.Pages
         private void sellDB()
         {
             String time = DateTime.Now.ToString("yyyy-MM-dd H:mm:ss");
+            Console.WriteLine(OrderData.menuList.Count);
             foreach(Data.Menu m in OrderData.menuList)
             {
                 try
