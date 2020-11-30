@@ -1,5 +1,6 @@
 ﻿using Burgerking_Kiosk.Data;
 using Burgerking_Kiosk.DBManger;
+using Burgerking_Kiosk.Network;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace Burgerking_Kiosk.Pages
             takeOrderNum();
             takeUser();
             sellDB();
+            sellInfoSendServer();
         }
 
         private void finishBtn_Click(object sender, RoutedEventArgs e)
@@ -131,5 +133,35 @@ namespace Burgerking_Kiosk.Pages
             }
            
         }
+
+        private void sellInfoSendServer()
+        {
+            String o = "";
+            int tempOrder = orderNum % 100;
+
+            if (orderNum < 10)
+            {
+                o = "00" + tempOrder.ToString();
+            }
+            else
+            {
+                o = "0" + tempOrder.ToString();
+            }
+
+            List<ServerMenu> sMenu = new List<ServerMenu>();
+            foreach(Data.Menu m in OrderData.menuList)
+            {
+                ServerMenu s = new ServerMenu();
+                s.Name = m.name;
+                s.Count = m.count;
+                s.Price = m.price;
+                sMenu.Add(s);
+            }
+
+
+            ClientManager.sendMessage("", 2, "버거왕", o, true, sMenu);
+        }
+
+        
     }
 }

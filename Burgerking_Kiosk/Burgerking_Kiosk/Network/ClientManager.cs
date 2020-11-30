@@ -1,16 +1,11 @@
-﻿using Burgerking_Kiosk.Data;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-
+using System.Web;
 namespace Burgerking_Kiosk.Network
 {
     class ClientManager
@@ -65,10 +60,10 @@ namespace Burgerking_Kiosk.Network
             
         }
 
-        public static void sendMessage(String message, int type)
+        public static void sendMessage(String message, int type, String shop, String orderNum, Boolean group, List<ServerMenu> list)
         {
             StateObject ao = new StateObject();
-            ao.buffer = sendMsg(type, message);
+            ao.buffer = jsonMsg(message, type, shop, orderNum, group, list);
             ao.workSocket = client;
 
             // 전송 시작!
@@ -153,22 +148,13 @@ namespace Burgerking_Kiosk.Network
         }
 
 
-        public static byte[] sendMsg(int type, String str)
+        public static byte[] jsonMsg(String content,int type, String shop, String orderNum, Boolean group, List<ServerMenu> list)
         {
-            var json = new JObject();
-            json.Add("MSGType", type);
-            json.Add("Id", 2111);
-            json.Add("Content", str);
-            json.Add("ShopName", "");
-            json.Add("OrderNumber", "");
-            json.Add("Group", false);
-            json.Add("Menus", null);
-
-            String msg = JsonConvert.SerializeObject(json);
+            JsonMsg m = new JsonMsg(type, 2111, content, shop, orderNum, group, list);
+ 
+            String msg = JsonConvert.SerializeObject(m);
             byte[] b = Encoding.UTF8.GetBytes(msg);
             return b;
-
         }
-
     }
 }

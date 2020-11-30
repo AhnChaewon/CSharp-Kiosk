@@ -76,7 +76,8 @@ namespace Burgerking_Kiosk
         {
             if (!msgEdit.Text.Equals(""))
             {
-                ClientManager.sendMessage(msgEdit.Text, 1);
+                ClientManager.sendMessage(msgEdit.Text, 1, "", "", false, null);
+                msgEdit.Text = "";
             }
             else
             {
