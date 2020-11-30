@@ -25,7 +25,7 @@ namespace Burgerking_Kiosk.Pages
     public partial class OrderPage : Page
     {
         CategoryData categoryData = new CategoryData();
-        List<Data.Menu> foodData = new List<Data.Menu>(); // 주문 목록 저장할 리스트
+        List<Data.Menu> foodData = new List<Data.Menu>(); // 메뉴 목록 보여줄 리스트
 
         int pageCount = 0;
 
@@ -34,6 +34,23 @@ namespace Burgerking_Kiosk.Pages
             InitializeComponent();
             this.Loaded += OrderPage_Loaded;
             InitData();
+        }
+
+        private void OrderPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            lbCategory.SelectedIndex = 0;
+            lvSelected.ItemsSource = OrderData.menuList;
+            totalPrice.Text = OrderData.sumMoney + "원";
+
+            orderBtn_IsEnbled();
+        }
+
+        private void InitData()
+        {
+            categoryData.Load();
+            lbCategory.ItemsSource = categoryData.lstCategory;
+
+            lbMenus.ItemsSource = App.burgerList;
         }
 
         private void previewBtn_Click(object sender, RoutedEventArgs e) // 메뉴 목록 이전 버튼
@@ -85,8 +102,6 @@ namespace Burgerking_Kiosk.Pages
         {
             if (lbCategory.SelectedIndex == 0 && (pageCount + 1) * 6 <= App.burgerList.Count) //
             {
-                
-
                 foodData.Clear();
                 pageCount += 1;
 
@@ -101,7 +116,6 @@ namespace Burgerking_Kiosk.Pages
 
             else if (lbCategory.SelectedIndex == 1 && (pageCount + 1) * 6 <= App.drinkList.Count)
             {
-
                 foodData.Clear();
                 pageCount += 1;
 
@@ -116,7 +130,6 @@ namespace Burgerking_Kiosk.Pages
 
             else if (lbCategory.SelectedIndex == 2 && (pageCount + 1) * 6 <= App.sideList.Count)
             {
-
                 foodData.Clear();
                 pageCount += 1;
 
@@ -130,7 +143,7 @@ namespace Burgerking_Kiosk.Pages
             }
         }
 
-        private void menuBtn_IsEnabled(int a)
+        private void menuBtn_IsEnabled(int pageNum) // 메뉴 목록 버튼 비활성화/활성화
         {
             if (pageCount != 0)
             {
@@ -141,7 +154,7 @@ namespace Burgerking_Kiosk.Pages
                 previewBtn.IsEnabled = false;
             }
 
-            if (pageCount == a)
+            if (pageCount == pageNum)
             {
                 nextBtn.IsEnabled = false;
             }
@@ -154,30 +167,13 @@ namespace Burgerking_Kiosk.Pages
             lbMenus.Items.Refresh();
         }
 
-        private void OrderPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            lbCategory.SelectedIndex = 0;
-            lvSelected.ItemsSource = OrderData.menuList;
-            totalPrice.Text = OrderData.sumMoney + "원";
-
-            orderBtn_IsEnbled();
-        }
-
-        private void InitData()
-        {
-            categoryData.Load();
-            lbCategory.ItemsSource = categoryData.lstCategory;
-
-            lbMenus.ItemsSource = App.burgerList;
-        }
-
-        private void orderBtn_Click(object sender, RoutedEventArgs e)
+        private void orderBtn_Click(object sender, RoutedEventArgs e) // 주문 버튼 클릭 시
         {
             OrderData.sumMoney = setTotalPrice();
             NavigationService.Navigate(new Uri("/Pages/ChooseDiningPage.xaml", UriKind.Relative));
         }
 
-        private void lbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e) // 카테고리가 바뀔 때
         {
             if (lbCategory.SelectedIndex == -1) return;
             pageCount = 0;
@@ -203,7 +199,7 @@ namespace Burgerking_Kiosk.Pages
             }
         }
 
-        private void menuList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void menuList_SelectionChanged(object sender, SelectionChangedEventArgs e) // 메뉴 클릭 시
         {
             int flag = 0;
 
@@ -297,7 +293,7 @@ namespace Burgerking_Kiosk.Pages
             totalPrice.Text = OrderData.sumMoney + "원";
         }
 
-        private void orderBtn_IsEnbled() // 버튼 활성화
+        private void orderBtn_IsEnbled() // 버튼 비활성화/활성화
         {
             if (OrderData.menuList.Count != 0)
             {
@@ -311,11 +307,11 @@ namespace Burgerking_Kiosk.Pages
             }
         }
 
-        private void deleteAllBtn_Click(object sender, RoutedEventArgs e) // 메뉴 전체 삭제
+        private void deleteAllBtn_Click(object sender, RoutedEventArgs e) // 메뉴 전체 삭제 클릭 시
         {
             if (MessageBox.Show("선택한 메뉴를 모두 삭제하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                foodClear();
+                orderMenuClear();
                 orderBtn_IsEnbled();
                 MessageBox.Show("삭제되었습니다.", "안내");
             }
@@ -326,13 +322,13 @@ namespace Burgerking_Kiosk.Pages
         }
 
 
-        private void prevPageBtn_Click(object sender, RoutedEventArgs e) // 주문 취소
+        private void prevPageBtn_Click(object sender, RoutedEventArgs e) // 주문 취소 버튼 클릭 (이전)
         {
             if (OrderData.menuList.Count != 0)
             {
                 if (MessageBox.Show("주문을 취소하시겠습니까?", "안내", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    foodClear();
+                    orderMenuClear();
                     NavigationService.Navigate(new Uri("/Pages/HomePage.xaml", UriKind.Relative));
                 }
                 else
@@ -346,7 +342,7 @@ namespace Burgerking_Kiosk.Pages
             }
         }
 
-        private void foodClear() // 주문한 메뉴 전체 삭제
+        private void orderMenuClear() // 주문한 메뉴 전체 삭제
         {
             for (int i = 0; i < OrderData.menuList.Count; i++)
             {
@@ -355,9 +351,8 @@ namespace Burgerking_Kiosk.Pages
 
             OrderData.menuList.Clear();
             lvSelected.Items.Refresh();
-            totalPrice.Text = OrderData.sumMoney + "원";
+            totalPrice.Text = "" + "원";
         }
-
 
         private void refreshFood() // 계산한 총 금액 출력
         {
@@ -369,11 +364,11 @@ namespace Burgerking_Kiosk.Pages
         {
             int total = 0;
 
-            for(int i = 0; i < OrderData.menuList.Count; i++)
+            for (int i = 0; i < OrderData.menuList.Count; i++)
             {
                 total += OrderData.menuList[i].count * OrderData.menuList[i].sale;
             }
-            
+
             OrderData.sumMoney = total;
 
             return OrderData.sumMoney;
